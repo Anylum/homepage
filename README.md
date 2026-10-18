@@ -2,7 +2,7 @@
 
 Sitio web de anylum: resúmenes de derecho, herramientas y juegos para servidores judiciales, estudiantes y abogados del Perú.
 
-- `index.html`: página principal.
+- `index.html`: página principal, diseñada como un mapa de cinco niveles (Curiosidad, Lectura, Estudio, Criterio y Cátedra). El progreso de cada visitante se guarda en su navegador.
 
 Es un sitio estático: no necesita instalación. Para publicarlo, activa GitHub Pages desde la rama `main` y la carpeta raíz.
 
@@ -11,6 +11,7 @@ Es un sitio estático: no necesita instalación. Para publicarlo, activa GitHub 
 Al final de `index.html`, en el objeto `ANYLUM`, completa:
 
 - `yape` y `plin`: número de celular para recibir aportes.
+- `yapeQR`: nombre del archivo con el código QR de Yape (súbelo a la raíz, por ejemplo `yape-qr.png`).
 - `tarjeta`: enlace de pago con tarjeta.
 - `boletin`: dirección del formulario del boletín (Buttondown, Mailchimp, Formspree u otro).
 
