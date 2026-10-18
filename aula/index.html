@@ -161,6 +161,8 @@ dialog .in{padding:24px;display:flex;flex-direction:column;gap:16px}
 .pairs .opt.matched{background:var(--ambar);border-color:var(--ambar);color:var(--tinta)}
 .shake{animation:shake .35s} @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .win{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding-block:10px}
+.aviso{background:var(--tinta);color:var(--papel);text-align:center;font-weight:700;font-size:.92rem;padding:10px 16px;margin:0}
+.aviso[hidden]{display:none}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--tinta);color:var(--papel);border-radius:99px;padding:11px 18px;font-weight:800;font-size:.92rem;display:flex;gap:10px;align-items:center;transition:opacity .25s,transform .25s;z-index:60;pointer-events:none;white-space:nowrap}
 .toast i{width:14px;height:14px;border-radius:50%;background:var(--ambar)} .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -213,6 +215,7 @@ dialog .in{padding:24px;display:flex;flex-direction:column;gap:16px}
 </header>
 
 <main id="inicio">
+  <p class="aviso" id="aviso" role="status" hidden></p>
   <section class="wrap hero">
     <div class="stack" style="gap:18px">
       <span class="eyebrow" style="color:var(--turquesa-osc)">Aula Anylum</span>
@@ -290,7 +293,7 @@ const ICON={
   caso:'<path class="ic-l" d="M8 16h32v22H8z M18 16v-5h12v5 M8 26h32"/><circle class="ic-b" cx="24" cy="26" r="4"/>'
 };
 const TYPE={leer:'Lectura',vf:'Verdadero o falso',ordenar:'Ordena',parejas:'Parejas',caso:'Caso práctico'};
-const UNITS=[
+let UNITS=[
  {id:'intro',sec:'Fundamentos',title:'Introducción al Derecho',desc:'Qué es el derecho, de dónde nacen las normas y cómo se ordenan.',stages:[
   {id:'i1',t:'leer',title:'¿Qué es el derecho?',goal:'Distinguir derecho objetivo y derecho subjetivo.',
    text:['El <b>derecho objetivo</b> es el conjunto de normas que regulan la conducta en sociedad y que el Estado puede hacer cumplir: la Constitución, las leyes, los reglamentos.','El <b>derecho subjetivo</b> es la facultad que esas normas reconocen a una persona: por ejemplo, el derecho del propietario a usar su casa o el del acreedor a cobrar su deuda.','Una forma sencilla de recordarlo: el derecho objetivo es <i>la regla</i>; el subjetivo, <i>lo que la regla te permite exigir</i>.'],
@@ -383,9 +386,39 @@ const UNITS=[
    o:['La verosimilitud del derecho','El peligro en la demora','La competencia del juez'],a:1,
    e:'Probó la deuda (verosimilitud) y ofreció contracautela, pero debe justificar el peligro en la demora o las razones que hacen necesaria la medida (art. 611 del CPC).'}]}
 ];
-const SOON=[{sec:'Código Procesal Civil · Sección Segunda',title:'Los sujetos del proceso'},{sec:'Código Procesal Civil · Sección Tercera',title:'Medios impugnatorios'},{sec:'Código Procesal Civil · Sección Quinta',title:'Conocimiento, abreviado y sumarísimo'},{sec:'Código Procesal Civil · Sección Sexta',title:'Procesos no contenciosos'}];
-const ALL=UNITS.flatMap(u=>u.stages.map(s=>Object.assign(s,{unit:u.id})));
-$('totalN').textContent=ALL.length;
+let SOON=[{sec:'Código Procesal Civil · Sección Segunda',title:'Los sujetos del proceso'},{sec:'Código Procesal Civil · Sección Tercera',title:'Medios impugnatorios'},{sec:'Código Procesal Civil · Sección Quinta',title:'Conocimiento, abreviado y sumarísimo'},{sec:'Código Procesal Civil · Sección Sexta',title:'Procesos no contenciosos'}];
+let ALL=[];
+function setUnits(units,soon){UNITS=units;SOON=soon;ALL=UNITS.flatMap(u=>u.stages.map(s=>Object.assign(s,{unit:u.id})));$('totalN').textContent=ALL.length;}
+setUnits(UNITS,SOON);
+
+/* ===== Contenido editable desde Supabase (tablas aula_unidades y aula_etapas) ===== */
+const CKEY='anylum-aula-contenido';
+const isTrue=v=>v===true||/^(true|verdadero|v|si|sí|1)$/i.test(String(v).trim());
+function fromDB(e){const c=e.contenido||{},b={id:e.id,t:e.tipo,title:e.titulo,goal:e.objetivo||''},arr=v=>Array.isArray(v)?v:(v==null||v===''?[]:[v]);
+  switch(e.tipo){
+    case 'leer':{const p=c.pregunta||{};return Object.assign(b,{text:arr(c.texto),src:c.fuente||'',q:{p:p.enunciado||'',o:arr(p.opciones),a:(+p.correcta||1)-1,e:p.explicacion||''}});}
+    case 'vf':return Object.assign(b,{items:arr(c.afirmaciones).map(x=>[x.texto||'',isTrue(x.verdadero),x.explicacion||''])});
+    case 'ordenar':return Object.assign(b,{items:arr(c.orden_correcto),e:c.explicacion||''});
+    case 'parejas':return Object.assign(b,{pairs:arr(c.parejas).map(x=>[x.izquierda||'',x.derecha||''])});
+    case 'caso':return Object.assign(b,{p:c.caso||'',o:arr(c.opciones),a:(+c.correcta||1)-1,e:c.explicacion||''});
+  }return null;}
+const okStage=s=>s&&({leer:s=>s.text.length&&s.q.o.length>1&&s.q.o[s.q.a]!=null,vf:s=>s.items.length,ordenar:s=>s.items.length>1,parejas:s=>s.pairs.length>1,caso:s=>s.o.length>1&&s.o[s.a]!=null})[s.t](s);
+function buildContent(us,es){
+  const units=[],soon=[];
+  us.forEach(u=>{const st=es.filter(e=>e.unidad_id===u.id).map(fromDB).filter(okStage);
+    if(u.estado==='publicada'&&st.length)units.push({id:u.id,sec:u.seccion||'',title:u.titulo,desc:u.descripcion||'',stages:st});
+    else if(u.estado!=='oculta')soon.push({sec:u.seccion||'',title:u.titulo});});
+  return units.length?{units,soon}:null;
+}
+function applyContent(c){if(!c)return false;setUnits(c.units,c.soon);if(!UNITS.some(u=>u.id===S.unit))S.unit=UNITS[0].id;return true;}
+async function loadContent(){
+  const g=t=>fetch(SB_URL+'/rest/v1/'+t,{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+  try{const [us,es,cf]=await Promise.all([g('aula_unidades?select=*&order=orden,id'),g('aula_etapas?select=*&order=orden,id'),g('sitio_config?select=clave,valor&clave=eq.aula_aviso').catch(()=>[])]);
+    const c=buildContent(us,es);
+    if(c){try{localStorage.setItem(CKEY,JSON.stringify(c))}catch(e){}if(!(stage.open))applyContent(JSON.parse(JSON.stringify(c)))&&drawAll();}
+    const av=(cf[0]&&cf[0].valor||'').trim();$('aviso').hidden=!av;$('aviso').textContent=av;
+  }catch(e){console.warn('contenido',e)}
+}
 
 /* ===== Estado ===== */
 const KEY='anylum-aula';
@@ -426,7 +459,7 @@ function layoutLine(){
 addEventListener('resize',layoutLine);
 document.fonts&&document.fonts.ready.then(layoutLine);
 function stats(){
-  const n=S.done.length,p=Math.round(n/ALL.length*100);
+  const n=ALL.filter(s=>S.done.includes(s.id)).length,p=ALL.length?Math.round(n/ALL.length*100):0;
   $('lucesTop').textContent=S.luces;$('doneN').textContent=n;$('pct').textContent=p;$('meter').style.width=p+'%';
   $('lamps').innerHTML=Array.from({length:7},(_,i)=>`<i class="${i<S.racha?'on':''}"></i>`).join('');
   const nx=nextAny();$('contBtn').disabled=!nx;$('contBtn').textContent=nx?(n?'Continuar donde lo dejé →':'Empezar la primera etapa →'):'¡Completaste todas las etapas!';
@@ -550,7 +583,8 @@ $('cmtForm').addEventListener('submit',async e=>{e.preventDefault();const nom=$(
   catch(err){msg.style.color='var(--lacre)';msg.textContent='Los comentarios abrirán muy pronto. Gracias por tu paciencia.';console.warn('comentario',err);}
 });
 
-drawAll();loadComments();
+try{applyContent(JSON.parse(localStorage.getItem(CKEY)||'null'))}catch(e){}
+drawAll();loadComments();loadContent();
 })();
 </script>
 </body>

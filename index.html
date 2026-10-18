@@ -174,6 +174,26 @@ p{margin:0}
 .legend svg{width:24px;height:24px}
 
 /* Biblioteca */
+.aviso{background:var(--tinta);color:var(--papel);text-align:center;font-weight:700;font-size:.92rem;padding:10px 16px;margin:0}
+.aviso[hidden],.redes[hidden],.soc[hidden]{display:none}
+.lk-search{margin-bottom:18px;max-width:460px}
+.lk-search input{width:100%;font:inherit;padding:12px 16px;border-radius:99px;border:1px solid var(--borde);background:var(--blanco);color:var(--tinta)}
+.lk-search input:focus-visible{outline:2px solid var(--lacre);outline-offset:2px}
+.lk h3{font-size:1.08rem;display:flex;gap:9px;align-items:center}
+.lk h3 i{width:10px;height:10px;border-radius:50%;flex:none}
+.lk ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.lk a{color:var(--tinta);text-decoration:none;font-weight:800;overflow-wrap:anywhere}
+.lk a::after{content:" ↗";color:var(--lacre);font-weight:700}
+.lk a:hover{text-decoration:underline;text-decoration-color:var(--ambar);text-underline-offset:3px}
+.lk li span{display:block;font-size:.86rem;color:var(--tinta-2);margin-top:2px}
+.redes{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.soc{display:flex;gap:10px;flex-wrap:wrap}
+.soc a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--tinta);color:var(--papel);text-decoration:none;transition:transform .15s}
+.soc a:hover{transform:translateY(-2px)}
+footer .soc a{background:var(--papel);color:var(--tinta)}
+.soc a:focus-visible{outline:2px solid var(--lacre);outline-offset:3px}
+.soc svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.val-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .filters button{all:unset;cursor:pointer;border-radius:99px;padding:8px 14px;font-weight:800;font-size:.84rem;background:var(--blanco);border:1px solid var(--borde)}
 .filters button[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
@@ -315,7 +335,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
       <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
       <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
       <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
-      <a href="#biblioteca">Biblioteca</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
+      <a href="#biblioteca">Biblioteca</a><a href="#enlaces">Enlaces</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
     </nav>
     <details class="menu">
       <summary aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#261A17" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="17" r="2" fill="#E8A33D"/></svg></summary>
@@ -323,13 +343,14 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
         <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
         <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
         <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
-        <a href="#biblioteca">Biblioteca</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
+        <a href="#biblioteca">Biblioteca</a><a href="#enlaces">Enlaces</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
       </div>
     </details>
   </div>
 </header>
 
 <main id="inicio">
+  <p class="aviso" id="aviso" role="status" hidden></p>
   <section class="start">
     <div class="wrap">
       <span class="eyebrow">Educación jurídica · Perú</span>
@@ -403,7 +424,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
           <p class="muted small">Días hábiles, feriados, suspensiones y término de la distancia.</p>
           <a class="btn lacre go" href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">Abrir →</a>
         </article>
-        <article class="card">
+        <article class="card" id="dest-judicial">
           <span class="eyebrow">En la biblioteca</span>
           <a class="res" href="#biblioteca" data-open="plazos"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>¿Desde cuándo corre el plazo?</b><br><span class="small muted">Cómputo y notificación electrónica.</span></span></a>
           <a class="res" href="#biblioteca" data-open="cautelares"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Medidas cautelares</b><br><span class="small muted">Qué revisar antes de conceder.</span></span></a>
@@ -425,7 +446,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
           <p class="sub">La misma base del derecho, aplicada a lo que haces en tu estudio: estrategia, escritos y plazos.</p></div>
       </div>
       <div class="grid g3">
-        <article class="card">
+        <article class="card" id="dest-pro">
           <span class="eyebrow">En la biblioteca</span>
           <a class="res" href="#biblioteca" data-open="despido"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Indemnización por despido arbitrario</b><br><span class="small muted">Cálculo con ejemplo.</span></span></a>
           <a class="res" href="#biblioteca" data-open="prescripcion"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Prescripción y caducidad</b><br><span class="small muted">Qué alegar y cuándo.</span></span></a>
@@ -448,11 +469,11 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap">
       <div class="stack" style="margin-bottom:24px"><span class="eyebrow">Biblioteca abierta</span><h2 class="dot">Resúmenes para todos</h2>
         <p class="sub">Cada tema se explica una sola vez, con su fuente. Los puntos de color indican para qué camino es más útil.</p></div>
-      <div class="filters" role="group" aria-label="Filtrar por materia">
-        <button type="button" data-f="todo" aria-pressed="true">Todo</button><button type="button" data-f="civil" aria-pressed="false">Civil</button><button type="button" data-f="pcivil" aria-pressed="false">Procesal civil</button><button type="button" data-f="laboral" aria-pressed="false">Laboral</button>
+      <div class="filters" id="libF" role="group" aria-label="Filtrar por materia">
+        <button type="button" data-f="todo" aria-pressed="true">Todo</button><button type="button" data-f="Civil" aria-pressed="false">Civil</button><button type="button" data-f="Procesal civil" aria-pressed="false">Procesal civil</button><button type="button" data-f="Laboral" aria-pressed="false">Laboral</button>
       </div>
       <div class="grid g2" style="align-items:start" id="lib">
-        <details class="card sum" data-sum="prescripcion" data-m="civil">
+        <details class="card sum" data-sum="prescripcion" data-m="Civil">
           <summary><div class="meta"><span class="label">Civil · 4 pasos</span><span class="for" title="Aula y Pro"><i style="background:var(--turquesa)"></i><i style="background:var(--negro)"></i></span></div><h3>Prescripción y caducidad: las diferencias que sí importan</h3><span class="more"></span></summary>
           <div class="body"><ol>
             <li><span><b>Qué extingue.</b> La prescripción extingue la acción, pero no el derecho (art. 1989). La caducidad extingue el derecho y la acción (art. 2003).</span></li>
@@ -461,7 +482,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
             <li><span><b>Plazos.</b> Los de prescripción están en el art. 2001: por ejemplo, 10 años para la acción personal y 2 para la indemnización extracontractual. Los de caducidad los fija la ley y no admiten pacto en contrario (art. 2004).</span></li>
           </ol><p class="src">Fuente: Código Civil peruano, Libro VIII.</p></div>
         </details>
-        <details class="card sum" data-sum="cautelares" data-m="pcivil">
+        <details class="card sum" data-sum="cautelares" data-m="Procesal civil">
           <summary><div class="meta"><span class="label">Procesal civil · 4 pasos</span><span class="for" title="Todos los caminos"><i style="background:var(--turquesa)"></i><i style="background:var(--guinda)"></i><i style="background:var(--negro)"></i></span></div><h3>Medidas cautelares: qué revisa el juez antes de concederlas</h3><span class="more"></span></summary>
           <div class="body"><ol>
             <li><span><b>Verosimilitud del derecho.</b> El derecho que se invoca debe parecer razonablemente fundado (art. 611).</span></li>
@@ -470,7 +491,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
             <li><span><b>Contracautela.</b> Quien pide la medida ofrece una garantía por los daños que pudiera causar (art. 613). La solicitud se resuelve sin conocimiento de la parte afectada (art. 637).</span></li>
           </ol><p class="src">Fuente: Código Procesal Civil peruano, Título IV de la Sección Quinta.</p></div>
         </details>
-        <details class="card sum" data-sum="plazos" data-m="pcivil">
+        <details class="card sum" data-sum="plazos" data-m="Procesal civil">
           <summary><div class="meta"><span class="label">Procesal civil · 3 pasos</span><span class="for" title="Judicial y Pro"><i style="background:var(--guinda)"></i><i style="background:var(--negro)"></i></span></div><h3>¿Desde cuándo corre el plazo?</h3><span class="more"></span></summary>
           <div class="body"><ol>
             <li><span><b>Desde el día siguiente.</b> El plazo se computa desde el día siguiente de notificada la resolución (art. 147 del Código Procesal Civil).</span></li>
@@ -478,7 +499,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
             <li><span><b>Notificación electrónica.</b> La resolución surte efectos desde el segundo día siguiente a su ingreso en la casilla electrónica (art. 155-C de la Ley Orgánica del Poder Judicial).</span></li>
           </ol><p class="src">Calcula tu vencimiento con la <a href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">calculadora de plazos procesales</a>.</p></div>
         </details>
-        <details class="card sum" data-sum="despido" data-m="laboral">
+        <details class="card sum" data-sum="despido" data-m="Laboral">
           <summary><div class="meta"><span class="label">Laboral · 3 pasos</span><span class="for" title="Pro"><i style="background:var(--negro)"></i></span></div><h3>Despido arbitrario: cómo se calcula la indemnización</h3><span class="more"></span></summary>
           <div class="body"><ol>
             <li><span><b>La regla.</b> Una remuneración y media ordinaria mensual por cada año completo de servicios, con un máximo de doce remuneraciones (art. 38 del TUO del D. Leg. 728).</span></li>
@@ -490,7 +511,17 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     </div>
   </section>
 
-  <section id="apoya" style="padding-block:70px">
+  <section id="enlaces" style="padding-block:70px">
+    <div class="wrap">
+      <div class="stack" style="margin-bottom:24px"><span class="eyebrow">Enlaces de interés</span><h2 class="dot">Para investigar un caso</h2>
+        <p class="sub">Las páginas que uso para buscar normas, jurisprudencia y doctrina, y para corroborar datos.</p></div>
+      <div class="lk-search"><label for="lkQ" style="position:absolute;left:-9999px">Buscar un enlace</label><input id="lkQ" type="search" placeholder="Buscar: casaciones, tesis, SUNARP…" autocomplete="off"></div>
+      <div class="grid g3" id="lk" style="align-items:start"></div>
+      <p class="muted small" id="lkNone" hidden>No encontramos enlaces con esa palabra.</p>
+    </div>
+  </section>
+
+  <section id="apoya" class="band" style="padding-block:70px">
     <div class="wrap grid g2" style="align-items:center;gap:30px">
       <div class="stack"><span class="eyebrow">Apoya a Anylum</span><h2 class="dot">Lo esencial, siempre gratis</h2>
         <p class="sub">Si un resumen o una app te ayudó, puedes apoyar con un aporte único del monto que quieras.</p></div>
@@ -501,13 +532,14 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     </div>
   </section>
 
-  <section class="band" id="sobre-mi" style="padding-block:70px">
+  <section id="sobre-mi" style="padding-block:70px">
     <div class="wrap grid g2" style="gap:44px;align-items:start">
       <div class="stack">
-        <span class="eyebrow">Sobre mí</span><h2 class="dot">Hola, soy Angie</h2>
-        <p>Creé Anylum, una plataforma para aprender derecho de forma sencilla, casi como jugando: con explicaciones claras, ejemplos y siempre con la norma a la mano.</p>
-        <p class="muted">Aquí encontrarás resúmenes, herramientas y juegos para quienes estudian, litigan o sacan adelante un despacho judicial. Porque entender el derecho no debería ser un privilegio de pocos: debería estar al alcance de todos.</p>
-        <span class="hand">con cariño</span>
+        <span class="eyebrow">Sobre mí</span><h2 class="dot" id="smT">Hola, soy Angie</h2>
+        <p id="smP1">Creé Anylum, una plataforma para aprender derecho de forma sencilla, casi como jugando: con explicaciones claras, ejemplos y siempre con la norma a la mano.</p>
+        <p class="muted" id="smP2">Aquí encontrarás resúmenes, herramientas y juegos para quienes estudian, litigan o sacan adelante un despacho judicial. Porque entender el derecho no debería ser un privilegio de pocos: debería estar al alcance de todos.</p>
+        <span class="hand" id="smF">con cariño</span>
+        <div class="redes" id="redes" hidden><span class="eyebrow">Sígueme</span><div class="soc" id="soc"></div></div>
       </div>
       <div class="stack">
         <span class="eyebrow">Boletín</span><h2 class="dot">El boletín de los viernes</h2>
@@ -527,22 +559,24 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
 <footer>
   <div class="wrap foot">
     <span class="wm">anylum<span class="dot"></span></span>
+    <div class="soc" id="socF" hidden></div>
     <p class="legal"><b>El contenido es educativo y no reemplaza la asesoría legal de un profesional.</b> © <span id="yr">2026</span> Anylum.</p>
   </div>
 </footer>
 
 <dialog id="stage" aria-labelledby="stT"><div class="in" id="stIn"></div></dialog>
-<dialog id="dlg"><div class="in"><h3 id="dlgT"></h3><p id="dlgP" class="muted"></p><img id="dlgImg" alt="" hidden><div id="dlgV" class="val" hidden></div><button class="btn lacre" type="button" id="dlgClose" style="width:fit-content">Entendido</button></div></dialog>
+<dialog id="dlg"><div class="in"><h3 id="dlgT"></h3><p id="dlgP" class="muted"></p><img id="dlgImg" alt="" hidden><div class="val-row"><div id="dlgV" class="val" hidden></div><button class="btn ghost" type="button" id="dlgCopy" hidden style="padding:7px 14px">Copiar</button></div><p id="dlgN" class="small muted" hidden></p><button class="btn lacre" type="button" id="dlgClose" style="width:fit-content">Entendido</button></div></dialog>
 <div class="toast" id="toast" role="status"><i></i><span id="toastT"></span></div>
 
 <script>
-/* Configuración: completa estos datos para activar los aportes y el boletín. */
+/* Todo el contenido se edita en Supabase (tabla sitio_config y demás); estos valores son el respaldo. */
 const SB_URL='https://vfimysewbdbbxtxlwxbv.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZmaW15c2V3YmRiYnh0eGx3eGJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NzQwMDUsImV4cCI6MjEwNjU1MDAwNX0.rHaSVk6U5fuT6mHcMGgVqfU43dU4m16pgsDb3bJOifA';
 const ANYLUM={
-  yape:'',      // número de celular para Yape
-  yapeQR:'',    // imagen del QR de Yape subida al repositorio, por ejemplo 'yape-qr.png'
-  plin:'',      // número de celular para Plin
-  tarjeta:''    // enlace de pago con tarjeta (Mercado Pago, Culqi, Stripe…)
+  yape:'993793851', // número de celular para Yape
+  yape_nombre:'',   // titular que aparece en Yape
+  yape_qr:'',       // imagen del QR de Yape
+  plin:'',          // número de celular para Plin
+  tarjeta:''        // enlace de pago con tarjeta (Mercado Pago, Culqi, Stripe…)
 };
 (()=>{
 const $=id=>document.getElementById(id);
@@ -573,26 +607,27 @@ const fromHash=location.hash.replace('#','');
 if(['aula','judicial','pro'].includes(fromHash))openWay(fromHash,false);else if(S.way)openWay(S.way,false);
 
 /* Biblioteca */
-document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+$('libF').addEventListener('click',e=>{const b=e.target.closest('button[data-f]');if(!b)return;
+  $('libF').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   document.querySelectorAll('#lib .sum').forEach(d=>d.hidden=!(b.dataset.f==='todo'||d.dataset.m===b.dataset.f));
-}));
-document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',()=>{
-  const d=document.querySelector(`[data-sum="${a.dataset.open}"]`);if(d){d.hidden=false;d.open=true;setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}),30);}
-}));
+});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-open]');if(!a)return;
+  const d=[...document.querySelectorAll('#lib .sum')].find(x=>x.dataset.sum===a.dataset.open);if(d){d.hidden=false;d.open=true;setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}),30);}
+});
 
 /* Aportes y boletín */
 const dlg=$('dlg');
-function show(t,p,v,img){$('dlgT').textContent=t;$('dlgP').textContent=p;$('dlgV').hidden=!v;$('dlgV').textContent=v||'';
+function show(t,p,v,img,n){$('dlgT').textContent=t;$('dlgP').textContent=p;$('dlgV').hidden=!v;$('dlgV').textContent=v||'';$('dlgCopy').hidden=!v;$('dlgCopy').textContent='Copiar';$('dlgN').hidden=!n;$('dlgN').textContent=n?'A nombre de '+n:'';
   $('dlgImg').hidden=!img;if(img){$('dlgImg').src=img;$('dlgImg').alt='Código QR para aportar con Yape';}
   if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');}
+$('dlgCopy').addEventListener('click',()=>{const v=$('dlgV').textContent;(navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>{$('dlgCopy').textContent='¡Copiado!'}).catch(()=>{})});
 $('dlgClose').addEventListener('click',()=>dlg.close?dlg.close():dlg.removeAttribute('open'));
 const PAY={yape:'Aporte por Yape',plin:'Aporte por Plin',tarjeta:'Aporte con tarjeta'};
 document.querySelectorAll('[data-pay]').forEach(b=>b.addEventListener('click',()=>{
-  const k=b.dataset.pay,v=ANYLUM[k],img=k==='yape'?ANYLUM.yapeQR:'';
+  const k=b.dataset.pay,v=(ANYLUM[k]||'').trim(),img=k==='yape'?(ANYLUM.yape_qr||'').trim():'',n=k==='yape'?(ANYLUM.yape_nombre||'').trim():'';
   if(k==='tarjeta'&&v){window.open(v,'_blank','noopener');return;}
   if(!v&&!img){show(PAY[k],'Estamos habilitando este medio de pago. Muy pronto podrás usarlo desde aquí.');return;}
-  show(PAY[k],img?'Escanea el código desde tu app y aporta el monto que quieras. ¡Gracias por sostener Anylum!':'Envía el monto que quieras a este número. ¡Gracias por sostener Anylum!',v,img);
+  show(PAY[k],img?'Escanea el código desde tu app y aporta el monto que quieras. ¡Gracias por sostener Anylum!':'Envía el monto que quieras a este número. ¡Gracias por sostener Anylum!',v,img,n);
 }));
 $('newsForm').addEventListener('submit',async e=>{
   e.preventDefault();const nom=$('nlNom').value.trim(),mail=$('nlMail').value.trim(),msg=$('newsMsg');
@@ -606,6 +641,63 @@ $('newsForm').addEventListener('submit',async e=>{
     else throw new Error(r.status);}
   catch(_){msg.style.color='var(--lacre)';msg.textContent='No pudimos registrar tu correo. Inténtalo de nuevo en unos minutos.';}
 });
+
+/* ===== Contenido editable desde Supabase ===== */
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sbGet=t=>fetch(SB_URL+'/rest/v1/'+t,{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+const WAY={aula:['var(--turquesa)','Aula'],judicial:['var(--guinda)','Judicial'],pro:['var(--negro)','Pro']};
+const DOC='<svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg>';
+function drawLib(rows){
+  const pasos=r=>Array.isArray(r.pasos)?r.pasos:[];
+  const mats=[...new Set(rows.map(r=>r.materia))];
+  $('libF').innerHTML='<button type="button" data-f="todo" aria-pressed="true">Todo</button>'+mats.map(m=>`<button type="button" data-f="${esc(m)}" aria-pressed="false">${esc(m)}</button>`).join('');
+  $('lib').innerHTML=rows.map(r=>{const c=(r.caminos||[]).filter(w=>WAY[w]),n=pasos(r).length;
+    return `<details class="card sum" data-sum="${esc(r.id)}" data-m="${esc(r.materia)}"><summary><div class="meta"><span class="label">${esc(r.materia)} · ${n} ${n===1?'paso':'pasos'}</span><span class="for" title="${c.map(w=>WAY[w][1]).join(', ')}">${c.map(w=>`<i style="background:${WAY[w][0]}"></i>`).join('')}</span></div><h3>${esc(r.titulo)}</h3><span class="more"></span></summary>
+      <div class="body"><ol>${pasos(r).map(p=>`<li><span>${p.titulo?`<b>${p.titulo}</b> `:''}${p.texto||''}</span></li>`).join('')}</ol>${r.fuente?`<p class="src">${/^(calcula|ver|consulta)/i.test(r.fuente)?'':'Fuente: '}${r.fuente}</p>`:''}</div></details>`}).join('');
+  ['judicial','pro'].forEach(w=>{const box=$('dest-'+w),d=rows.filter(r=>(r.destacar_en||[]).includes(w));if(!box)return;box.hidden=!d.length;
+    box.innerHTML='<span class="eyebrow">En la biblioteca</span>'+d.map(r=>`<a class="res" href="#biblioteca" data-open="${esc(r.id)}">${DOC}<span><b>${esc(r.titulo)}</b>${r.resumen_corto?`<br><span class="small muted">${esc(r.resumen_corto)}</span>`:''}</span></a>`).join('');});
+}
+const LINKS=[["Normas","SPIJ · Sistema Peruano de Información Jurídica","https://spij.minjus.gob.pe/spij-ext-web/#/sidenav","Legislación peruana actualizada y concordada."],["Normas","El Peruano · Normas actualizadas","https://diariooficial.elperuano.pe/Normas/normasactualizadas","Diario oficial con actualización hasta ayer, en PDF."],["Normas","TUO del Código Procesal Civil","https://diariooficial.elperuano.pe/Normas/visor/tuo-codigo-procesal-civil","Texto completo en el visor de El Peruano."],["Jurisprudencia","Tribunal Constitucional · Sistematización jurisprudencial","https://jurisprudencia.sedetc.gob.pe/sistematizacion-jurisprudencial/busqueda"],["Jurisprudencia","Corte Suprema · Jurisprudencia del Poder Judicial","https://jurisprudencia.pj.gob.pe/jurisprudenciaweb/faces/page/inicio.xhtml"],["Jurisprudencia","El Peruano · Casaciones","https://diariooficial.elperuano.pe/Casaciones"],["Jurisprudencia","El Peruano · Precedentes vinculantes","https://diariooficial.elperuano.pe/Jurisprudencia"],["Jurisprudencia","El Peruano · Procesos constitucionales","https://diariooficial.elperuano.pe/Procesos"],["Jurisprudencia","El Peruano · Plenos jurisdiccionales","https://diariooficial.elperuano.pe/Plenos"],["Tesis y trabajos académicos","Scopus","https://www.elsevier.com/es-mx/products/scopus"],["Tesis y trabajos académicos","ALICIA · Concytec","https://alicia.concytec.gob.pe/vufind/","Repositorio nacional de tesis y artículos."],["Tesis y trabajos académicos","LA Referencia","https://www.lareferencia.info/es/","Red latinoamericana de repositorios."],["Tesis y trabajos académicos","Google Académico","https://scholar.google.com/"],["Tesis y trabajos académicos","Dialnet","https://dialnet.unirioja.es/"],["Herramientas con IA","Litis · buscador de jurisprudencia","https://litis.ai/buscador"],["Herramientas con IA","Juztina","https://www.juztina.ai/auth/login","Búsqueda de jurisprudencia."],["Herramientas con IA","Research Rabbit","https://www.researchrabbit.ai/","Artículos académicos relacionados."],["Corroboración","SUNARP · Conoce aquí","https://conoce-aqui.sunarp.gob.pe/conoce-aqui/inicio","Revisión de partidas y fichas registrales."],["Corroboración","SUNARP · Visor satelital","https://visor-bgr.sunarp.gob.pe/visor-bgr/inicio","Estudio de planos por años."],["Corroboración","Miro","https://miro.com/app/dashboard/","Para armar líneas de tiempo del caso."],["Diccionarios","Diccionario panhispánico del español jurídico","https://dpej.rae.es/"],["Diccionarios","Diccionario de la lengua española · RAE","https://www.rae.es/"]].map(([categoria,titulo,url,descripcion])=>({categoria,titulo,url,descripcion}));
+const DOTS=['var(--ambar)','var(--guinda)','var(--turquesa)','var(--negro)','var(--lacre)','var(--avellana)'];
+const safeUrl=u=>/^(https?:|mailto:)/i.test(u=String(u||'').trim())?u:(u?'https://'+u:'#');
+function drawLinks(rows){
+  const cats=[];rows.forEach(r=>{let c=cats.find(x=>x.n===r.categoria);if(!c)cats.push(c={n:r.categoria,l:[]});c.l.push(r)});
+  $('lk').innerHTML=cats.map((c,i)=>`<article class="card lk" data-cat><h3><i style="background:${DOTS[i%DOTS.length]}"></i>${esc(c.n)}</h3><ul>${c.l.map(r=>`<li data-q="${esc((c.n+' '+r.titulo+' '+(r.descripcion||'')+' '+r.url).toLowerCase())}"><a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener">${esc(r.titulo)}</a>${r.descripcion?`<span>${esc(r.descripcion)}</span>`:''}</li>`).join('')}</ul></article>`).join('');
+  filterLinks();
+}
+const fold=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+function filterLinks(){const q=fold($('lkQ').value.trim());let any=false;
+  document.querySelectorAll('#lk [data-cat]').forEach(c=>{let n=0;c.querySelectorAll('li').forEach(li=>{const ok=!q||fold(li.dataset.q).includes(q);li.hidden=!ok;if(ok)n++});c.hidden=!n;if(n)any=true;});
+  $('lkNone').hidden=any;}
+$('lkQ').addEventListener('input',filterLinks);
+drawLinks(LINKS);
+const SOC={
+  instagram:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/>',
+  tiktok:'<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.8 2.3 4.5 5 4.8"/>',
+  facebook:'<path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V21 M6 10h8"/>',
+  youtube:'<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/>',
+  linkedin:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17 M8 7.2v.1 M12 17v-6.5 M12 13.5c0-2 1.2-3 2.6-3s2.4 1 2.4 3V17"/>',
+  whatsapp:'<path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z" fill="currentColor" stroke="none"/>',
+  telegram:'<path d="M21 4L3 11l6 2 2 6 3-4 5 4z M9 13l12-9"/>',
+  x:'<path d="M4 4l16 16 M20 4L4 20"/>',
+  correo:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'
+};
+function socUrl(r){const u=String(r.url||'').trim();
+  if(r.red==='correo'&&!/^mailto:/i.test(u))return 'mailto:'+u;
+  if(r.red==='whatsapp'&&/^\+?[\d\s]+$/.test(u)){const d=u.replace(/\D/g,'');return 'https://wa.me/'+(d.length===9?'51'+d:d);}
+  return safeUrl(u);}
+function drawSoc(rows){const h=rows.map(r=>`<a href="${esc(socUrl(r))}" target="_blank" rel="noopener" aria-label="${esc(r.nombre)}${r.usuario?' · '+esc(r.usuario):''}" title="${esc(r.nombre)}"><svg viewBox="0 0 24 24" aria-hidden="true">${SOC[r.red]||'<circle cx="12" cy="12" r="8"/><path d="M4 12h16 M12 4c3 3 3 13 0 16 M12 4c-3 3-3 13 0 16"/>'}</svg></a>`).join('');
+  $('soc').innerHTML=$('socF').innerHTML=h;$('redes').hidden=$('socF').hidden=!rows.length;}
+function applyCfg(cfg){const v=k=>(cfg[k]||'').trim();
+  ['yape','yape_nombre','yape_qr','plin','tarjeta'].forEach(k=>{if(k in cfg)ANYLUM[k]=v(k)});
+  [['smT','sobre_mi_titulo'],['smP1','sobre_mi_texto'],['smP2','sobre_mi_texto2'],['smF','sobre_mi_firma']].forEach(([id,k])=>{if(v(k))$(id).textContent=v(k)});
+  $('aviso').hidden=!v('aviso');$('aviso').textContent=v('aviso');}
+Promise.allSettled([
+  sbGet('sitio_config?select=clave,valor').then(r=>applyCfg(Object.fromEntries(r.map(x=>[x.clave,x.valor||''])))),
+  sbGet('biblioteca_resumenes?select=*&order=orden,id').then(r=>{if(r.length)drawLib(r)}),
+  sbGet('enlaces?select=categoria,titulo,url,descripcion&order=orden,id').then(r=>{if(r.length)drawLinks(r)}),
+  sbGet('redes_sociales?select=red,nombre,url,usuario&order=orden').then(drawSoc)
+]).then(r=>r.forEach(x=>x.status==='rejected'&&console.warn('contenido',x.reason)));
 })();
 </script>
 </body>
