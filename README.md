@@ -2,7 +2,7 @@
 
 Sitio web de anylum: resúmenes de derecho, herramientas y juegos para servidores judiciales, estudiantes y abogados del Perú.
 
-- `index.html`: página principal, diseñada como un mapa de cinco niveles (Curiosidad, Lectura, Estudio, Criterio y Cátedra). El progreso de cada visitante se guarda en su navegador.
+- `index.html`: página principal. La portada pregunta qué vienes a hacer (Aula, Judicial o Pro) y abre solo ese espacio. Aula es un camino de etapas jugables (Introducción al Derecho y Procesal Civil); el avance se guarda en el navegador.
 
 Es un sitio estático: no necesita instalación. Para publicarlo, activa GitHub Pages desde la rama `main` y la carpeta raíz.
 

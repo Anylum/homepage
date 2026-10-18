@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>anylum · Aprende derecho como jugando</title>
-<meta name="description" content="Un mapa de cinco niveles para aprender derecho peruano: resúmenes, herramientas y juegos para servidores judiciales, estudiantes y abogados. Lo esencial es gratis.">
+<title>anylum · Derecho al alcance de todos</title>
+<meta name="description" content="Aprende derecho peruano como jugando, resuelve en el despacho judicial o ejerce con más claridad. Resúmenes, herramientas y un camino de juego. Lo esencial es gratis.">
 <meta name="theme-color" content="#F7F1E3">
 <meta property="og:type" content="website">
-<meta property="og:title" content="anylum · Aprende derecho como jugando">
-<meta property="og:description" content="Cinco niveles, de la curiosidad a la cátedra. Lee, prueba herramientas y juega: cada paso enciende una luz.">
+<meta property="og:title" content="anylum · Derecho al alcance de todos">
+<meta property="og:description" content="Aprende, resuelve o ejerce: elige tu camino y encuentra resúmenes, herramientas y juegos de derecho peruano.">
 <meta property="og:image" content="og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -18,8 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Mulish:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Damion&display=swap">
 <style>
-/* Mapa de niveles: un camino punteado baja por la izquierda; cada nivel es una parada con su medalla.
-   La pelotita ámbar marca dónde estás. Papel de fondo, tarjetas blancas, títulos negros. */
+/* Portada de tres caminos en círculos; al elegir uno se abre su espacio. Aula es un camino de etapas. */
 :root{
   --papel:#F7F1E3; --trigo:#F1DEA3; --pergamino:#DDBB82; --avellana:#B07D5A;
   --lacre:#7B3A2B; --tinta:#261A17; --tinta-2:#4E4A47; --gris:#8A837E; --ambar:#E8A33D;
@@ -29,13 +28,12 @@
   --f-title:'Sora','Trebuchet MS',system-ui,sans-serif;
   --f-body:'Mulish','Segoe UI',system-ui,sans-serif;
   --f-hand:'Caveat','Segoe Print','Comic Sans MS',cursive;
-  --rail:96px;
   color-scheme:light;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;background-color:var(--papel);color:var(--tinta);
   background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--renglon) 31px 32px);
   font:400 16.5px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
@@ -44,12 +42,13 @@ img,svg{max-width:100%}
 a{color:var(--lacre)}
 :focus-visible{outline:2px solid var(--lacre);outline-offset:3px;border-radius:6px}
 h1,h2,h3{font-family:var(--f-title);color:var(--tinta);margin:0;line-height:1.08;text-wrap:balance}
-h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;letter-spacing:-.02em}
+h2.dot::after{content:"";display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--ambar);margin-left:.08em}
 h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
 p{margin:0}
 .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .eyebrow{font:800 .74rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
-.sub{font-family:var(--f-title);font-size:1.08rem;color:var(--tinta-2);max-width:58ch}
+.sub{font-family:var(--f-title);font-size:1.08rem;color:var(--tinta-2);max-width:60ch}
 .muted{color:var(--tinta-2)}
 .small{font-size:.88rem}
 .hand{font-family:var(--f-hand);color:var(--lacre);font-weight:600;font-size:1.45rem;line-height:1.1}
@@ -57,8 +56,7 @@ p{margin:0}
 .grid{display:grid;gap:16px}
 .grid>*{min-width:0}
 .g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
 .card{background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
 .bul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
 .bul li{position:relative;padding-left:22px}
@@ -68,196 +66,210 @@ p{margin:0}
 .btn.lacre{background:var(--lacre);color:var(--papel)}
 .btn.ambar{background:var(--ambar);color:var(--tinta)}
 .btn.ghost{background:transparent;color:var(--lacre);box-shadow:inset 0 0 0 1.5px var(--lacre)}
-.btn.dark{background:var(--tinta);color:var(--papel)}
 .btn:hover{filter:brightness(1.07)}
 .btn:active{transform:translateY(1px)}
-.pill{font:800 .68rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:99px;width:fit-content;display:inline-flex;align-items:center;gap:6px}
+.btn:disabled{opacity:.45;cursor:default}
+.pill{font:800 .68rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:99px;width:fit-content}
 .pill.free{background:var(--trigo);color:var(--tinta)}
-.pill.sub{background:var(--lacre);color:var(--papel)}
 .pill.soon{background:transparent;color:var(--tinta-2);box-shadow:inset 0 0 0 1px var(--borde)}
-.pill.done{background:var(--tinta);color:var(--papel)}
-.reward{display:inline-flex;align-items:center;gap:8px;font:800 .8rem/1 var(--f-body);color:var(--tinta);background:var(--blanco);border:1px dashed var(--gris);border-radius:99px;padding:7px 12px;width:fit-content}
-.reward i{width:12px;height:12px;border-radius:50%;background:var(--ambar)}
 
-/* Logo (solo en la barra) */
+/* Logo e íconos circulares */
 .wm{display:inline-block;transform:skewX(8deg);transform-origin:50% 80%;font-family:var(--f-word);font-weight:400;color:var(--lacre);line-height:1;white-space:nowrap;text-decoration:none}
 .wm .dot{display:inline-block;width:.15em;height:.15em;border-radius:50%;background:var(--lacre);margin-left:.06em;transform:skewX(-8deg)}
 .sym{display:block;aspect-ratio:120/70;height:auto;overflow:visible}
 .v-judicial{--book:#F7F1E3;--ball:#E8A33D;--cone:#9B3A48;--gap:none}
 .v-aula{--book:#F7F1E3;--ball:#E8A33D;--cone:#62A29F;--gap:none}
 .v-pro{--book:#F7F1E3;--ball:#E8A33D;--cone:#2E2A26;--gap:none}
+.disc{border-radius:50%;display:grid;place-items:center;flex:none}
 
-/* HUD: barra de progreso del juego */
-.hud{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(247,241,227,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde)}
-.hud .wrap{display:flex;align-items:center;gap:18px;padding-block:10px}
-.hud .wm{font-size:1.9rem}
-.trail{flex:1;display:flex;align-items:center;justify-content:center;gap:0;min-width:0}
-.trail a{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:var(--tinta-2);font:800 .66rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:2px 6px}
-.trail a b{width:22px;height:22px;border-radius:50%;border:2px solid var(--gris);background:var(--blanco);display:grid;place-items:center;font:800 .7rem/1 var(--f-title);color:var(--tinta-2);transition:background .2s,border-color .2s}
-.trail a.done b{background:var(--ambar);border-color:var(--ambar);color:var(--tinta)}
-.trail a.here b{border-color:var(--lacre);box-shadow:0 0 0 3px rgba(123,58,43,.15)}
-.trail a.here{color:var(--tinta)}
-.trail .seg{width:clamp(14px,3vw,44px);height:2px;background:repeating-linear-gradient(90deg,var(--gris) 0 2px,transparent 2px 6px);margin-bottom:16px}
-.hud .score{display:inline-flex;align-items:center;gap:7px;font:800 .95rem/1 var(--f-body);background:var(--blanco);border:1px solid var(--borde);border-radius:99px;padding:8px 12px;white-space:nowrap}
-.hud .score i{width:14px;height:14px;border-radius:50%;background:var(--ambar)}
-.hud .score.pop i{animation:pop .5s ease}
-@keyframes pop{30%{transform:translateY(-6px) scale(1.15)}60%{transform:translateY(0) scale(1.3,.75)}}
-.icon-btn{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--blanco);border:1px solid var(--borde);font-size:.95rem}
-.icon-btn:focus-visible{outline:2px solid var(--lacre)}
-.hud .btn{padding:10px 16px;font-size:.84rem}
-.menu{display:none;position:relative}
+/* Barra superior */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(247,241,227,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde)}
+.top .wrap{display:flex;align-items:center;gap:18px;padding-block:12px}
+.top .wm{font-size:1.9rem}
+.top nav{display:flex;gap:2px;flex:1;justify-content:center}
+.top nav a{font-weight:700;font-size:.9rem;color:var(--tinta);text-decoration:none;padding:8px 12px;border-radius:99px;display:inline-flex;align-items:center;gap:7px}
+.top nav a i{width:9px;height:9px;border-radius:50%}
+.top nav a:hover,.top nav a.on{background:var(--blanco)}
+.top .btn{padding:10px 16px;font-size:.84rem}
+.menu{display:none;position:relative;margin-left:auto}
 .menu summary{list-style:none;cursor:pointer;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--borde);background:var(--blanco)}
 .menu summary::-webkit-details-marker{display:none}
-.menu .panel{position:absolute;right:0;top:50px;background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:8px;display:flex;flex-direction:column;min-width:230px;box-shadow:0 18px 40px -20px rgba(38,26,23,.35)}
+.menu .panel{position:absolute;right:0;top:50px;background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:8px;display:flex;flex-direction:column;min-width:220px;box-shadow:0 18px 40px -20px rgba(38,26,23,.35)}
 .menu .panel a{padding:11px 12px;font-weight:700;color:var(--tinta);text-decoration:none;border-radius:10px;display:flex;gap:10px;align-items:center}
-.menu .panel a span{width:22px;height:22px;border-radius:50%;border:2px solid var(--gris);display:grid;place-items:center;font:800 .68rem var(--f-title)}
+.menu .panel a i{width:10px;height:10px;border-radius:50%}
 .menu .panel a:hover{background:var(--papel)}
 
-/* Portada */
-.start{padding-block:72px 40px}
-.start-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:44px;align-items:center}
-.start h1{font-size:clamp(2.7rem,6.6vw,5rem);font-weight:800;letter-spacing:-.035em;line-height:1}
-.start h1 em{font-style:normal;color:var(--lacre)}
-.start .ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.save{background:var(--blanco);border:1px solid var(--borde);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:0 18px 40px -26px rgba(38,26,23,.35)}
-.save-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--tinta)}
-.save-row:hover{background:var(--papel)}
-.save-row b{width:30px;height:30px;border-radius:50%;border:2px solid var(--gris);display:grid;place-items:center;font:800 .8rem var(--f-title);flex:none}
-.save-row.done b{background:var(--ambar);border-color:var(--ambar)}
-.save-row .t{display:flex;flex-direction:column;line-height:1.25;min-width:0}
-.save-row .t strong{font-family:var(--f-title);font-size:.98rem}
-.save-row .t small{color:var(--tinta-2);font-size:.8rem}
-.save-row .st{margin-left:auto;font:800 .7rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap}
+/* Portada: elegir camino */
+.start{padding-block:64px 30px;text-align:center}
+.start h1{font-size:clamp(2.3rem,5.6vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:1.04}
+.start .sub{margin:16px auto 0}
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.way{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 18px 22px;border-radius:22px;border:2px solid transparent;transition:background .2s,border-color .2s,transform .2s;text-align:center}
+.way:hover{background:rgba(255,255,255,.6);transform:translateY(-3px)}
+.way:focus-visible{outline:2px solid var(--lacre);outline-offset:4px}
+.way .disc{width:132px;height:132px;transition:transform .25s}
+.way .disc .sym{width:88px}
+.way:hover .disc{transform:scale(1.04)}
+.way .nm{display:flex;align-items:baseline;gap:8px}
+.way .nm .wm{font-size:1.8rem}
+.way .tag{font:800 .76rem/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase}
+.way .verb{font-family:var(--f-title);font-weight:700;font-size:1.12rem;color:var(--tinta)}
+.way .who{font-size:.9rem;color:var(--tinta-2);max-width:28ch}
+.way[aria-selected="true"]{background:var(--blanco);border-color:var(--c)}
+.way[aria-selected="true"] .disc{box-shadow:0 0 0 6px var(--blanco),0 0 0 8px var(--c)}
+.hint{margin-top:22px}
+
+/* Espacios */
+.space{padding-block:40px 70px}
+.space-head{display:flex;gap:22px;align-items:center;margin-bottom:30px;flex-wrap:wrap}
+.space-head .disc{width:76px;height:76px}
+.space-head .disc .sym{width:52px}
+.space-head .t{flex:1;min-width:240px;display:flex;flex-direction:column;gap:8px}
+.ic{width:46px;height:46px}
+.ic-l{fill:none;stroke:var(--tinta);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic-b{fill:var(--ambar)}
+.res{display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:var(--tinta)}
+.res b{font-family:var(--f-title)}
+.app .go{margin-top:auto;width:fit-content}
+.locked{background:rgba(255,255,255,.55);border-style:dashed}
+
+/* Aula: camino de etapas */
+.units{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.unit{all:unset;cursor:pointer;border-radius:99px;padding:10px 16px;font-weight:800;font-size:.9rem;background:var(--blanco);border:1.5px solid var(--borde);display:inline-flex;gap:8px;align-items:center}
+.unit small{font-weight:700;color:var(--tinta-2)}
+.unit[aria-pressed="true"]{border-color:var(--turquesa);box-shadow:inset 0 0 0 1px var(--turquesa)}
+.unit:focus-visible{outline:2px solid var(--lacre);outline-offset:3px}
+.aula-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:start}
+.path{position:relative;padding-block:30px 10px}
+.path svg.line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.stop{position:relative;display:flex;align-items:center;gap:18px;min-height:130px}
+.stop:nth-child(4n+2){padding-left:30%}
+.stop:nth-child(4n+3){padding-left:56%}
+.stop:nth-child(4n+4){padding-left:30%}
+.node{all:unset;cursor:pointer;position:relative;width:84px;height:84px;border-radius:50%;background:var(--blanco);border:3px solid var(--tinta);display:grid;place-items:center;flex:none;transition:transform .2s,background .3s,border-color .3s;z-index:1}
+.node:hover{transform:scale(1.06)}
+.node:focus-visible{outline:3px solid var(--lacre);outline-offset:4px}
+.node svg{width:38px;height:38px}
+.node.done{background:var(--ambar);border-color:var(--ambar)}
+.node.done::after{content:"✓";position:absolute;right:-4px;top:-4px;width:26px;height:26px;border-radius:50%;background:var(--tinta);color:var(--papel);font:800 .82rem/26px var(--f-body);text-align:center}
+.node.next{border-color:var(--lacre);box-shadow:0 0 0 6px rgba(123,58,43,.12)}
+.stop .lbl{display:flex;flex-direction:column;gap:3px;min-width:0;max-width:240px}
+.stop .lbl b{font-family:var(--f-title);font-size:1rem;line-height:1.2}
+.stop .lbl small{font:800 .68rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)}
+.path-ball{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--ambar);z-index:2;pointer-events:none;transition:left .7s cubic-bezier(.34,1.4,.64,1),top .7s cubic-bezier(.34,1.4,.64,1)}
+.side{position:sticky;top:96px;display:flex;flex-direction:column;gap:14px}
 .meter{height:10px;border-radius:99px;background:#F1ECE3;overflow:hidden}
-.meter span{display:block;height:100%;width:0;background:var(--ambar);transition:width .5s ease}
+.meter span{display:block;height:100%;width:0;background:var(--ambar);transition:width .5s}
+.lights{display:inline-flex;align-items:center;gap:8px;font-weight:800}
+.lights i{width:14px;height:14px;border-radius:50%;background:var(--ambar)}
+.legend{display:grid;grid-template-columns:28px 1fr;gap:8px 10px;align-items:center;font-size:.86rem}
+.legend svg{width:24px;height:24px}
 
-/* Mapa */
-.map{position:relative;padding-bottom:20px}
-.level{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:26px}
-.rail{position:relative;display:flex;justify-content:center}
-.rail::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 2px);width:4px;background:radial-gradient(circle,var(--gris) 1.6px,transparent 2px) 0 0/4px 12px repeat-y}
-.level:first-child .rail::before{top:60px}
-.medal{position:relative;z-index:1;margin-top:56px;width:72px;height:72px;border-radius:50%;background:var(--blanco);border:3px solid var(--tinta);display:grid;place-items:center;font:800 1.7rem/1 var(--f-title);transition:background .3s,border-color .3s}
-.medal small{position:absolute;bottom:-26px;font:800 .62rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap}
-.medal.done{background:var(--ambar);border-color:var(--ambar)}
-.medal.done::after{content:"✓";position:absolute;right:-4px;top:-4px;width:24px;height:24px;border-radius:50%;background:var(--tinta);color:var(--papel);font:800 .8rem/24px var(--f-body);text-align:center}
-.stage{padding-block:56px;display:flex;flex-direction:column;gap:22px;min-width:0}
-.stage-head{display:flex;flex-direction:column;gap:10px}
-.map-ball{position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--ambar);z-index:2;transition:transform .75s cubic-bezier(.34,1.45,.64,1);pointer-events:none}
-.map-ball.hop{animation:hop .75s ease}
-@keyframes hop{0%{scale:1}20%{scale:.9 1.15}80%{scale:1}88%{scale:1.3 .7}100%{scale:1}}
-
-/* Nivel 1: elegir camino */
-.choose{all:unset;box-sizing:border-box;cursor:pointer;background:var(--blanco);border:2px solid var(--borde);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
-.choose:hover{transform:translateY(-2px)}
-.choose:focus-visible{outline:2px solid var(--lacre);outline-offset:3px}
-.choose .ico{width:58px;height:58px;border-radius:15px;display:grid;place-items:center}
-.choose .ico .sym{width:40px}
-.choose .nm{display:flex;align-items:baseline;gap:8px}
-.choose .nm .wm{font-size:1.7rem}
-.choose .desc{font:800 .72rem/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase}
-.choose .pick{font:800 .78rem/1 var(--f-body);color:var(--tinta-2)}
-.choose[aria-pressed="true"] .pick{color:var(--tinta)}
-.choose[aria-pressed="true"] .pick::before{content:"✓ "}
-
-/* Nivel 2: resúmenes */
+/* Biblioteca */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{all:unset;cursor:pointer;border-radius:99px;padding:8px 14px;font-weight:800;font-size:.84rem;background:var(--blanco);border:1px solid var(--borde)}
+.filters button[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.filters button:focus-visible{outline:2px solid var(--lacre);outline-offset:2px}
 .sum{padding:0;overflow:hidden}
 .sum summary{list-style:none;cursor:pointer;padding:20px 22px;display:flex;flex-direction:column;gap:10px}
 .sum summary::-webkit-details-marker{display:none}
 .sum .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .sum .label{font:800 .7rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.sum .for{display:flex;gap:5px}
+.sum .for i{width:10px;height:10px;border-radius:50%}
 .sum .more{font-weight:800;font-size:.86rem;color:var(--lacre)}
 .sum[open] .more::before{content:"Cerrar ↑"}
-.sum:not([open]) .more::before{content:"Abrir misión ↓"}
+.sum:not([open]) .more::before{content:"Leer en 3 minutos ↓"}
 .sum .body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:12px;border-top:1px dashed var(--borde)}
 .sum ol{margin:0;padding:0;list-style:none;counter-reset:p;display:flex;flex-direction:column;gap:12px}
 .sum ol li{counter-increment:p;display:grid;grid-template-columns:30px 1fr;gap:10px}
 .sum ol li::before{content:counter(p);width:26px;height:26px;border-radius:50%;background:var(--ambar);color:var(--tinta);font:800 .8rem/26px var(--f-body);text-align:center}
 .sum .src{font-size:.82rem;color:var(--tinta-2);border-left:3px solid var(--pergamino);padding-left:10px}
-.sum.read .label::after{content:" · leído ✓";color:var(--tinta)}
 
-/* Nivel 3: herramientas */
-.ic{width:46px;height:46px}
-.ic-l{fill:none;stroke:var(--tinta);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ic-b{fill:var(--ambar)}
-.app .go{margin-top:auto;width:fit-content}
-.app.locked{background:rgba(255,255,255,.55);border-style:dashed}
-
-/* Nivel 4: juego */
-.arena{display:grid;grid-template-columns:minmax(0,480px) 1fr;gap:30px;align-items:start}
-.game{background:var(--blanco);border:1px solid var(--borde);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 18px 40px -24px rgba(38,26,23,.35)}
-.g-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.g-bar{height:8px;border-radius:99px;background:#F1ECE3;overflow:hidden}
-.g-bar span{display:block;height:100%;width:0;background:var(--lacre);transition:width .35s}
-.g-q{font-family:var(--f-title);font-weight:700;font-size:1.22rem;line-height:1.32;min-height:3.96em}
-.g-track{position:relative;height:66px}
-.g-floor{position:absolute;left:0;right:0;bottom:0;height:2px;background:repeating-linear-gradient(90deg,var(--gris) 0 2px,transparent 2px 8px)}
-.g-ball{position:absolute;bottom:2px;left:calc(50% - 12px);width:24px;height:24px;border-radius:50%;background:var(--lacre);transition:background .15s}
-.g-ball.lit{background:var(--ambar)}
-.g-ans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.g-ans button{font:800 1rem/1 var(--f-body);padding:16px 10px;border-radius:12px;border:1.5px solid var(--lacre);background:var(--blanco);color:var(--lacre);cursor:pointer}
-.g-ans button:hover:not(:disabled){background:var(--papel)}
-.g-ans button:disabled{cursor:default}
-.g-ans button.right{background:var(--lacre);color:var(--papel)}
-.g-ans button.miss{border-style:dashed;border-color:var(--gris);color:var(--tinta-2)}
-.g-fb{min-height:4.6em;font-size:.94rem;line-height:1.45}
-.lamps{display:flex;gap:9px}
-.lamps i{width:15px;height:15px;border-radius:50%;background:var(--blanco);border:1.5px solid var(--pergamino)}
-.lamps i.on{background:var(--ambar);border-color:var(--ambar)}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{background:var(--blanco);border:1px dashed var(--gris);border-radius:99px;padding:8px 14px;font-weight:700;font-size:.86rem;color:var(--tinta-2)}
-
-/* Nivel 5: planes */
+/* Planes, créditos, pie */
+.band{background:var(--blanco);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde)}
 .plan .price{font-family:var(--f-title);font-weight:800;font-size:2.2rem;line-height:1}
 .plan.main{border:2px solid var(--lacre)}
 .plan .btn{width:fit-content;margin-top:auto}
 .pay{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
 .pay .btn{padding:10px 16px}
-
-/* Créditos */
-.credits{background:var(--blanco);border-top:1px solid var(--borde);padding-block:70px}
-.credits h2::after{content:"";display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--ambar);margin-left:.08em}
 .news{display:flex;gap:10px;flex-wrap:wrap}
-.news input{flex:1;min-width:210px;font:600 1rem var(--f-body);padding:13px 18px;border-radius:99px;border:1.5px solid var(--borde);background:var(--papel);color:var(--tinta)}
+.news input{flex:1;min-width:210px;font:600 1rem var(--f-body);padding:13px 18px;border-radius:99px;border:1.5px solid var(--borde);background:var(--blanco);color:var(--tinta)}
 .news input:focus{outline:2px solid var(--lacre);outline-offset:2px}
 .msg{font-weight:700;font-size:.92rem;min-height:1.4em}
-.link-btn{all:unset;cursor:pointer;color:var(--tinta-2);font-size:.85rem;text-decoration:underline}
 footer{background:var(--tinta);color:var(--papel);padding-block:34px}
 footer .wm{color:var(--papel);font-size:2.2rem}
 footer .wm .dot{background:var(--ambar)}
-footer a{color:#F1DEA3}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
 .legal{font-size:.88rem;color:#F7F1E3;max-width:60ch}
 
-/* Aviso de luces */
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--tinta);color:var(--papel);border-radius:99px;padding:11px 18px;font-weight:800;font-size:.92rem;display:flex;gap:10px;align-items:center;transition:opacity .25s,transform .25s;z-index:50;pointer-events:none;white-space:nowrap}
+/* Etapa (pantalla de juego) */
+dialog{border:0;padding:0;background:var(--blanco);color:var(--tinta);box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(20,20,20,.5)}
+#stage{width:min(96vw,640px);max-height:92vh;border-radius:22px}
+#stage .in{padding:24px;display:flex;flex-direction:column;gap:16px}
+.st-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.x{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--borde);font-size:1.1rem}
+.x:focus-visible{outline:2px solid var(--lacre)}
+.goal{background:var(--papel);border-radius:12px;padding:12px 14px;font-size:.9rem}
+.goal b{font-weight:800}
+.reading p{margin-bottom:10px}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--borde);background:var(--blanco);font-weight:700;line-height:1.35}
+.opt:hover:not([disabled]){border-color:var(--lacre)}
+.opt:focus-visible{outline:2px solid var(--lacre);outline-offset:2px}
+.opt.ok{background:var(--lacre);border-color:var(--lacre);color:var(--papel)}
+.opt.no{border-style:dashed;color:var(--tinta-2)}
+.opt[disabled]{cursor:default}
+.opts{display:flex;flex-direction:column;gap:10px}
+.vf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fb{font-size:.94rem;line-height:1.5;min-height:1.5em}
+.order{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.order li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--borde);background:var(--blanco);font-weight:700}
+.order li .n{width:26px;height:26px;border-radius:50%;background:var(--papel);display:grid;place-items:center;font:800 .8rem var(--f-title);flex:none}
+.order li .mv{margin-left:auto;display:flex;gap:6px}
+.order li .mv button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:8px;border:1px solid var(--borde);display:grid;place-items:center}
+.order li .mv button:focus-visible{outline:2px solid var(--lacre)}
+.order li.good{border-color:var(--ambar);background:#FFF8EA}
+.order li.bad{border-style:dashed}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pairs .col{display:flex;flex-direction:column;gap:8px}
+.pairs .opt{padding:11px 12px;font-size:.92rem}
+.pairs .opt.sel{border-color:var(--lacre);box-shadow:inset 0 0 0 1px var(--lacre)}
+.pairs .opt.matched{background:var(--ambar);border-color:var(--ambar);color:var(--tinta)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.win{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding-block:10px}
+.win .big{width:64px;height:64px;border-radius:50%;background:var(--ambar);display:grid;place-items:center;font-size:1.8rem}
+#dlg{border-radius:18px;max-width:min(92vw,420px)}
+#dlg .in{padding:26px;display:flex;flex-direction:column;gap:14px}
+#dlg .val{font-family:var(--f-title);font-weight:800;font-size:1.4rem;user-select:all}
+#dlg img{width:100%;border-radius:12px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--tinta);color:var(--papel);border-radius:99px;padding:11px 18px;font-weight:800;font-size:.92rem;display:flex;gap:10px;align-items:center;transition:opacity .25s,transform .25s;z-index:60;pointer-events:none;white-space:nowrap}
 .toast i{width:14px;height:14px;border-radius:50%;background:var(--ambar)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-dialog{border:0;border-radius:18px;padding:0;max-width:min(92vw,420px);box-shadow:0 30px 80px -30px rgba(0,0,0,.5);background:var(--blanco);color:var(--tinta)}
-dialog::backdrop{background:rgba(20,20,20,.45)}
-dialog .in{padding:26px;display:flex;flex-direction:column;gap:14px}
-dialog .val{font-family:var(--f-title);font-weight:800;font-size:1.4rem;user-select:all}
-dialog img{width:100%;border-radius:12px}
-
 @media (max-width:960px){
-  .trail{display:none}
+  .top nav,.top .sus{display:none}
   .menu{display:block}
-  .hud .acts{margin-left:auto}
-  .hud .sus{display:none}
-  .start-grid,.arena{grid-template-columns:1fr}
+  .aula-grid{grid-template-columns:1fr}
+  .side{position:static}
 }
-@media (max-width:640px){
-  :root{--rail:52px}
-  .level{gap:14px}
-  .medal{width:46px;height:46px;font-size:1.15rem;border-width:2.5px;margin-top:58px}
-  .medal small{display:none}
-  .medal.done::after{width:18px;height:18px;font-size:.62rem;line-height:18px;right:-6px;top:-6px}
-  .stage{padding-block:50px}
-  .hud .wm{font-size:1.6rem}
-  .hud .score{padding:7px 10px}
+@media (max-width:700px){
+  .ways{grid-template-columns:1fr;gap:10px;margin-top:30px}
+  .way{flex-direction:row;text-align:left;padding:14px;gap:16px}
+  .way .disc{width:78px;height:78px}
+  .way .disc .sym{width:52px}
+  .way .txt{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+  .way .nm .wm{font-size:1.5rem}
+  .stop:nth-child(n){padding-left:0}
+  .stop:nth-child(2n){padding-left:22%}
+  .node{width:70px;height:70px}
+  .node svg{width:32px;height:32px}
+  .pairs{grid-template-columns:1fr 1fr;gap:8px}
+  #stage{width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-ball{transition:none}.map-ball.hop,.hud .score.pop i{animation:none}}
+@media (min-width:701px){.way .txt{display:contents}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.path-ball{transition:none}.shake{animation:none}}
 </style>
 </head>
 <body>
@@ -288,249 +300,228 @@ dialog img{width:100%;border-radius:12px}
   </defs>
 </svg>
 
-<header class="hud">
+<header class="top">
   <div class="wrap">
     <a class="wm" href="#inicio" aria-label="anylum, inicio">anylum<span class="dot"></span></a>
-    <nav class="trail" aria-label="Niveles">
-      <a href="#nivel-1" data-lv="1"><b>1</b>Curiosidad</a><span class="seg"></span>
-      <a href="#nivel-2" data-lv="2"><b>2</b>Lectura</a><span class="seg"></span>
-      <a href="#nivel-3" data-lv="3"><b>3</b>Estudio</a><span class="seg"></span>
-      <a href="#nivel-4" data-lv="4"><b>4</b>Criterio</a><span class="seg"></span>
-      <a href="#nivel-5" data-lv="5"><b>5</b>Cátedra</a>
+    <nav aria-label="Principal">
+      <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
+      <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
+      <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
+      <a href="#biblioteca">Biblioteca</a><a href="#planes">Planes</a><a href="#sobre-mi">Sobre mí</a>
     </nav>
-    <div class="acts" style="display:flex;gap:8px;align-items:center">
-      <span class="score" id="score" aria-live="polite"><i></i><span id="luces">0</span>&nbsp;luces</span>
-      <button class="icon-btn" id="snd" type="button" aria-pressed="false" aria-label="Activar sonido" title="Sonido">♪</button>
-      <a class="btn ambar sus" href="#nivel-5">Suscríbete</a>
-      <details class="menu">
-        <summary aria-label="Abrir menú de niveles"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#261A17" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="17" r="2" fill="#E8A33D"/></svg></summary>
-        <div class="panel">
-          <a href="#nivel-1" data-lv="1"><span>1</span>Elige tu camino</a>
-          <a href="#nivel-2" data-lv="2"><span>2</span>Resúmenes</a>
-          <a href="#nivel-3" data-lv="3"><span>3</span>Herramientas</a>
-          <a href="#nivel-4" data-lv="4"><span>4</span>Juego</a>
-          <a href="#nivel-5" data-lv="5"><span>5</span>Planes</a>
-          <a href="#creditos"><span>★</span>Sobre mí</a>
-        </div>
-      </details>
-    </div>
+    <a class="btn ambar sus" href="#planes">Suscríbete</a>
+    <details class="menu">
+      <summary aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#261A17" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="17" r="2" fill="#E8A33D"/></svg></summary>
+      <div class="panel">
+        <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
+        <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
+        <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
+        <a href="#biblioteca">Biblioteca</a><a href="#planes">Planes</a><a href="#sobre-mi">Sobre mí</a>
+      </div>
+    </details>
   </div>
 </header>
 
 <main id="inicio">
   <section class="start">
-    <div class="wrap start-grid">
-      <div class="stack" style="gap:24px">
-        <span class="eyebrow">Educación jurídica · Perú</span>
-        <h1>Aprende derecho <em>como jugando</em>.</h1>
-        <p class="sub" style="font-size:1.2rem">Cinco niveles, de la curiosidad a la cátedra. Lee resúmenes claros, prueba herramientas y juega: cada paso enciende una luz.</p>
-        <div class="ctas">
-          <a class="btn lacre" href="#nivel-1">Empezar en el nivel 1 →</a>
-          <a class="btn ghost" href="#nivel-4">Ir directo al juego</a>
-        </div>
-        <span class="hand">sin registrarte: tu progreso se guarda en este navegador</span>
+    <div class="wrap">
+      <span class="eyebrow">Educación jurídica · Perú</span>
+      <h1 style="margin-top:14px">¿Qué vienes a hacer hoy?</h1>
+      <p class="sub">Elige un camino y te muestro solo lo que necesitas. Puedes cambiar cuando quieras.</p>
+      <div class="ways" role="tablist" aria-label="Caminos">
+        <button class="way" role="tab" id="t-aula" aria-controls="aula" aria-selected="false" data-way="aula" style="--c:#3D8582">
+          <span class="disc" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+          <span class="txt"><span class="nm"><span class="wm">anylum</span><span class="tag" style="color:#2C6866">Aula</span></span>
+          <span class="verb">Aprender desde la base</span><span class="who">Para estudiantes: un camino de etapas, como un juego.</span></span>
+        </button>
+        <button class="way" role="tab" id="t-judicial" aria-controls="judicial" aria-selected="false" data-way="judicial" style="--c:#7D1D2E">
+          <span class="disc" style="background:#7D1D2E"><svg class="sym v-judicial" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+          <span class="txt"><span class="nm"><span class="wm">anylum</span><span class="tag" style="color:#7D1D2E">Judicial</span></span>
+          <span class="verb">Resolver en el despacho</span><span class="who">Para servidores judiciales: plazos, criterios y formatos.</span></span>
+        </button>
+        <button class="way" role="tab" id="t-pro" aria-controls="pro" aria-selected="false" data-way="pro" style="--c:#141414">
+          <span class="disc" style="background:#141414"><svg class="sym v-pro" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+          <span class="txt"><span class="nm"><span class="wm">anylum</span><span class="tag" style="color:#141414">Pro</span></span>
+          <span class="verb">Ejercer y litigar</span><span class="who">Para abogados: estrategia, escritos y actualización.</span></span>
+        </button>
       </div>
-      <aside class="save" aria-label="Tu partida">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow">Tu partida</span><span class="small muted"><b id="pct">0</b> % completado</span></div>
-        <div class="meter" aria-hidden="true"><span id="meter"></span></div>
-        <a class="save-row" href="#nivel-1" data-row="1"><b>1</b><span class="t"><strong>Curiosidad</strong><small>Elige tu camino</small></span><span class="st"></span></a>
-        <a class="save-row" href="#nivel-2" data-row="2"><b>2</b><span class="t"><strong>Lectura</strong><small>Resuelve 4 misiones de lectura</small></span><span class="st"></span></a>
-        <a class="save-row" href="#nivel-3" data-row="3"><b>3</b><span class="t"><strong>Estudio</strong><small>Usa una herramienta</small></span><span class="st"></span></a>
-        <a class="save-row" href="#nivel-4" data-row="4"><b>4</b><span class="t"><strong>Criterio</strong><small>Juega una ronda de Rebote</small></span><span class="st"></span></a>
-        <a class="save-row" href="#nivel-5" data-row="5"><b>5</b><span class="t"><strong>Cátedra</strong><small>Desbloquea más</small></span><span class="st"></span></a>
-      </aside>
+      <p class="hand hint" id="hint">toca un círculo para empezar ↑</p>
     </div>
   </section>
 
-  <div class="wrap map" id="map">
-    <span class="map-ball" id="mapBall" aria-hidden="true"></span>
-
-    <section class="level" id="nivel-1" data-lv="1">
-      <div class="rail"><div class="medal" data-medal="1">1<small>Curiosidad</small></div></div>
-      <div class="stage">
-        <div class="stage-head"><span class="eyebrow">Nivel 1 · Curiosidad</span><h2>Elige tu camino</h2><p class="sub">Todo lo esencial es gratis para todos. Elige el camino que más se parece a ti y te mostraremos lo que más te sirve.</p><span class="reward"><i></i>+10 luces al elegir</span></div>
-        <div class="grid g3">
-          <button class="choose" type="button" data-line="judicial" aria-pressed="false" style="--c:#7D1D2E">
-            <span class="ico" style="background:#7D1D2E"><svg class="sym v-judicial" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-            <span class="nm"><span class="wm">anylum</span><span class="desc" style="color:#7D1D2E">Judicial</span></span>
-            <span class="muted small">Trabajo en un despacho judicial: necesito criterios, plazos y formatos confiables.</span>
-            <span class="pick">Elegir este camino</span>
-          </button>
-          <button class="choose" type="button" data-line="aula" aria-pressed="false" style="--c:#3D8582">
-            <span class="ico" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-            <span class="nm"><span class="wm">anylum</span><span class="desc" style="color:#2C6866">Aula</span></span>
-            <span class="muted small">Estudio derecho: quiero entender antes de memorizar y repasar para el examen.</span>
-            <span class="pick">Elegir este camino</span>
-          </button>
-          <button class="choose" type="button" data-line="pro" aria-pressed="false" style="--c:#141414">
-            <span class="ico" style="background:#141414"><svg class="sym v-pro" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-            <span class="nm"><span class="wm">anylum</span><span class="desc" style="color:#141414">Pro</span></span>
-            <span class="muted small">Ejerzo la abogacía: busco actualizarme y ordenar el trabajo del estudio.</span>
-            <span class="pick">Elegir este camino</span>
-          </button>
-        </div>
-        <p class="hand" id="lineMsg" style="font-size:1.3rem" aria-live="polite"></p>
+  <!-- AULA -->
+  <section class="space" id="aula" role="tabpanel" aria-labelledby="t-aula" hidden>
+    <div class="wrap">
+      <div class="space-head">
+        <span class="disc" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+        <div class="t"><span class="eyebrow" style="color:var(--turquesa-osc)">anylum Aula</span><h2 class="dot">Tu camino de aprendizaje</h2>
+          <p class="sub">Cada etapa es un desafío distinto: leer, decidir, ordenar, relacionar y resolver un caso. Te sugiero un orden, pero eliges tú.</p></div>
       </div>
-    </section>
-
-    <section class="level" id="nivel-2" data-lv="2">
-      <div class="rail"><div class="medal" data-medal="2">2<small>Lectura</small></div></div>
-      <div class="stage">
-        <div class="stage-head"><span class="eyebrow">Nivel 2 · Lectura</span><h2>Misiones de lectura</h2><p class="sub">Cada misión responde una pregunta en pocos pasos y cita su artículo. Ábrelas todas para completar el nivel.</p><span class="reward"><i></i>+10 luces por misión · <span id="readCount">0</span>/4</span></div>
-        <div class="grid g2" style="align-items:start">
-          <details class="card sum" data-sum="prescripcion">
-            <summary><div class="meta"><span class="label">Civil · 4 pasos</span><span class="pill free">Gratis</span></div><h3>Prescripción y caducidad: las diferencias que sí importan</h3><span class="more"></span></summary>
-            <div class="body">
-              <ol>
-                <li><span><b>Qué extingue.</b> La prescripción extingue la acción, pero no el derecho (art. 1989). La caducidad extingue el derecho y la acción (art. 2003).</span></li>
-                <li><span><b>Quién la declara.</b> El juez no puede declarar la prescripción si nadie la invocó (art. 1992). La caducidad sí puede declararse de oficio o a pedido de parte (art. 2006).</span></li>
-                <li><span><b>Interrupción y suspensión.</b> La prescripción las admite (arts. 1994 y 1996). La caducidad no, salvo el caso del art. 1994, inciso 8 (art. 2005).</span></li>
-                <li><span><b>Plazos.</b> Los de prescripción están en el art. 2001: por ejemplo, 10 años para la acción personal y 2 para la indemnización extracontractual. Los de caducidad los fija la ley y no admiten pacto en contrario (art. 2004).</span></li>
-              </ol>
-              <p class="src">Fuente: Código Civil peruano, Libro VIII.</p>
-            </div>
-          </details>
-          <details class="card sum" data-sum="cautelares">
-            <summary><div class="meta"><span class="label">Procesal civil · 4 pasos</span><span class="pill free">Gratis</span></div><h3>Medidas cautelares: qué revisa el juez antes de concederlas</h3><span class="more"></span></summary>
-            <div class="body">
-              <ol>
-                <li><span><b>Verosimilitud del derecho.</b> El derecho que invocas debe parecer razonablemente fundado (art. 611).</span></li>
-                <li><span><b>Peligro en la demora.</b> Hay que justificar por qué no se puede esperar a la sentencia, o mostrar otras razones que hagan necesaria la medida (art. 611).</span></li>
-                <li><span><b>Razonabilidad.</b> La medida debe ser adecuada para asegurar la eficacia de la pretensión (art. 611).</span></li>
-                <li><span><b>Contracautela.</b> Quien pide la medida ofrece una garantía por los daños que pudiera causar (art. 613). La solicitud se resuelve sin conocimiento de la parte afectada (art. 637).</span></li>
-              </ol>
-              <p class="src">Fuente: Código Procesal Civil peruano, Título IV de la Sección Quinta.</p>
-            </div>
-          </details>
-          <details class="card sum" data-sum="plazos">
-            <summary><div class="meta"><span class="label">Procesal civil · 3 pasos</span><span class="pill free">Gratis</span></div><h3>¿Desde cuándo corre mi plazo?</h3><span class="more"></span></summary>
-            <div class="body">
-              <ol>
-                <li><span><b>Desde el día siguiente.</b> El plazo se computa desde el día siguiente de notificada la resolución (art. 147 del Código Procesal Civil).</span></li>
-                <li><span><b>Solo días hábiles.</b> Los días inhábiles no se cuentan (art. 147).</span></li>
-                <li><span><b>Notificación electrónica.</b> La resolución surte efectos desde el segundo día siguiente a su ingreso en la casilla electrónica (art. 155-C de la Ley Orgánica del Poder Judicial).</span></li>
-              </ol>
-              <p class="src">Calcula tu vencimiento en el nivel 3 con la calculadora de plazos procesales.</p>
-            </div>
-          </details>
-          <details class="card sum" data-sum="despido">
-            <summary><div class="meta"><span class="label">Laboral · 3 pasos</span><span class="pill free">Gratis</span></div><h3>Despido arbitrario: cómo se calcula la indemnización</h3><span class="more"></span></summary>
-            <div class="body">
-              <ol>
-                <li><span><b>La regla.</b> Una remuneración y media ordinaria mensual por cada año completo de servicios, con un máximo de doce remuneraciones (art. 38 del TUO del D. Leg. 728).</span></li>
-                <li><span><b>Las fracciones.</b> Los meses y días que sobran se pagan por dozavos y treintavos.</span></li>
-                <li><span><b>Ejemplo.</b> Sueldo de S/ 2000 y 3 años y 6 meses de servicio: 3 × S/ 3000 = S/ 9000, más 6/12 × S/ 3000 = S/ 1500. Total: S/ 10 500.</span></li>
-              </ol>
-              <p class="src">Fuente: Decreto Supremo 003-97-TR, TUO de la Ley de Productividad y Competitividad Laboral.</p>
-            </div>
-          </details>
-        </div>
+      <div class="units" role="group" aria-label="Unidades">
+        <button class="unit" type="button" data-unit="intro" aria-pressed="true">Unidad 1 · Introducción al Derecho <small id="u-intro">0/5</small></button>
+        <button class="unit" type="button" data-unit="pcivil" aria-pressed="false">Unidad 2 · Procesal Civil <small id="u-pcivil">0/5</small></button>
       </div>
-    </section>
-
-    <section class="level" id="nivel-3" data-lv="3">
-      <div class="rail"><div class="medal" data-medal="3">3<small>Estudio</small></div></div>
-      <div class="stage">
-        <div class="stage-head"><span class="eyebrow">Nivel 3 · Estudio</span><h2>Tus herramientas</h2><p class="sub">Herramientas para resolver tareas concretas, sin vueltas. Usa una para completar el nivel.</p><span class="reward"><i></i>+10 luces al usar la calculadora</span></div>
-        <div class="grid g4">
-          <article class="card app">
-            <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="ic-l" x="6" y="10" width="36" height="32" rx="4"/><path class="ic-l" d="M6 19h36 M16 6v8 M32 6v8 M14 27h4 M22 27h4 M14 34h4"/><circle class="ic-b" cx="32" cy="34" r="4.6"/></svg>
-            <span class="pill free">Disponible</span><h3>Calculadora de plazos procesales</h3>
-            <p class="muted small">Días hábiles, feriados, suspensiones y término de la distancia.</p>
-            <a class="btn lacre go" id="calcBtn" href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">Abrir →</a>
-          </article>
-          <article class="card app locked">
-            <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14 M19 36h8"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg>
-            <span class="pill soon">🔒 Próximamente</span><h3>Fichas de repaso</h3>
-            <p class="muted small">Preguntas por materia para repasar a tu ritmo.</p>
-          </article>
-          <article class="card app locked">
-            <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M5 14h14l4 5h20v21H5z M5 24h38"/><circle class="ic-b" cx="37" cy="31" r="4.6"/></svg>
-            <span class="pill soon">🔒 Suscripción</span><h3>Plantillas de escritos</h3>
-            <p class="muted small">Formatos editables con notas de uso para cada etapa.</p>
-          </article>
-          <article class="card app locked">
-            <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="ic-l" cx="21" cy="21" r="13"/><path class="ic-l" d="M31 31l11 11"/><circle class="ic-b" cx="16.5" cy="16.5" r="4.6"/></svg>
-            <span class="pill soon">🔒 Suscripción</span><h3>Buscador de casaciones</h3>
-            <p class="muted small">Casaciones por tema, sala y año, con su regla resumida.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="level" id="nivel-4" data-lv="4">
-      <div class="rail"><div class="medal" data-medal="4">4<small>Criterio</small></div></div>
-      <div class="stage">
-        <div class="stage-head"><span class="eyebrow">Nivel 4 · Criterio</span><h2>Ronda de Rebote</h2><p class="sub">Seis preguntas de verdadero o falso. La pelotita cae sobre tu respuesta y se enciende si aciertas. Cada respuesta trae su artículo.</p><span class="reward"><i></i>+10 luces por acierto · sello con 4 aciertos</span></div>
-        <div class="arena">
-          <div class="game" id="game" aria-label="Juego Rebote">
-            <div class="g-top"><span class="eyebrow" style="color:var(--lacre)">Rebote · Civil</span><span class="eyebrow" id="gNum">Pregunta 1 de 6</span></div>
-            <div class="g-bar" aria-hidden="true"><span id="gBar"></span></div>
-            <div id="gPlay" class="stack" style="gap:12px">
-              <p class="g-q" id="gText"></p>
-              <div class="g-track" id="gTrack"><span class="g-floor"></span><span class="g-ball" id="gBall"></span></div>
-              <div class="g-ans"><button type="button" id="gV">Verdadero</button><button type="button" id="gF">Falso</button></div>
-              <div class="g-fb" id="gFb" aria-live="polite"></div>
-              <button type="button" class="btn lacre" id="gNext" hidden style="align-self:flex-end">Siguiente →</button>
-            </div>
-            <div id="gEnd" class="stack" hidden style="align-items:center;text-align:center;gap:12px;padding-block:8px">
-              <div id="gSeal" style="width:120px"></div>
-              <span style="font-family:var(--f-title);font-weight:800;font-size:1.5rem" id="gEndT"></span>
-              <p class="small muted" id="gEndP"></p>
-              <button type="button" class="btn ghost" id="gAgain">Jugar otra vez</button>
-            </div>
+      <div class="aula-grid">
+        <div class="path" id="path"></div>
+        <aside class="side">
+          <div class="card">
+            <span class="eyebrow">Tu avance</span>
+            <span class="lights"><i></i><span id="lights">0</span> luces</span>
+            <div class="meter" aria-hidden="true"><span id="meter"></span></div>
+            <p class="small muted"><b id="doneCount">0</b> de 10 etapas completadas. Tu avance se guarda en este navegador.</p>
+            <button class="btn lacre" type="button" id="nextBtn" style="width:fit-content">Seguir con la etapa sugerida →</button>
           </div>
-          <div class="stack" style="gap:18px">
-            <div class="card"><span class="eyebrow">Racha de lectura</span><div class="lamps" id="lamps"></div><p class="small muted">Una lamparita por cada día que completas una ronda.</p></div>
-            <div class="stack" style="gap:10px"><span class="eyebrow">Próximos juegos</span><div class="chips"><span>🔒 Plazos al vuelo</span><span>🔒 Parejas</span><span>🔒 Ordena el proceso</span><span>🔒 El expediente</span></div></div>
+          <div class="card">
+            <span class="eyebrow">Tipos de etapa</span>
+            <div class="legend" id="legend"></div>
           </div>
-        </div>
+        </aside>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="level" id="nivel-5" data-lv="5">
-      <div class="rail"><div class="medal" data-medal="5">5<small>Cátedra</small></div></div>
-      <div class="stage">
-        <div class="stage-head"><span class="eyebrow">Nivel 5 · Cátedra</span><h2>Desbloquea más</h2><p class="sub">Llegaste al final del mapa. Lo esencial seguirá siendo gratis; si quieres más, aquí tienes cómo seguir.</p><span class="reward"><i></i>+10 luces por llegar hasta aquí</span></div>
-        <div class="grid g3">
-          <article class="card plan">
-            <span class="eyebrow">Gratis</span><span class="price">S/ 0</span>
-            <ul class="bul small"><li>Todas las misiones de lectura</li><li>Herramientas gratuitas, como la calculadora</li><li>Un juego diario</li><li>Boletín de los viernes</li></ul>
-            <a class="btn ghost" href="#nivel-2">Seguir aprendiendo</a>
-          </article>
-          <article class="card plan main">
-            <span class="eyebrow" style="color:var(--lacre)">Suscripción</span><span class="price">Muy pronto</span>
-            <ul class="bul small"><li>Todo lo gratuito</li><li>Herramientas y plantillas de tu camino</li><li>Ligas y mazos propios en los juegos</li><li>Resúmenes descargables en PDF</li></ul>
-            <a class="btn ambar" href="#creditos">Avísame cuando abra</a>
-          </article>
-          <article class="card plan">
-            <span class="eyebrow">Aporte único</span><span class="price" style="font-size:1.7rem">Invítame un café</span>
-            <p class="small muted">Si una misión te salvó la semana, puedes apoyar a anylum con el monto que quieras.</p>
-            <div class="pay"><button class="btn ghost" type="button" data-pay="yape">Yape</button><button class="btn ghost" type="button" data-pay="plin">Plin</button><button class="btn ghost" type="button" data-pay="tarjeta">Tarjeta</button></div>
-          </article>
-        </div>
+  <!-- JUDICIAL -->
+  <section class="space" id="judicial" role="tabpanel" aria-labelledby="t-judicial" hidden>
+    <div class="wrap">
+      <div class="space-head">
+        <span class="disc" style="background:#7D1D2E"><svg class="sym v-judicial" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+        <div class="t"><span class="eyebrow" style="color:#7D1D2E">anylum Judicial</span><h2 class="dot">Para el despacho</h2>
+          <p class="sub">Lo que necesitas para resolver rápido y con fundamento: plazos, criterios y formatos.</p></div>
       </div>
-    </section>
-  </div>
+      <div class="grid g3">
+        <article class="card app">
+          <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="ic-l" x="6" y="10" width="36" height="32" rx="4"/><path class="ic-l" d="M6 19h36 M16 6v8 M32 6v8 M14 27h4 M22 27h4 M14 34h4"/><circle class="ic-b" cx="32" cy="34" r="4.6"/></svg>
+          <span class="pill free">Gratis</span><h3>Calculadora de plazos procesales</h3>
+          <p class="muted small">Días hábiles, feriados, suspensiones y término de la distancia.</p>
+          <a class="btn lacre go" href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">Abrir →</a>
+        </article>
+        <article class="card">
+          <span class="eyebrow">En la biblioteca</span>
+          <a class="res" href="#biblioteca" data-open="plazos"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>¿Desde cuándo corre el plazo?</b><br><span class="small muted">Cómputo y notificación electrónica.</span></span></a>
+          <a class="res" href="#biblioteca" data-open="cautelares"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Medidas cautelares</b><br><span class="small muted">Qué revisar antes de conceder.</span></span></a>
+        </article>
+        <article class="card locked">
+          <span class="pill soon">🔒 Próximamente</span><h3>Modelos de proveídos y criterios</h3>
+          <p class="muted small">Formatos editables y criterios por materia, listos para el despacho.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  <section class="credits" id="creditos">
+  <!-- PRO -->
+  <section class="space" id="pro" role="tabpanel" aria-labelledby="t-pro" hidden>
+    <div class="wrap">
+      <div class="space-head">
+        <span class="disc" style="background:#141414"><svg class="sym v-pro" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
+        <div class="t"><span class="eyebrow" style="color:#141414">anylum Pro</span><h2 class="dot">Para el ejercicio</h2>
+          <p class="sub">La misma base del derecho, aplicada a lo que haces en tu estudio: estrategia, escritos y plazos.</p></div>
+      </div>
+      <div class="grid g3">
+        <article class="card">
+          <span class="eyebrow">En la biblioteca</span>
+          <a class="res" href="#biblioteca" data-open="despido"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Indemnización por despido arbitrario</b><br><span class="small muted">Cálculo con ejemplo.</span></span></a>
+          <a class="res" href="#biblioteca" data-open="prescripcion"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg><span><b>Prescripción y caducidad</b><br><span class="small muted">Qué alegar y cuándo.</span></span></a>
+        </article>
+        <article class="card app">
+          <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="ic-l" x="6" y="10" width="36" height="32" rx="4"/><path class="ic-l" d="M6 19h36 M16 6v8 M32 6v8 M14 27h4 M22 27h4 M14 34h4"/><circle class="ic-b" cx="32" cy="34" r="4.6"/></svg>
+          <span class="pill free">Gratis</span><h3>Calculadora de plazos procesales</h3>
+          <p class="muted small">Para no perder un vencimiento.</p>
+          <a class="btn lacre go" href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">Abrir →</a>
+        </article>
+        <article class="card locked">
+          <span class="pill soon">🔒 Suscripción</span><h3>Plantillas de escritos y casaciones</h3>
+          <p class="muted small">Escritos editables y casaciones por tema, sala y año, con su regla resumida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="biblioteca" class="band" style="padding-block:70px">
+    <div class="wrap">
+      <div class="stack" style="margin-bottom:24px"><span class="eyebrow">Biblioteca abierta</span><h2 class="dot">Resúmenes para todos</h2>
+        <p class="sub">Cada tema se explica una sola vez, con su fuente. Los puntos de color indican para qué camino es más útil.</p></div>
+      <div class="filters" role="group" aria-label="Filtrar por materia">
+        <button type="button" data-f="todo" aria-pressed="true">Todo</button><button type="button" data-f="civil" aria-pressed="false">Civil</button><button type="button" data-f="pcivil" aria-pressed="false">Procesal civil</button><button type="button" data-f="laboral" aria-pressed="false">Laboral</button>
+      </div>
+      <div class="grid g2" style="align-items:start" id="lib">
+        <details class="card sum" data-sum="prescripcion" data-m="civil">
+          <summary><div class="meta"><span class="label">Civil · 4 pasos</span><span class="for" title="Aula y Pro"><i style="background:var(--turquesa)"></i><i style="background:var(--negro)"></i></span></div><h3>Prescripción y caducidad: las diferencias que sí importan</h3><span class="more"></span></summary>
+          <div class="body"><ol>
+            <li><span><b>Qué extingue.</b> La prescripción extingue la acción, pero no el derecho (art. 1989). La caducidad extingue el derecho y la acción (art. 2003).</span></li>
+            <li><span><b>Quién la declara.</b> El juez no puede declarar la prescripción si nadie la invocó (art. 1992). La caducidad sí puede declararse de oficio o a pedido de parte (art. 2006).</span></li>
+            <li><span><b>Interrupción y suspensión.</b> La prescripción las admite (arts. 1994 y 1996). La caducidad no, salvo el caso del art. 1994, inciso 8 (art. 2005).</span></li>
+            <li><span><b>Plazos.</b> Los de prescripción están en el art. 2001: por ejemplo, 10 años para la acción personal y 2 para la indemnización extracontractual. Los de caducidad los fija la ley y no admiten pacto en contrario (art. 2004).</span></li>
+          </ol><p class="src">Fuente: Código Civil peruano, Libro VIII.</p></div>
+        </details>
+        <details class="card sum" data-sum="cautelares" data-m="pcivil">
+          <summary><div class="meta"><span class="label">Procesal civil · 4 pasos</span><span class="for" title="Todos los caminos"><i style="background:var(--turquesa)"></i><i style="background:var(--guinda)"></i><i style="background:var(--negro)"></i></span></div><h3>Medidas cautelares: qué revisa el juez antes de concederlas</h3><span class="more"></span></summary>
+          <div class="body"><ol>
+            <li><span><b>Verosimilitud del derecho.</b> El derecho que se invoca debe parecer razonablemente fundado (art. 611).</span></li>
+            <li><span><b>Peligro en la demora.</b> Hay que justificar por qué no se puede esperar a la sentencia, o mostrar otras razones que hagan necesaria la medida (art. 611).</span></li>
+            <li><span><b>Razonabilidad.</b> La medida debe ser adecuada para asegurar la eficacia de la pretensión (art. 611).</span></li>
+            <li><span><b>Contracautela.</b> Quien pide la medida ofrece una garantía por los daños que pudiera causar (art. 613). La solicitud se resuelve sin conocimiento de la parte afectada (art. 637).</span></li>
+          </ol><p class="src">Fuente: Código Procesal Civil peruano, Título IV de la Sección Quinta.</p></div>
+        </details>
+        <details class="card sum" data-sum="plazos" data-m="pcivil">
+          <summary><div class="meta"><span class="label">Procesal civil · 3 pasos</span><span class="for" title="Judicial y Pro"><i style="background:var(--guinda)"></i><i style="background:var(--negro)"></i></span></div><h3>¿Desde cuándo corre el plazo?</h3><span class="more"></span></summary>
+          <div class="body"><ol>
+            <li><span><b>Desde el día siguiente.</b> El plazo se computa desde el día siguiente de notificada la resolución (art. 147 del Código Procesal Civil).</span></li>
+            <li><span><b>Solo días hábiles.</b> Los días inhábiles no se cuentan (art. 147).</span></li>
+            <li><span><b>Notificación electrónica.</b> La resolución surte efectos desde el segundo día siguiente a su ingreso en la casilla electrónica (art. 155-C de la Ley Orgánica del Poder Judicial).</span></li>
+          </ol><p class="src">Calcula tu vencimiento con la <a href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">calculadora de plazos procesales</a>.</p></div>
+        </details>
+        <details class="card sum" data-sum="despido" data-m="laboral">
+          <summary><div class="meta"><span class="label">Laboral · 3 pasos</span><span class="for" title="Pro"><i style="background:var(--negro)"></i></span></div><h3>Despido arbitrario: cómo se calcula la indemnización</h3><span class="more"></span></summary>
+          <div class="body"><ol>
+            <li><span><b>La regla.</b> Una remuneración y media ordinaria mensual por cada año completo de servicios, con un máximo de doce remuneraciones (art. 38 del TUO del D. Leg. 728).</span></li>
+            <li><span><b>Las fracciones.</b> Los meses y días que sobran se pagan por dozavos y treintavos.</span></li>
+            <li><span><b>Ejemplo.</b> Sueldo de S/ 2000 y 3 años y 6 meses de servicio: 3 × S/ 3000 = S/ 9000, más 6/12 × S/ 3000 = S/ 1500. Total: S/ 10 500.</span></li>
+          </ol><p class="src">Fuente: Decreto Supremo 003-97-TR, TUO de la Ley de Productividad y Competitividad Laboral.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="planes" style="padding-block:70px">
+    <div class="wrap">
+      <div class="stack" style="margin-bottom:24px"><span class="eyebrow">Planes</span><h2 class="dot">Lo esencial, siempre gratis</h2><p class="sub">Suscríbete si quieres más herramientas de tu camino, o apoya con un aporte único.</p></div>
+      <div class="grid g3">
+        <article class="card plan">
+          <span class="eyebrow">Gratis</span><span class="price">S/ 0</span>
+          <ul class="bul small"><li>Biblioteca abierta</li><li>Herramientas gratuitas, como la calculadora</li><li>El camino de Aula</li><li>Boletín de los viernes</li></ul>
+          <a class="btn ghost" href="#inicio">Elegir mi camino</a>
+        </article>
+        <article class="card plan main">
+          <span class="eyebrow" style="color:var(--lacre)">Suscripción</span><span class="price">Muy pronto</span>
+          <ul class="bul small"><li>Todo lo gratuito</li><li>Modelos de proveídos y criterios (Judicial)</li><li>Plantillas de escritos y casaciones (Pro)</li><li>Nuevas unidades en Aula</li></ul>
+          <a class="btn ambar" href="#sobre-mi">Avísame cuando abra</a>
+        </article>
+        <article class="card plan">
+          <span class="eyebrow">Aporte único</span><span class="price" style="font-size:1.7rem">Invítame un café</span>
+          <p class="small muted">Si un resumen te salvó la semana, puedes apoyar a Anylum con el monto que quieras.</p>
+          <div class="pay"><button class="btn ghost" type="button" data-pay="yape">Yape</button><button class="btn ghost" type="button" data-pay="plin">Plin</button><button class="btn ghost" type="button" data-pay="tarjeta">Tarjeta</button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="sobre-mi" style="padding-block:70px">
     <div class="wrap grid g2" style="gap:44px;align-items:start">
       <div class="stack">
-        <span class="eyebrow">Créditos · Tu guía</span><h2>Hola, soy Angie</h2>
+        <span class="eyebrow">Sobre mí</span><h2 class="dot">Hola, soy Angie</h2>
         <p>Soy abogada puneña. Creé Anylum, una plataforma para aprender derecho de forma sencilla, casi como jugando: con explicaciones claras, ejemplos y siempre con la norma a la mano.</p>
         <p class="muted">Aquí encontrarás resúmenes, herramientas y juegos para quienes estudian, litigan o sacan adelante un despacho judicial. Porque entender el derecho no debería ser un privilegio de pocos: debería estar al alcance de todos.</p>
         <span class="hand">con cariño, desde Puno ✎</span>
       </div>
       <div class="stack">
-        <span class="eyebrow">Boletín</span><h2>Nuevos niveles cada viernes</h2>
-        <p class="sub">Una misión nueva, una casación comentada y un plazo que no debes olvidar, en tu correo.</p>
+        <span class="eyebrow">Boletín</span><h2 class="dot">El boletín de los viernes</h2>
+        <p class="sub">Un resumen nuevo, una casación comentada y un plazo que no debes olvidar, en tu correo.</p>
         <form class="news" id="newsForm" novalidate>
           <label for="nlMail" style="position:absolute;left:-9999px">Tu correo</label>
           <input id="nlMail" name="email" type="email" placeholder="tu@correo.com" autocomplete="email" required>
           <button class="btn lacre" type="submit">Quiero recibirlo</button>
         </form>
         <p class="msg" id="newsMsg" aria-live="polite"></p>
-        <button class="link-btn" type="button" id="reset">Reiniciar mi partida</button>
       </div>
     </div>
   </section>
@@ -539,18 +530,19 @@ dialog img{width:100%;border-radius:12px}
 <footer>
   <div class="wrap foot">
     <span class="wm">anylum<span class="dot"></span></span>
-    <p class="legal"><b>El contenido es educativo y no reemplaza la asesoría legal de un profesional.</b> © <span id="yr">2026</span> anylum.</p>
+    <p class="legal"><b>El contenido es educativo y no reemplaza la asesoría legal de un profesional.</b> © <span id="yr">2026</span> Anylum.</p>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status"><i></i><span id="toastT"></span></div>
+<dialog id="stage" aria-labelledby="stT"><div class="in" id="stIn"></div></dialog>
 <dialog id="dlg"><div class="in"><h3 id="dlgT"></h3><p id="dlgP" class="muted"></p><img id="dlgImg" alt="" hidden><div id="dlgV" class="val" hidden></div><button class="btn lacre" type="button" id="dlgClose" style="width:fit-content">Entendido</button></div></dialog>
+<div class="toast" id="toast" role="status"><i></i><span id="toastT"></span></div>
 
 <script>
 /* Configuración: completa estos datos para activar los aportes y el boletín. */
 const ANYLUM={
-  yape:'',      // número de celular para Yape, por ejemplo '999 999 999'
-  yapeQR:'',    // imagen del QR de Yape, por ejemplo 'yape-qr.png'
+  yape:'',      // número de celular para Yape
+  yapeQR:'',    // imagen del QR de Yape subida al repositorio, por ejemplo 'yape-qr.png'
   plin:'',      // número de celular para Plin
   tarjeta:'',   // enlace de pago con tarjeta (Mercado Pago, Culqi, Stripe…)
   boletin:''    // dirección del formulario del boletín (Buttondown, Mailchimp, Formspree…)
@@ -559,154 +551,211 @@ const ANYLUM={
 const $=id=>document.getElementById(id);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 $('yr').textContent=new Date().getFullYear();
+let tT;function toast(t){$('toastT').textContent=t;$('toast').classList.add('show');clearTimeout(tT);tT=setTimeout(()=>$('toast').classList.remove('show'),1900);}
 
-/* Partida guardada en este navegador */
-const KEY='anylum-partida';
-const blank=()=>({luces:0,line:'',read:[],tool:false,game:false,end:false,right:[],racha:0,dia:''});
-let S=blank();
-try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+/* Guardado local */
+const KEY='anylum-v2';
+let S={way:'',unit:'intro',done:[],luces:0};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
-const done={1:()=>!!S.line,2:()=>S.read.length>=4,3:()=>S.tool,4:()=>S.game,5:()=>S.end};
-let tT;
-function toast(t){$('toastT').textContent=t;$('toast').classList.add('show');clearTimeout(tT);tT=setTimeout(()=>$('toast').classList.remove('show'),1800);}
-function award(n,why){S.luces+=n;save();render();toast(`+${n} luces · ${why}`);
-  const sc=$('score');sc.classList.remove('pop');void sc.offsetWidth;sc.classList.add('pop');click();}
-function render(){
-  $('luces').textContent=S.luces;
-  let c=0;for(let i=1;i<=5;i++){const d=done[i]();if(d)c++;
-    document.querySelectorAll(`[data-medal="${i}"]`).forEach(m=>m.classList.toggle('done',d));
-    document.querySelectorAll(`.trail a[data-lv="${i}"]`).forEach(a=>a.classList.toggle('done',d));
-    const r=document.querySelector(`[data-row="${i}"]`);r.classList.toggle('done',d);
-    r.querySelector('.st').textContent=d?'Completado':(i===2&&S.read.length?`${S.read.length}/4`:'Pendiente');}
-  $('pct').textContent=Math.round(c/5*100);$('meter').style.width=(c/5*100)+'%';
-  $('readCount').textContent=S.read.length;
-  document.querySelectorAll('.choose').forEach(b=>{const on=b.dataset.line===S.line;b.setAttribute('aria-pressed',on);b.style.borderColor=on?b.style.getPropertyValue('--c'):'';});
-  document.querySelectorAll('.sum').forEach(d=>d.classList.toggle('read',S.read.includes(d.dataset.sum)));
-  $('lamps').innerHTML=Array.from({length:7},(_,i)=>`<i class="${i<S.racha?'on':''}"></i>`).join('');
-}
 
-/* Sonido (apagado por defecto) */
-let ac=null,sound=false;
-const actx=()=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();}catch(e){ac=null}return ac};
-function boing(){if(!sound)return;const a=actx();if(!a)return;const t=a.currentTime,o=a.createOscillator(),g=a.createGain();
-  o.type='sine';o.frequency.setValueAtTime(170,t);o.frequency.exponentialRampToValueAtTime(430,t+.06);o.frequency.exponentialRampToValueAtTime(250,t+.42);
-  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.22,t+.012);g.gain.exponentialRampToValueAtTime(.001,t+.5);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.52);}
-function click(){if(!sound)return;const a=actx();if(!a)return;const t=a.currentTime,o=a.createOscillator(),g=a.createGain();
-  o.frequency.setValueAtTime(1500,t);o.frequency.exponentialRampToValueAtTime(700,t+.03);g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.06);}
-$('snd').addEventListener('click',()=>{sound=!sound;if(sound)actx();$('snd').setAttribute('aria-pressed',sound);$('snd').setAttribute('aria-label',sound?'Silenciar':'Activar sonido');$('snd').style.background=sound?'var(--trigo)':'';});
-
-/* La pelotita recorre el mapa */
-const map=$('map'), mb=$('mapBall'), levels=[...document.querySelectorAll('.level')];
-let here=0;
-function place(lv,hop){
-  const m=document.querySelector(`[data-medal="${lv}"]`);if(!m)return;
-  const r=m.getBoundingClientRect(),R=map.getBoundingClientRect();
-  const x=r.left-R.left+r.width/2-13, y=r.top-R.top-34;
-  mb.style.transform=`translate(${x}px,${y}px)`;
-  if(hop&&!reduce){mb.classList.remove('hop');void mb.offsetWidth;mb.classList.add('hop');boing();}
+/* Elegir camino */
+const ways=[...document.querySelectorAll('.way')];
+function openWay(w,scroll){
+  S.way=w;save();
+  ways.forEach(b=>b.setAttribute('aria-selected',b.dataset.way===w));
+  ['aula','judicial','pro'].forEach(k=>$(k).hidden=k!==w);
+  document.querySelectorAll('.top nav a[data-go]').forEach(a=>a.classList.toggle('on',a.dataset.go===w));
+  $('hint').hidden=!!w;
+  if(w==='aula')drawPath();
+  if(scroll)$(w).scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
 }
-function setHere(lv){if(lv===here)return;const first=here===0;here=lv;place(lv,!first);
-  document.querySelectorAll('.trail a').forEach(a=>a.classList.toggle('here',+a.dataset.lv===lv));
-  if(lv===5&&!S.end){S.end=true;award(10,'llegaste a la cátedra');}}
-mb.style.transition='none';place(1,false);requestAnimationFrame(()=>{mb.style.transition='';});
-if('IntersectionObserver' in window){
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setHere(+e.target.dataset.lv)})},{rootMargin:'-40% 0px -50% 0px'});
-  levels.forEach(l=>io.observe(l));
-}
-addEventListener('resize',()=>{mb.style.transition='none';place(here||1,false);requestAnimationFrame(()=>{mb.style.transition='';});});
-document.fonts&&document.fonts.ready.then(()=>{mb.style.transition='none';place(here||1,false);requestAnimationFrame(()=>{mb.style.transition='';});});
+ways.forEach(b=>b.addEventListener('click',()=>openWay(b.dataset.way,true)));
+document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openWay(a.dataset.go,true);const d=a.closest('details');if(d)d.removeAttribute('open');}));
+document.querySelectorAll('.menu .panel a:not([data-go])').forEach(a=>a.addEventListener('click',()=>a.closest('details').removeAttribute('open')));
+const fromHash=location.hash.replace('#','');
+if(['aula','judicial','pro'].includes(fromHash))openWay(fromHash,false);else if(S.way)openWay(S.way,false);
 
-/* Nivel 1 */
-const LINE={judicial:'Camino Judicial: empieza por la misión de plazos y usa la calculadora.',aula:'Camino Aula: empieza por prescripción y caducidad, y luego juega una ronda.',pro:'Camino Pro: revisa medidas cautelares y la indemnización por despido.'};
-document.querySelectorAll('.choose').forEach(b=>b.addEventListener('click',()=>{
-  const first=!S.line;S.line=b.dataset.line;save();render();$('lineMsg').textContent=LINE[S.line];
-  if(first)award(10,'elegiste tu camino');
+/* Biblioteca */
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelectorAll('#lib .sum').forEach(d=>d.hidden=!(b.dataset.f==='todo'||d.dataset.m===b.dataset.f));
 }));
-if(S.line)$('lineMsg').textContent=LINE[S.line];
-
-/* Nivel 2 */
-document.querySelectorAll('.sum').forEach(d=>d.addEventListener('toggle',()=>{
-  if(d.open&&!S.read.includes(d.dataset.sum)){S.read.push(d.dataset.sum);award(10,'misión de lectura');}
+document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',()=>{
+  const d=document.querySelector(`[data-sum="${a.dataset.open}"]`);if(d){d.hidden=false;d.open=true;setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}),30);}
 }));
 
-/* Nivel 3 */
-$('calcBtn').addEventListener('click',()=>{if(!S.tool){S.tool=true;award(10,'usaste una herramienta');}});
+/* Íconos por tipo de etapa */
+const ICON={
+  leer:'<path class="ic-l" d="M6 14q9-4 18 2q9-6 18-2v22q-9-4-18 2q-9-6-18-2z M24 16v22"/><circle class="ic-b" cx="36" cy="10" r="4"/>',
+  vf:'<path class="ic-l" d="M8 24l6 6 10-12 M30 18l10 12 M40 18L30 30"/><circle class="ic-b" cx="24" cy="38" r="4"/>',
+  ordenar:'<path class="ic-l" d="M10 12h20 M10 24h28 M10 36h14 M38 8v12 M34 16l4 4 4-4"/><circle class="ic-b" cx="34" cy="36" r="4"/>',
+  parejas:'<circle class="ic-l" cx="14" cy="16" r="6"/><circle class="ic-l" cx="34" cy="32" r="6"/><path class="ic-l" d="M19 20l10 8"/><circle class="ic-b" cx="34" cy="12" r="4"/>',
+  caso:'<path class="ic-l" d="M8 16h32v22H8z M18 16v-5h12v5 M8 26h32"/><circle class="ic-b" cx="24" cy="26" r="4"/>'
+};
+const TYPE={leer:'Lectura',vf:'Verdadero o falso',ordenar:'Ordena',parejas:'Parejas',caso:'Caso práctico'};
+$('legend').innerHTML=Object.keys(TYPE).map(k=>`<svg viewBox="0 0 48 48" aria-hidden="true">${ICON[k]}</svg><span>${TYPE[k]}</span>`).join('');
 
-/* Nivel 4: Rebote */
-const QS=[
-  ['La prescripción extingue el derecho mismo.',false,'La prescripción extingue la <b>acción</b>, pero no el derecho (art. 1989 del Código Civil).'],
-  ['El juez puede declarar la prescripción de oficio, aunque nadie la haya invocado.',false,'El juez no puede fundar su fallo en la prescripción si no ha sido invocada (art. 1992 del Código Civil).'],
-  ['La acción personal prescribe a los diez años.',true,'Así lo dice el art. 2001, inciso 1, del Código Civil.'],
-  ['La acción indemnizatoria por responsabilidad extracontractual prescribe a los dos años.',true,'Art. 2001, inciso 4, del Código Civil.'],
-  ['La caducidad admite interrupción y suspensión, igual que la prescripción.',false,'La caducidad no admite interrupción ni suspensión, salvo el caso del art. 1994, inciso 8 (art. 2005 del Código Civil).'],
-  ['Para conceder una medida cautelar, el juez evalúa la verosimilitud del derecho invocado.',true,'Es uno de los presupuestos del art. 611 del Código Procesal Civil, junto con el peligro en la demora y la razonabilidad.']
-];
-const OKS=['¡bien visto!','eso es','¡lo tienes!'];
-const G={i:0,ok:0,busy:false};
-const gBall=$('gBall'),gTrack=$('gTrack'),gV=$('gV'),gF=$('gF');
-function seal(on){const n=14,c=50,ri=40,ro=46;let d='';
-  for(let i=0;i<=n;i++){const a=i/n*Math.PI*2,am=(i-.5)/n*Math.PI*2,x=c+ri*Math.cos(a),y=c+ri*Math.sin(a);
-    d+=i?` Q${(c+ro*Math.cos(am)).toFixed(1)},${(c+ro*Math.sin(am)).toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)}`:`M${x.toFixed(1)},${y.toFixed(1)}`;}
-  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="${d}Z" fill="${on?'#7B3A2B':'none'}" stroke="${on?'none':'#DDBB82'}" stroke-width="2" ${on?'':'stroke-dasharray="3 3"'}/>
-  <circle cx="50" cy="50" r="31" fill="none" stroke="${on?'#9A5040':'#DDBB82'}" stroke-width="1.6"/>
-  <g transform="translate(26 26)" fill="none" stroke="${on?'#F1DEA3':'#B07D5A'}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14q9-4 18 2q9-6 18-2v22q-9-4-18 2q-9-6-18-2z M24 16v22"/></g>
-  <circle cx="62" cy="36" r="6.5" fill="${on?'#E8A33D':'#DDBB82'}"/></svg>`;}
-function gShow(){const q=QS[G.i];$('gNum').textContent=`Pregunta ${G.i+1} de ${QS.length}`;$('gText').textContent=q[0];
-  $('gFb').innerHTML='<span class="muted small">¿Verdadero o falso? Toca una respuesta y mira dónde cae la pelotita.</span>';
-  [gV,gF].forEach(b=>{b.disabled=false;b.className='';});$('gNext').hidden=true;gBall.classList.remove('lit');gBall.style.transform='';
-  $('gBar').style.width=(G.i/QS.length*100)+'%';G.busy=false;}
-function gAnswer(val,btn){if(G.busy)return;G.busy=true;const q=QS[G.i],right=val===q[1];[gV,gF].forEach(b=>b.disabled=true);
-  const tr=gTrack.getBoundingClientRect(),br=btn.getBoundingClientRect(),dx=(br.left+br.width/2)-(tr.left+tr.width/2);
-  const fin=()=>{boing();btn.classList.add(right?'right':'miss');
-    if(right){G.ok++;setTimeout(()=>gBall.classList.add('lit'),180);
-      if(!S.right.includes(G.i)){S.right.push(G.i);award(10,'respuesta correcta');}}
-    $('gFb').innerHTML=right?`<span class="hand">${OKS[G.ok%3]}</span> <span>${q[2]}</span>`:`<span class="hand" style="color:var(--tinta-2)">casi…</span> <span>Es <b>${q[1]?'verdadero':'falso'}</b>. ${q[2]}</span>`;
-    $('gBar').style.width=((G.i+1)/QS.length*100)+'%';$('gNext').hidden=false;$('gNext').textContent=G.i===QS.length-1?'Ver resultado →':'Siguiente →';$('gNext').focus({preventScroll:true});};
-  gBall.style.transform=`translateX(${dx}px)`;
-  if(reduce||!gBall.animate){fin();return;}
-  gBall.animate([{transform:'translate(0,0)'},{transform:`translate(${dx*.5}px,-46px)`,offset:.45},{transform:`translate(${dx}px,0) scale(1.35,.65)`,offset:.85},{transform:`translate(${dx}px,0)`}],{duration:620,easing:'ease-in-out'}).onfinish=fin;}
-gV.addEventListener('click',()=>gAnswer(true,gV));gF.addEventListener('click',()=>gAnswer(false,gF));
-$('gNext').addEventListener('click',()=>{
-  if(G.i<QS.length-1){G.i++;gShow();return;}
-  $('gPlay').hidden=true;$('gEnd').hidden=false;
-  const won=G.ok>=4,today=new Date().toDateString();
-  if(S.dia!==today){S.dia=today;S.racha=Math.min(7,S.racha+1);}
-  if(!S.game){S.game=true;save();render();toast('Nivel 4 completado');}else{save();render();}
-  $('gSeal').innerHTML=seal(won);
-  $('gEndT').textContent=won?'¡Sello “Civil al día”!':'¡Buen repaso!';
-  $('gEndP').textContent=`${G.ok} de ${QS.length} aciertos. ${won?'Encendiste la lamparita de hoy.':'Con 4 aciertos ganas el sello. Vuelve mañana por otra ronda.'}`;
-});
-$('gAgain').addEventListener('click',()=>{Object.assign(G,{i:0,ok:0});$('gEnd').hidden=true;$('gPlay').hidden=false;gShow();});
+/* Contenido de las etapas */
+const UNITS={
+ intro:[
+  {id:'i1',t:'leer',title:'¿Qué es el derecho?',goal:'Distinguir derecho objetivo y derecho subjetivo.',
+   text:['El <b>derecho objetivo</b> es el conjunto de normas que regulan la conducta en sociedad y que el Estado puede hacer cumplir: la Constitución, las leyes, los reglamentos.','El <b>derecho subjetivo</b> es la facultad que esas normas reconocen a una persona: por ejemplo, el derecho del propietario a usar su casa o el del acreedor a cobrar su deuda.','Una forma sencilla de recordarlo: el derecho objetivo es <i>la regla</i>; el subjetivo, <i>lo que la regla te permite exigir</i>.'],
+   q:{p:'“Tengo derecho a cobrar los S/ 500 que me prestaron.” ¿De qué derecho hablamos?',o:['Derecho objetivo','Derecho subjetivo'],a:1,e:'Es una facultad concreta de una persona: un derecho subjetivo, reconocido por normas del derecho objetivo.'}},
+  {id:'i2',t:'vf',title:'Fuentes del derecho',goal:'Reconocer de dónde nacen las normas que aplicamos.',
+   items:[['La costumbre puede ser fuente del derecho.',true,'Sí. Junto con la ley, la jurisprudencia y los principios, la costumbre es una fuente reconocida.'],
+          ['La opinión de un autor (doctrina) obliga al juez igual que la ley.',false,'No. La doctrina orienta e ilustra, pero no es obligatoria como la ley.'],
+          ['Si la ley tiene un vacío, el juez aplica los principios generales del derecho.',true,'Así lo dispone el art. VIII del Título Preliminar del Código Civil.']]},
+  {id:'i3',t:'ordenar',title:'Jerarquía normativa',goal:'Ordenar las normas de mayor a menor rango.',
+   items:['Constitución','Ley','Decreto supremo','Resolución ministerial'],
+   e:'La Constitución prevalece sobre toda norma legal; la ley, sobre las normas de inferior jerarquía, y así sucesivamente (art. 51 de la Constitución).'},
+  {id:'i4',t:'parejas',title:'Principios del Título Preliminar',goal:'Relacionar cada principio con su artículo.',
+   pairs:[['La ley solo se deroga por otra ley','Art. I del T. P. del Código Civil'],['La ley no ampara el abuso del derecho','Art. II del T. P. del Código Civil'],['El juez aplica la norma pertinente aunque no se invoque','Art. VII del T. P. del Código Civil'],['La ley no tiene efectos retroactivos, salvo en materia penal favorable al reo','Art. 103 de la Constitución']]},
+  {id:'i5',t:'caso',title:'¿Se aplica la nueva ley?',goal:'Aplicar la regla de irretroactividad a un caso.',
+   p:'En marzo de 2025, Rosa firma un contrato. En 2026 entra en vigor una ley que cambia los requisitos de ese tipo de contrato. Según la Constitución, ¿la nueva ley puede anular hacia atrás lo que Rosa hizo válidamente en 2025?',
+   o:['Sí, toda ley nueva se aplica a todos los hechos anteriores','No, la ley no tiene efectos retroactivos salvo en materia penal favorable al reo','Solo si el juez lo considera justo'],a:1,
+   e:'El art. 103 de la Constitución establece que la ley no tiene fuerza ni efectos retroactivos, salvo en materia penal cuando favorece al reo.'}
+ ],
+ pcivil:[
+  {id:'p1',t:'leer',title:'El proceso civil en una página',goal:'Ubicar las grandes etapas del proceso de conocimiento.',
+   text:['Todo empieza con la <b>demanda</b>. El juez la califica y, si cumple los requisitos, la <b>admite</b> y se emplaza al demandado.','El demandado <b>contesta</b>. Luego el juez <b>sanea</b> el proceso: revisa que no haya defectos que impidan seguir y fija los puntos controvertidos.','Se actúan las <b>pruebas</b> en audiencia y, al final, el juez emite la <b>sentencia</b>, que puede ser apelada.'],
+   q:{p:'¿Qué hace el juez justo después de recibir la demanda?',o:['Dicta sentencia','La califica para ver si la admite','Programa la audiencia de pruebas'],a:1,e:'Primero califica la demanda: si cumple los requisitos, la admite; si no, puede declararla inadmisible o improcedente.'}},
+  {id:'p2',t:'vf',title:'Principios del proceso',goal:'Reconocer los principios del Título Preliminar del CPC.',
+   items:[['Toda persona tiene derecho a la tutela jurisdiccional efectiva.',true,'Art. I del Título Preliminar del Código Procesal Civil.'],
+          ['El proceso civil lo inicia el juez de oficio, sin que nadie lo pida.',false,'No. El proceso se promueve solo a iniciativa de parte (art. IV del T. P. del CPC).'],
+          ['El juez dirige el proceso y debe impulsarlo por sí mismo.',true,'Es el principio de dirección e impulso del proceso (art. II del T. P. del CPC).']]},
+  {id:'p3',t:'ordenar',title:'Etapas del proceso',goal:'Ordenar las etapas del proceso de conocimiento.',
+   items:['Demanda','Admisión y emplazamiento','Contestación','Saneamiento y puntos controvertidos','Sentencia'],
+   e:'Es el recorrido básico: sin demanda no hay proceso, y sin saneamiento no se llega a la sentencia sobre el fondo.'},
+  {id:'p4',t:'parejas',title:'Plazos y medidas',goal:'Relacionar cada regla con su artículo.',
+   pairs:[['El plazo se cuenta desde el día siguiente de notificado','Art. 147 del CPC'],['Requisitos de la medida cautelar','Art. 611 del CPC'],['Contracautela','Art. 613 del CPC'],['Efectos de la notificación electrónica','Art. 155-C de la LOPJ']]},
+  {id:'p5',t:'caso',title:'¿Procede la medida cautelar?',goal:'Identificar qué requisito falta en un pedido cautelar.',
+   p:'Luis pide un embargo. Presenta pruebas sólidas de la deuda y ofrece contracautela, pero no explica por qué no puede esperar a la sentencia. ¿Qué requisito del art. 611 del CPC le falta justificar?',
+   o:['La verosimilitud del derecho','El peligro en la demora','La competencia del juez'],a:1,
+   e:'Probó la deuda (verosimilitud) y ofreció contracautela, pero debe justificar el peligro en la demora o las razones que hacen necesaria la medida (art. 611).'}
+ ]};
+const ALL=[...UNITS.intro,...UNITS.pcivil];
 
-/* Diálogos, aportes y boletín */
+/* Camino */
+function unitDone(u){return UNITS[u].filter(s=>S.done.includes(s.id)).length}
+function nextStage(){const u=UNITS[S.unit];return u.find(s=>!S.done.includes(s.id))||ALL.find(s=>!S.done.includes(s.id))||null}
+function drawPath(){
+  const list=UNITS[S.unit], nx=nextStage(), path=$('path');
+  document.querySelectorAll('.unit').forEach(b=>b.setAttribute('aria-pressed',b.dataset.unit===S.unit));
+  path.innerHTML='<svg class="line" aria-hidden="true"><path id="pl" fill="none" stroke="#8A837E" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 10"/></svg>'+
+    list.map((s,i)=>`<div class="stop"><button class="node${S.done.includes(s.id)?' done':''}${nx&&nx.id===s.id?' next':''}" type="button" data-st="${s.id}" aria-label="Etapa ${i+1}: ${s.title}, ${TYPE[s.t]}${S.done.includes(s.id)?', completada':''}"><svg viewBox="0 0 48 48" aria-hidden="true">${ICON[s.t]}</svg></button><span class="lbl"><small>Etapa ${i+1} · ${TYPE[s.t]}</small><b>${s.title}</b></span></div>`).join('')+
+    '<span class="path-ball" id="pball" aria-hidden="true"></span>';
+  path.querySelectorAll('.node').forEach(n=>n.addEventListener('click',()=>openStage(n.dataset.st)));
+  requestAnimationFrame(()=>{layoutLine();});
+  stats();
+}
+function layoutLine(){
+  const path=$('path'),R=path.getBoundingClientRect(),nodes=[...path.querySelectorAll('.node')];
+  const pts=nodes.map(n=>{const r=n.getBoundingClientRect();return[r.left-R.left+r.width/2,r.top-R.top+r.height/2]});
+  let d='';pts.forEach((p,i)=>{if(!i){d=`M${p[0]},${p[1]}`;return;}const q=pts[i-1],my=(q[1]+p[1])/2;d+=` C${q[0]},${my} ${p[0]},${my} ${p[0]},${p[1]}`;});
+  const pl=$('pl');if(pl)pl.setAttribute('d',d);
+  const nx=nextStage(),target=path.querySelector(`.node[data-st="${nx?nx.id:''}"]`)||nodes[nodes.length-1];
+  if(target){const r=target.getBoundingClientRect(),b=$('pball');b.style.left=(r.left-R.left+r.width/2-12)+'px';b.style.top=(r.top-R.top-30)+'px';}
+}
+addEventListener('resize',()=>{if(!$('aula').hidden)layoutLine();});
+document.fonts&&document.fonts.ready.then(()=>{if(!$('aula').hidden)layoutLine();});
+function stats(){
+  $('lights').textContent=S.luces;$('doneCount').textContent=S.done.length;$('meter').style.width=(S.done.length/ALL.length*100)+'%';
+  $('u-intro').textContent=unitDone('intro')+'/5';$('u-pcivil').textContent=unitDone('pcivil')+'/5';
+  const nx=nextStage();$('nextBtn').disabled=!nx;$('nextBtn').textContent=nx?`Seguir: ${nx.title} →`:'¡Completaste el camino!';
+}
+document.querySelectorAll('.unit').forEach(b=>b.addEventListener('click',()=>{S.unit=b.dataset.unit;save();drawPath();}));
+$('nextBtn').addEventListener('click',()=>{const nx=nextStage();if(!nx)return;const u=UNITS.intro.includes(nx)?'intro':'pcivil';if(u!==S.unit){S.unit=u;save();drawPath();}openStage(nx.id);});
+
+/* Pantalla de etapa */
+const stage=$('stage'),stIn=$('stIn');
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+function head(s){const i=UNITS[S.unit].indexOf(s)+1;return `<div class="st-top"><span class="eyebrow" style="color:var(--turquesa-osc)">Etapa ${i} · ${TYPE[s.t]}</span><button class="x" type="button" data-close aria-label="Cerrar">✕</button></div><h2 id="stT" style="font-size:1.6rem">${s.title}</h2><p class="goal"><b>Objetivo:</b> ${s.goal}</p>`;}
+function openStage(id){
+  const s=ALL.find(x=>x.id===id);if(!s)return;
+  stIn.innerHTML=head(s)+'<div id="act" class="stack"></div>';
+  stIn.querySelector('[data-close]').addEventListener('click',()=>stage.close());
+  ({leer:actLeer,vf:actVF,ordenar:actOrdenar,parejas:actParejas,caso:actCaso})[s.t](s,$('act'));
+  if(stage.showModal)stage.showModal();else stage.setAttribute('open','');
+}
+function finish(s){
+  const first=!S.done.includes(s.id);
+  if(first){S.done.push(s.id);S.luces+=10;save();}
+  const nx=nextStage();
+  $('act').insertAdjacentHTML('beforeend',`<div class="win"><span class="big">✓</span><b style="font-family:var(--f-title);font-size:1.2rem">${first?'¡Etapa completada!':'¡Repaso completado!'}</b><span class="small muted">${first?'+10 luces. ':''}${nx?'Siguiente sugerida: '+nx.title+'.':'Completaste todas las etapas.'}</span><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">${nx?`<button class="btn lacre" type="button" id="goNext">Ir a la siguiente →</button>`:''}<button class="btn ghost" type="button" id="goMap">Volver al camino</button></div></div>`);
+  $('goMap').addEventListener('click',()=>stage.close());
+  if(nx)$('goNext').addEventListener('click',()=>{const u=UNITS.intro.includes(nx)?'intro':'pcivil';if(u!==S.unit){S.unit=u;save();}drawPath();openStage(nx.id);});
+  if(first)toast('+10 luces · etapa completada');
+}
+stage.addEventListener('close',()=>{if(!$('aula').hidden)drawPath();});
+function choice(box,q,onRight){
+  box.insertAdjacentHTML('beforeend',`<p style="font-weight:700">${q.p}</p><div class="opts">${q.o.map((o,i)=>`<button class="opt" type="button" data-i="${i}">${o}</button>`).join('')}</div><p class="fb" aria-live="polite"></p>`);
+  const fb=box.querySelector('.fb:last-of-type');
+  box.querySelectorAll('.opts:last-of-type .opt').forEach(b=>b.addEventListener('click',()=>{
+    const ok=+b.dataset.i===q.a;
+    if(ok){box.querySelectorAll('.opts:last-of-type .opt').forEach(x=>x.disabled=true);b.classList.add('ok');fb.innerHTML=`<span class="hand">¡bien visto!</span> ${q.e}`;onRight();}
+    else{b.classList.add('no');b.disabled=true;fb.innerHTML=`<span class="hand" style="color:var(--tinta-2)">casi…</span> Vuelve a leer con calma e intenta otra opción.`;}
+  }));
+}
+function actLeer(s,box){box.innerHTML=`<div class="reading">${s.text.map(p=>`<p>${p}</p>`).join('')}</div><div class="stack" style="gap:10px;border-top:1px dashed var(--borde);padding-top:14px"><span class="eyebrow">Comprueba</span></div>`;choice(box.lastElementChild,s.q,()=>finish(s));}
+function actCaso(s,box){box.innerHTML='';choice(box,{p:s.p,o:s.o,a:s.a,e:s.e},()=>finish(s));}
+function actVF(s,box){
+  let i=0,ok=0;
+  const render=()=>{const it=s.items[i];
+    box.innerHTML=`<span class="eyebrow">Afirmación ${i+1} de ${s.items.length}</span><p style="font-family:var(--f-title);font-weight:700;font-size:1.15rem">${it[0]}</p><div class="vf"><button class="opt" type="button" data-v="1">Verdadero</button><button class="opt" type="button" data-v="0">Falso</button></div><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="vfN" hidden style="width:fit-content">Siguiente →</button>`;
+    box.querySelectorAll('.vf .opt').forEach(b=>b.addEventListener('click',()=>{
+      const right=(b.dataset.v==='1')===it[1];box.querySelectorAll('.vf .opt').forEach(x=>x.disabled=true);b.classList.add(right?'ok':'no');if(right)ok++;
+      box.querySelector('.fb').innerHTML=(right?'<span class="hand">¡bien visto!</span> ':`<span class="hand" style="color:var(--tinta-2)">casi…</span> Es <b>${it[1]?'verdadero':'falso'}</b>. `)+it[2];
+      const n=$('vfN');n.hidden=false;n.textContent=i<s.items.length-1?'Siguiente →':'Terminar etapa';n.focus();
+    }));
+    $('vfN').addEventListener('click',()=>{if(i<s.items.length-1){i++;render();}else{box.innerHTML=`<p class="small muted">${ok} de ${s.items.length} respuestas correctas. Lo importante es que ahora conoces el fundamento de cada una.</p>`;finish(s);}});
+  };render();
+}
+function actOrdenar(s,box){
+  let cur=shuffle(s.items);if(cur.join()===s.items.join())cur=cur.slice().reverse();
+  const render=(checked)=>{
+    box.innerHTML=`<p class="small muted">Usa las flechas para mover cada elemento. De arriba (mayor) hacia abajo.</p><ol class="order">${cur.map((t,i)=>`<li class="${checked?(t===s.items[i]?'good':'bad'):''}"><span class="n">${i+1}</span>${t}<span class="mv"><button type="button" data-u="${i}" aria-label="Subir ${t}">↑</button><button type="button" data-d="${i}" aria-label="Bajar ${t}">↓</button></span></li>`).join('')}</ol><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="chk" style="width:fit-content">Comprobar</button>`;
+    box.querySelectorAll('[data-u]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.u;if(i>0){[cur[i-1],cur[i]]=[cur[i],cur[i-1]];render();box.querySelector(`[data-u="${i-1}"]`)?.focus();}}));
+    box.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.d;if(i<cur.length-1){[cur[i+1],cur[i]]=[cur[i],cur[i+1]];render();box.querySelector(`[data-d="${i+1}"]`)?.focus();}}));
+    $('chk').addEventListener('click',()=>{const good=cur.every((t,i)=>t===s.items[i]);render(true);
+      if(good){box.querySelectorAll('.mv button').forEach(x=>x.disabled=true);$('chk').hidden=true;box.querySelector('.fb').innerHTML=`<span class="hand">¡bien visto!</span> ${s.e}`;finish(s);}
+      else{const n=cur.filter((t,i)=>t===s.items[i]).length;box.querySelector('.fb').innerHTML=`<span class="hand" style="color:var(--tinta-2)">casi…</span> Tienes ${n} de ${cur.length} en su lugar (marcados en ámbar). Ajusta y vuelve a comprobar.`;}});
+  };render(false);
+}
+function actParejas(s,box){
+  const L=shuffle(s.pairs.map((p,i)=>({t:p[0],i}))),R=shuffle(s.pairs.map((p,i)=>({t:p[1],i})));let sel=null,matched=0;
+  box.innerHTML=`<p class="small muted">Toca un elemento de la izquierda y luego su pareja de la derecha.</p><div class="pairs"><div class="col">${L.map(x=>`<button class="opt" type="button" data-l="${x.i}">${x.t}</button>`).join('')}</div><div class="col">${R.map(x=>`<button class="opt" type="button" data-r="${x.i}">${x.t}</button>`).join('')}</div></div><p class="fb" aria-live="polite"></p>`;
+  const fb=box.querySelector('.fb');
+  box.querySelectorAll('[data-l]').forEach(b=>b.addEventListener('click',()=>{box.querySelectorAll('[data-l]').forEach(x=>x.classList.remove('sel'));sel=b;b.classList.add('sel');fb.textContent='Ahora elige su pareja.';}));
+  box.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
+    if(!sel){fb.textContent='Primero elige un elemento de la izquierda.';return;}
+    if(sel.dataset.l===b.dataset.r){[sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('matched');x.disabled=true;});sel=null;matched++;fb.innerHTML='<span class="hand">¡eso es!</span>';
+      if(matched===s.pairs.length){fb.innerHTML='<span class="hand">¡todas las parejas!</span> Ya relacionas cada regla con su fuente.';finish(s);}}
+    else{b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);fb.innerHTML='<span class="hand" style="color:var(--tinta-2)">casi…</span> Esa no es su pareja. Prueba otra.';}
+  }));
+}
+
+/* Aportes y boletín */
 const dlg=$('dlg');
 function show(t,p,v,img){$('dlgT').textContent=t;$('dlgP').textContent=p;$('dlgV').hidden=!v;$('dlgV').textContent=v||'';
-  $('dlgImg').hidden=!img;if(img){$('dlgImg').src=img;$('dlgImg').alt='Código QR para aportar con '+t.replace('Aporte por ','');}
+  $('dlgImg').hidden=!img;if(img){$('dlgImg').src=img;$('dlgImg').alt='Código QR para aportar con Yape';}
   if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');}
 $('dlgClose').addEventListener('click',()=>dlg.close?dlg.close():dlg.removeAttribute('open'));
 const PAY={yape:'Aporte por Yape',plin:'Aporte por Plin',tarjeta:'Aporte con tarjeta'};
 document.querySelectorAll('[data-pay]').forEach(b=>b.addEventListener('click',()=>{
-  const k=b.dataset.pay, v=ANYLUM[k], img=k==='yape'?ANYLUM.yapeQR:'';
+  const k=b.dataset.pay,v=ANYLUM[k],img=k==='yape'?ANYLUM.yapeQR:'';
   if(k==='tarjeta'&&v){window.open(v,'_blank','noopener');return;}
   if(!v&&!img){show(PAY[k],'Estamos habilitando este medio de pago. Muy pronto podrás usarlo desde aquí.');return;}
-  show(PAY[k],img?'Escanea el código desde tu app o yapea el monto que quieras. ¡Gracias por sostener anylum!':'Envía el monto que quieras a este número. ¡Gracias por sostener anylum!',v,img);
+  show(PAY[k],img?'Escanea el código desde tu app y aporta el monto que quieras. ¡Gracias por sostener Anylum!':'Envía el monto que quieras a este número. ¡Gracias por sostener Anylum!',v,img);
 }));
-document.querySelectorAll('.menu .panel a').forEach(a=>a.addEventListener('click',()=>a.closest('details').removeAttribute('open')));
 $('newsForm').addEventListener('submit',async e=>{
-  e.preventDefault();const mail=$('nlMail').value.trim(), msg=$('newsMsg');
+  e.preventDefault();const mail=$('nlMail').value.trim(),msg=$('newsMsg');
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){msg.style.color='var(--lacre)';msg.textContent='Revisa tu correo: parece que falta algo.';return;}
   if(!ANYLUM.boletin){msg.style.color='var(--tinta-2)';msg.textContent='El boletín abre muy pronto. Todavía no estamos guardando correos.';return;}
   try{const r=await fetch(ANYLUM.boletin,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
     if(!r.ok)throw 0;msg.style.color='var(--tinta)';msg.textContent='¡Listo! Revisa tu correo para confirmar la suscripción.';e.target.reset();}
   catch(_){msg.style.color='var(--lacre)';msg.textContent='No pudimos registrarte. Inténtalo de nuevo en unos minutos.';}
 });
-let armed=false;
-$('reset').addEventListener('click',()=>{
-  if(!armed){armed=true;$('reset').textContent='¿Seguro? Toca otra vez para borrar tu progreso';setTimeout(()=>{armed=false;$('reset').textContent='Reiniciar mi partida';},4000);return;}
-  S=blank();save();render();$('lineMsg').textContent='';armed=false;$('reset').textContent='Reiniciar mi partida';toast('Partida reiniciada');
-});
-
-render();gShow();
 })();
 </script>
 </body>
