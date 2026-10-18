@@ -131,6 +131,14 @@ p{margin:0}
 .res{display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:var(--tinta)}
 .res b{font-family:var(--f-title)}
 .app .go{margin-top:auto;width:fit-content}
+.feat{border:2px solid var(--turquesa)}
+.feat-ill{display:flex;align-items:center;gap:0;margin-bottom:6px}
+.feat-ill .n{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--tinta);background:var(--blanco);display:grid;place-items:center;font:800 .95rem var(--f-title)}
+.feat-ill .n.done{background:var(--ambar);border-color:var(--ambar)}
+.feat-ill .n.here{border-color:var(--lacre);box-shadow:0 0 0 5px rgba(123,58,43,.12)}
+.feat-ill .seg{flex:1;max-width:60px;height:3px;background:radial-gradient(circle,var(--gris) 1.4px,transparent 1.8px) 0 0/9px 3px repeat-x}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:var(--tinta-2)}
+.chk input{margin-top:.25rem;accent-color:var(--lacre)}
 .locked{background:rgba(255,255,255,.55);border-style:dashed}
 
 /* Aula: camino de etapas */
@@ -307,16 +315,15 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
       <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
       <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
       <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
-      <a href="#biblioteca">Biblioteca</a><a href="#planes">Planes</a><a href="#sobre-mi">Sobre mí</a>
+      <a href="#biblioteca">Biblioteca</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
     </nav>
-    <a class="btn ambar sus" href="#planes">Suscríbete</a>
     <details class="menu">
       <summary aria-label="Abrir menú"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#261A17" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="17" r="2" fill="#E8A33D"/></svg></summary>
       <div class="panel">
         <a href="#aula" data-go="aula"><i style="background:var(--turquesa)"></i>Aula</a>
         <a href="#judicial" data-go="judicial"><i style="background:var(--guinda)"></i>Judicial</a>
         <a href="#pro" data-go="pro"><i style="background:var(--negro)"></i>Pro</a>
-        <a href="#biblioteca">Biblioteca</a><a href="#planes">Planes</a><a href="#sobre-mi">Sobre mí</a>
+        <a href="#biblioteca">Biblioteca</a><a href="#apoya">Apoya</a><a href="#sobre-mi">Sobre mí</a>
       </div>
     </details>
   </div>
@@ -327,12 +334,12 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap">
       <span class="eyebrow">Educación jurídica · Perú</span>
       <h1 style="margin-top:14px">¿Qué vienes a hacer hoy?</h1>
-      <p class="sub">Elige un camino y te muestro solo lo que necesitas. Puedes cambiar cuando quieras.</p>
+      <p class="sub">Toca un círculo y verás las apps que preparé para ese camino. Puedes cambiar cuando quieras.</p>
       <div class="ways" role="tablist" aria-label="Caminos">
         <button class="way" role="tab" id="t-aula" aria-controls="aula" aria-selected="false" data-way="aula" style="--c:#3D8582">
           <span class="disc" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
           <span class="txt"><span class="nm"><span class="wm">anylum</span><span class="tag" style="color:#2C6866">Aula</span></span>
-          <span class="verb">Aprender desde la base</span><span class="who">Para estudiantes: un camino de etapas, como un juego.</span></span>
+          <span class="verb">Aprender desde la base</span><span class="who">Para estudiantes: lecciones en etapas, como un juego.</span></span>
         </button>
         <button class="way" role="tab" id="t-judicial" aria-controls="judicial" aria-selected="false" data-way="judicial" style="--c:#7D1D2E">
           <span class="disc" style="background:#7D1D2E"><svg class="sym v-judicial" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
@@ -354,28 +361,29 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap">
       <div class="space-head">
         <span class="disc" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-        <div class="t"><span class="eyebrow" style="color:var(--turquesa-osc)">anylum Aula</span><h2 class="dot">Tu camino de aprendizaje</h2>
-          <p class="sub">Cada etapa es un desafío distinto: leer, decidir, ordenar, relacionar y resolver un caso. Te sugiero un orden, pero eliges tú.</p></div>
+        <div class="t"><span class="eyebrow" style="color:var(--turquesa-osc)">anylum Aula</span><h2 class="dot">Tus apps para aprender</h2>
+          <p class="sub">Lecciones en etapas de juego y resúmenes para repasar a tu ritmo.</p></div>
       </div>
-      <div class="units" role="group" aria-label="Unidades">
-        <button class="unit" type="button" data-unit="intro" aria-pressed="true">Unidad 1 · Introducción al Derecho <small id="u-intro">0/5</small></button>
-        <button class="unit" type="button" data-unit="pcivil" aria-pressed="false">Unidad 2 · Procesal Civil <small id="u-pcivil">0/5</small></button>
-      </div>
-      <div class="aula-grid">
-        <div class="path" id="path"></div>
-        <aside class="side">
-          <div class="card">
-            <span class="eyebrow">Tu avance</span>
-            <span class="lights"><i></i><span id="lights">0</span> luces</span>
-            <div class="meter" aria-hidden="true"><span id="meter"></span></div>
-            <p class="small muted"><b id="doneCount">0</b> de 10 etapas completadas. Tu avance se guarda en este navegador.</p>
-            <button class="btn lacre" type="button" id="nextBtn" style="width:fit-content">Seguir con la etapa sugerida →</button>
-          </div>
-          <div class="card">
-            <span class="eyebrow">Tipos de etapa</span>
-            <div class="legend" id="legend"></div>
-          </div>
-        </aside>
+      <div class="grid g2">
+        <article class="card app feat">
+          <div class="feat-ill" aria-hidden="true"><span class="n done">✓</span><span class="seg"></span><span class="n done">✓</span><span class="seg"></span><span class="n here">3</span><span class="seg"></span><span class="n">4</span></div>
+          <span class="pill free">Gratis</span><h3 style="font-size:1.45rem">Aula Anylum</h3>
+          <p class="muted">Introducción al Derecho y el Código Procesal Civil, sección por sección. Cada etapa es un desafío distinto: lectura, verdadero o falso, ordenar, parejas y casos prácticos.</p>
+          <ul class="bul small"><li>Guarda tu avance con tu cuenta</li><li>Sellos por cada unidad completada</li><li>Comentarios de quienes estudian</li></ul>
+          <a class="btn lacre go" href="aula/">Entrar al Aula →</a>
+        </article>
+        <div class="stack">
+          <article class="card app">
+            <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="ic-l" d="M14 6h15l9 9v27H14z M29 6v9h9 M19 24h14 M19 30h14 M19 36h8"/><circle class="ic-b" cx="36" cy="36" r="4.6"/></svg>
+            <span class="pill free">Gratis</span><h3>Biblioteca de resúmenes</h3>
+            <p class="muted small">Cada tema explicado en pocos pasos, con su artículo.</p>
+            <a class="btn ghost go" href="#biblioteca">Ir a la biblioteca</a>
+          </article>
+          <article class="card locked">
+            <span class="pill soon">🔒 Próximamente</span><h3>Fichas de repaso</h3>
+            <p class="muted small">Preguntas rápidas por materia para repasar antes del examen.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -385,7 +393,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap">
       <div class="space-head">
         <span class="disc" style="background:#7D1D2E"><svg class="sym v-judicial" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-        <div class="t"><span class="eyebrow" style="color:#7D1D2E">anylum Judicial</span><h2 class="dot">Para el despacho</h2>
+        <div class="t"><span class="eyebrow" style="color:#7D1D2E">anylum Judicial</span><h2 class="dot">Tus apps para el despacho</h2>
           <p class="sub">Lo que necesitas para resolver rápido y con fundamento: plazos, criterios y formatos.</p></div>
       </div>
       <div class="grid g3">
@@ -413,7 +421,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap">
       <div class="space-head">
         <span class="disc" style="background:#141414"><svg class="sym v-pro" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span>
-        <div class="t"><span class="eyebrow" style="color:#141414">anylum Pro</span><h2 class="dot">Para el ejercicio</h2>
+        <div class="t"><span class="eyebrow" style="color:#141414">anylum Pro</span><h2 class="dot">Tus apps para el ejercicio</h2>
           <p class="sub">La misma base del derecho, aplicada a lo que haces en tu estudio: estrategia, escritos y plazos.</p></div>
       </div>
       <div class="grid g3">
@@ -429,7 +437,7 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
           <a class="btn lacre go" href="https://anylum.github.io/calculadora-de-plazos-procesales/" target="_blank" rel="noopener">Abrir →</a>
         </article>
         <article class="card locked">
-          <span class="pill soon">🔒 Suscripción</span><h3>Plantillas de escritos y casaciones</h3>
+          <span class="pill soon">🔒 Próximamente</span><h3>Plantillas de escritos y casaciones</h3>
           <p class="muted small">Escritos editables y casaciones por tema, sala y año, con su regla resumida.</p>
         </article>
       </div>
@@ -482,26 +490,14 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     </div>
   </section>
 
-  <section id="planes" style="padding-block:70px">
-    <div class="wrap">
-      <div class="stack" style="margin-bottom:24px"><span class="eyebrow">Planes</span><h2 class="dot">Lo esencial, siempre gratis</h2><p class="sub">Suscríbete si quieres más herramientas de tu camino, o apoya con un aporte único.</p></div>
-      <div class="grid g3">
-        <article class="card plan">
-          <span class="eyebrow">Gratis</span><span class="price">S/ 0</span>
-          <ul class="bul small"><li>Biblioteca abierta</li><li>Herramientas gratuitas, como la calculadora</li><li>El camino de Aula</li><li>Boletín de los viernes</li></ul>
-          <a class="btn ghost" href="#inicio">Elegir mi camino</a>
-        </article>
-        <article class="card plan main">
-          <span class="eyebrow" style="color:var(--lacre)">Suscripción</span><span class="price">Muy pronto</span>
-          <ul class="bul small"><li>Todo lo gratuito</li><li>Modelos de proveídos y criterios (Judicial)</li><li>Plantillas de escritos y casaciones (Pro)</li><li>Nuevas unidades en Aula</li></ul>
-          <a class="btn ambar" href="#sobre-mi">Avísame cuando abra</a>
-        </article>
-        <article class="card plan">
-          <span class="eyebrow">Aporte único</span><span class="price" style="font-size:1.7rem">Invítame un café</span>
-          <p class="small muted">Si un resumen te salvó la semana, puedes apoyar a Anylum con el monto que quieras.</p>
-          <div class="pay"><button class="btn ghost" type="button" data-pay="yape">Yape</button><button class="btn ghost" type="button" data-pay="plin">Plin</button><button class="btn ghost" type="button" data-pay="tarjeta">Tarjeta</button></div>
-        </article>
-      </div>
+  <section id="apoya" style="padding-block:70px">
+    <div class="wrap grid g2" style="align-items:center;gap:30px">
+      <div class="stack"><span class="eyebrow">Apoya a Anylum</span><h2 class="dot">Lo esencial, siempre gratis</h2>
+        <p class="sub">Si un resumen o una app te ayudó, puedes apoyar con un aporte único del monto que quieras.</p></div>
+      <article class="card">
+        <span class="eyebrow">Aporte único</span><span style="font-family:var(--f-title);font-weight:800;font-size:1.7rem">Invítame un café</span>
+        <div class="pay"><button class="btn ghost" type="button" data-pay="yape">Yape</button><button class="btn ghost" type="button" data-pay="plin">Plin</button><button class="btn ghost" type="button" data-pay="tarjeta">Tarjeta</button></div>
+      </article>
     </div>
   </section>
 
@@ -509,17 +505,18 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
     <div class="wrap grid g2" style="gap:44px;align-items:start">
       <div class="stack">
         <span class="eyebrow">Sobre mí</span><h2 class="dot">Hola, soy Angie</h2>
-        <p>Soy abogada puneña. Creé Anylum, una plataforma para aprender derecho de forma sencilla, casi como jugando: con explicaciones claras, ejemplos y siempre con la norma a la mano.</p>
+        <p>Creé Anylum, una plataforma para aprender derecho de forma sencilla, casi como jugando: con explicaciones claras, ejemplos y siempre con la norma a la mano.</p>
         <p class="muted">Aquí encontrarás resúmenes, herramientas y juegos para quienes estudian, litigan o sacan adelante un despacho judicial. Porque entender el derecho no debería ser un privilegio de pocos: debería estar al alcance de todos.</p>
-        <span class="hand">con cariño, desde Puno ✎</span>
+        <span class="hand">con cariño</span>
       </div>
       <div class="stack">
         <span class="eyebrow">Boletín</span><h2 class="dot">El boletín de los viernes</h2>
         <p class="sub">Un resumen nuevo, una casación comentada y un plazo que no debes olvidar, en tu correo.</p>
-        <form class="news" id="newsForm" novalidate>
-          <label for="nlMail" style="position:absolute;left:-9999px">Tu correo</label>
-          <input id="nlMail" name="email" type="email" placeholder="tu@correo.com" autocomplete="email" required>
-          <button class="btn lacre" type="submit">Quiero recibirlo</button>
+        <form class="stack" id="newsForm" novalidate style="gap:10px">
+          <div class="news"><label for="nlNom" style="position:absolute;left:-9999px">Tu nombre</label><input id="nlNom" name="nombre" placeholder="Tu nombre" autocomplete="name" required style="flex:.7">
+          <label for="nlMail" style="position:absolute;left:-9999px">Tu correo</label><input id="nlMail" name="email" type="email" placeholder="tu@correo.com" autocomplete="email" required></div>
+          <label class="chk" for="nlOk"><input type="checkbox" id="nlOk">Acepto recibir el boletín de Anylum por correo. Puedo darme de baja cuando quiera.</label>
+          <button class="btn lacre" type="submit" style="width:fit-content">Quiero recibirlo</button>
         </form>
         <p class="msg" id="newsMsg" aria-live="polite"></p>
       </div>
@@ -540,12 +537,12 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
 
 <script>
 /* Configuración: completa estos datos para activar los aportes y el boletín. */
+const SB_URL='https://vfimysewbdbbxtxlwxbv.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZmaW15c2V3YmRiYnh0eGx3eGJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NzQwMDUsImV4cCI6MjEwNjU1MDAwNX0.rHaSVk6U5fuT6mHcMGgVqfU43dU4m16pgsDb3bJOifA';
 const ANYLUM={
   yape:'',      // número de celular para Yape
   yapeQR:'',    // imagen del QR de Yape subida al repositorio, por ejemplo 'yape-qr.png'
   plin:'',      // número de celular para Plin
-  tarjeta:'',   // enlace de pago con tarjeta (Mercado Pago, Culqi, Stripe…)
-  boletin:''    // dirección del formulario del boletín (Buttondown, Mailchimp, Formspree…)
+  tarjeta:''    // enlace de pago con tarjeta (Mercado Pago, Culqi, Stripe…)
 };
 (()=>{
 const $=id=>document.getElementById(id);
@@ -555,7 +552,7 @@ let tT;function toast(t){$('toastT').textContent=t;$('toast').classList.add('sho
 
 /* Guardado local */
 const KEY='anylum-v2';
-let S={way:'',unit:'intro',done:[],luces:0};
+let S={way:''};
 try{S=Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 
@@ -567,7 +564,6 @@ function openWay(w,scroll){
   ['aula','judicial','pro'].forEach(k=>$(k).hidden=k!==w);
   document.querySelectorAll('.top nav a[data-go]').forEach(a=>a.classList.toggle('on',a.dataset.go===w));
   $('hint').hidden=!!w;
-  if(w==='aula')drawPath();
   if(scroll)$(w).scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
 }
 ways.forEach(b=>b.addEventListener('click',()=>openWay(b.dataset.way,true)));
@@ -585,156 +581,6 @@ document.querySelectorAll('[data-open]').forEach(a=>a.addEventListener('click',(
   const d=document.querySelector(`[data-sum="${a.dataset.open}"]`);if(d){d.hidden=false;d.open=true;setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}),30);}
 }));
 
-/* Íconos por tipo de etapa */
-const ICON={
-  leer:'<path class="ic-l" d="M6 14q9-4 18 2q9-6 18-2v22q-9-4-18 2q-9-6-18-2z M24 16v22"/><circle class="ic-b" cx="36" cy="10" r="4"/>',
-  vf:'<path class="ic-l" d="M8 24l6 6 10-12 M30 18l10 12 M40 18L30 30"/><circle class="ic-b" cx="24" cy="38" r="4"/>',
-  ordenar:'<path class="ic-l" d="M10 12h20 M10 24h28 M10 36h14 M38 8v12 M34 16l4 4 4-4"/><circle class="ic-b" cx="34" cy="36" r="4"/>',
-  parejas:'<circle class="ic-l" cx="14" cy="16" r="6"/><circle class="ic-l" cx="34" cy="32" r="6"/><path class="ic-l" d="M19 20l10 8"/><circle class="ic-b" cx="34" cy="12" r="4"/>',
-  caso:'<path class="ic-l" d="M8 16h32v22H8z M18 16v-5h12v5 M8 26h32"/><circle class="ic-b" cx="24" cy="26" r="4"/>'
-};
-const TYPE={leer:'Lectura',vf:'Verdadero o falso',ordenar:'Ordena',parejas:'Parejas',caso:'Caso práctico'};
-$('legend').innerHTML=Object.keys(TYPE).map(k=>`<svg viewBox="0 0 48 48" aria-hidden="true">${ICON[k]}</svg><span>${TYPE[k]}</span>`).join('');
-
-/* Contenido de las etapas */
-const UNITS={
- intro:[
-  {id:'i1',t:'leer',title:'¿Qué es el derecho?',goal:'Distinguir derecho objetivo y derecho subjetivo.',
-   text:['El <b>derecho objetivo</b> es el conjunto de normas que regulan la conducta en sociedad y que el Estado puede hacer cumplir: la Constitución, las leyes, los reglamentos.','El <b>derecho subjetivo</b> es la facultad que esas normas reconocen a una persona: por ejemplo, el derecho del propietario a usar su casa o el del acreedor a cobrar su deuda.','Una forma sencilla de recordarlo: el derecho objetivo es <i>la regla</i>; el subjetivo, <i>lo que la regla te permite exigir</i>.'],
-   q:{p:'“Tengo derecho a cobrar los S/ 500 que me prestaron.” ¿De qué derecho hablamos?',o:['Derecho objetivo','Derecho subjetivo'],a:1,e:'Es una facultad concreta de una persona: un derecho subjetivo, reconocido por normas del derecho objetivo.'}},
-  {id:'i2',t:'vf',title:'Fuentes del derecho',goal:'Reconocer de dónde nacen las normas que aplicamos.',
-   items:[['La costumbre puede ser fuente del derecho.',true,'Sí. Junto con la ley, la jurisprudencia y los principios, la costumbre es una fuente reconocida.'],
-          ['La opinión de un autor (doctrina) obliga al juez igual que la ley.',false,'No. La doctrina orienta e ilustra, pero no es obligatoria como la ley.'],
-          ['Si la ley tiene un vacío, el juez aplica los principios generales del derecho.',true,'Así lo dispone el art. VIII del Título Preliminar del Código Civil.']]},
-  {id:'i3',t:'ordenar',title:'Jerarquía normativa',goal:'Ordenar las normas de mayor a menor rango.',
-   items:['Constitución','Ley','Decreto supremo','Resolución ministerial'],
-   e:'La Constitución prevalece sobre toda norma legal; la ley, sobre las normas de inferior jerarquía, y así sucesivamente (art. 51 de la Constitución).'},
-  {id:'i4',t:'parejas',title:'Principios del Título Preliminar',goal:'Relacionar cada principio con su artículo.',
-   pairs:[['La ley solo se deroga por otra ley','Art. I del T. P. del Código Civil'],['La ley no ampara el abuso del derecho','Art. II del T. P. del Código Civil'],['El juez aplica la norma pertinente aunque no se invoque','Art. VII del T. P. del Código Civil'],['La ley no tiene efectos retroactivos, salvo en materia penal favorable al reo','Art. 103 de la Constitución']]},
-  {id:'i5',t:'caso',title:'¿Se aplica la nueva ley?',goal:'Aplicar la regla de irretroactividad a un caso.',
-   p:'En marzo de 2025, Rosa firma un contrato. En 2026 entra en vigor una ley que cambia los requisitos de ese tipo de contrato. Según la Constitución, ¿la nueva ley puede anular hacia atrás lo que Rosa hizo válidamente en 2025?',
-   o:['Sí, toda ley nueva se aplica a todos los hechos anteriores','No, la ley no tiene efectos retroactivos salvo en materia penal favorable al reo','Solo si el juez lo considera justo'],a:1,
-   e:'El art. 103 de la Constitución establece que la ley no tiene fuerza ni efectos retroactivos, salvo en materia penal cuando favorece al reo.'}
- ],
- pcivil:[
-  {id:'p1',t:'leer',title:'El proceso civil en una página',goal:'Ubicar las grandes etapas del proceso de conocimiento.',
-   text:['Todo empieza con la <b>demanda</b>. El juez la califica y, si cumple los requisitos, la <b>admite</b> y se emplaza al demandado.','El demandado <b>contesta</b>. Luego el juez <b>sanea</b> el proceso: revisa que no haya defectos que impidan seguir y fija los puntos controvertidos.','Se actúan las <b>pruebas</b> en audiencia y, al final, el juez emite la <b>sentencia</b>, que puede ser apelada.'],
-   q:{p:'¿Qué hace el juez justo después de recibir la demanda?',o:['Dicta sentencia','La califica para ver si la admite','Programa la audiencia de pruebas'],a:1,e:'Primero califica la demanda: si cumple los requisitos, la admite; si no, puede declararla inadmisible o improcedente.'}},
-  {id:'p2',t:'vf',title:'Principios del proceso',goal:'Reconocer los principios del Título Preliminar del CPC.',
-   items:[['Toda persona tiene derecho a la tutela jurisdiccional efectiva.',true,'Art. I del Título Preliminar del Código Procesal Civil.'],
-          ['El proceso civil lo inicia el juez de oficio, sin que nadie lo pida.',false,'No. El proceso se promueve solo a iniciativa de parte (art. IV del T. P. del CPC).'],
-          ['El juez dirige el proceso y debe impulsarlo por sí mismo.',true,'Es el principio de dirección e impulso del proceso (art. II del T. P. del CPC).']]},
-  {id:'p3',t:'ordenar',title:'Etapas del proceso',goal:'Ordenar las etapas del proceso de conocimiento.',
-   items:['Demanda','Admisión y emplazamiento','Contestación','Saneamiento y puntos controvertidos','Sentencia'],
-   e:'Es el recorrido básico: sin demanda no hay proceso, y sin saneamiento no se llega a la sentencia sobre el fondo.'},
-  {id:'p4',t:'parejas',title:'Plazos y medidas',goal:'Relacionar cada regla con su artículo.',
-   pairs:[['El plazo se cuenta desde el día siguiente de notificado','Art. 147 del CPC'],['Requisitos de la medida cautelar','Art. 611 del CPC'],['Contracautela','Art. 613 del CPC'],['Efectos de la notificación electrónica','Art. 155-C de la LOPJ']]},
-  {id:'p5',t:'caso',title:'¿Procede la medida cautelar?',goal:'Identificar qué requisito falta en un pedido cautelar.',
-   p:'Luis pide un embargo. Presenta pruebas sólidas de la deuda y ofrece contracautela, pero no explica por qué no puede esperar a la sentencia. ¿Qué requisito del art. 611 del CPC le falta justificar?',
-   o:['La verosimilitud del derecho','El peligro en la demora','La competencia del juez'],a:1,
-   e:'Probó la deuda (verosimilitud) y ofreció contracautela, pero debe justificar el peligro en la demora o las razones que hacen necesaria la medida (art. 611).'}
- ]};
-const ALL=[...UNITS.intro,...UNITS.pcivil];
-
-/* Camino */
-function unitDone(u){return UNITS[u].filter(s=>S.done.includes(s.id)).length}
-function nextStage(){const u=UNITS[S.unit];return u.find(s=>!S.done.includes(s.id))||ALL.find(s=>!S.done.includes(s.id))||null}
-function drawPath(){
-  const list=UNITS[S.unit], nx=nextStage(), path=$('path');
-  document.querySelectorAll('.unit').forEach(b=>b.setAttribute('aria-pressed',b.dataset.unit===S.unit));
-  path.innerHTML='<svg class="line" aria-hidden="true"><path id="pl" fill="none" stroke="#8A837E" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 10"/></svg>'+
-    list.map((s,i)=>`<div class="stop"><button class="node${S.done.includes(s.id)?' done':''}${nx&&nx.id===s.id?' next':''}" type="button" data-st="${s.id}" aria-label="Etapa ${i+1}: ${s.title}, ${TYPE[s.t]}${S.done.includes(s.id)?', completada':''}"><svg viewBox="0 0 48 48" aria-hidden="true">${ICON[s.t]}</svg></button><span class="lbl"><small>Etapa ${i+1} · ${TYPE[s.t]}</small><b>${s.title}</b></span></div>`).join('')+
-    '<span class="path-ball" id="pball" aria-hidden="true"></span>';
-  path.querySelectorAll('.node').forEach(n=>n.addEventListener('click',()=>openStage(n.dataset.st)));
-  requestAnimationFrame(()=>{layoutLine();});
-  stats();
-}
-function layoutLine(){
-  const path=$('path'),R=path.getBoundingClientRect(),nodes=[...path.querySelectorAll('.node')];
-  const pts=nodes.map(n=>{const r=n.getBoundingClientRect();return[r.left-R.left+r.width/2,r.top-R.top+r.height/2]});
-  let d='';pts.forEach((p,i)=>{if(!i){d=`M${p[0]},${p[1]}`;return;}const q=pts[i-1],my=(q[1]+p[1])/2;d+=` C${q[0]},${my} ${p[0]},${my} ${p[0]},${p[1]}`;});
-  const pl=$('pl');if(pl)pl.setAttribute('d',d);
-  const nx=nextStage(),target=path.querySelector(`.node[data-st="${nx?nx.id:''}"]`)||nodes[nodes.length-1];
-  if(target){const r=target.getBoundingClientRect(),b=$('pball');b.style.left=(r.left-R.left+r.width/2-12)+'px';b.style.top=(r.top-R.top-30)+'px';}
-}
-addEventListener('resize',()=>{if(!$('aula').hidden)layoutLine();});
-document.fonts&&document.fonts.ready.then(()=>{if(!$('aula').hidden)layoutLine();});
-function stats(){
-  $('lights').textContent=S.luces;$('doneCount').textContent=S.done.length;$('meter').style.width=(S.done.length/ALL.length*100)+'%';
-  $('u-intro').textContent=unitDone('intro')+'/5';$('u-pcivil').textContent=unitDone('pcivil')+'/5';
-  const nx=nextStage();$('nextBtn').disabled=!nx;$('nextBtn').textContent=nx?`Seguir: ${nx.title} →`:'¡Completaste el camino!';
-}
-document.querySelectorAll('.unit').forEach(b=>b.addEventListener('click',()=>{S.unit=b.dataset.unit;save();drawPath();}));
-$('nextBtn').addEventListener('click',()=>{const nx=nextStage();if(!nx)return;const u=UNITS.intro.includes(nx)?'intro':'pcivil';if(u!==S.unit){S.unit=u;save();drawPath();}openStage(nx.id);});
-
-/* Pantalla de etapa */
-const stage=$('stage'),stIn=$('stIn');
-const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
-function head(s){const i=UNITS[S.unit].indexOf(s)+1;return `<div class="st-top"><span class="eyebrow" style="color:var(--turquesa-osc)">Etapa ${i} · ${TYPE[s.t]}</span><button class="x" type="button" data-close aria-label="Cerrar">✕</button></div><h2 id="stT" style="font-size:1.6rem">${s.title}</h2><p class="goal"><b>Objetivo:</b> ${s.goal}</p>`;}
-function openStage(id){
-  const s=ALL.find(x=>x.id===id);if(!s)return;
-  stIn.innerHTML=head(s)+'<div id="act" class="stack"></div>';
-  stIn.querySelector('[data-close]').addEventListener('click',()=>stage.close());
-  ({leer:actLeer,vf:actVF,ordenar:actOrdenar,parejas:actParejas,caso:actCaso})[s.t](s,$('act'));
-  if(stage.showModal)stage.showModal();else stage.setAttribute('open','');
-}
-function finish(s){
-  const first=!S.done.includes(s.id);
-  if(first){S.done.push(s.id);S.luces+=10;save();}
-  const nx=nextStage();
-  $('act').insertAdjacentHTML('beforeend',`<div class="win"><span class="big">✓</span><b style="font-family:var(--f-title);font-size:1.2rem">${first?'¡Etapa completada!':'¡Repaso completado!'}</b><span class="small muted">${first?'+10 luces. ':''}${nx?'Siguiente sugerida: '+nx.title+'.':'Completaste todas las etapas.'}</span><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">${nx?`<button class="btn lacre" type="button" id="goNext">Ir a la siguiente →</button>`:''}<button class="btn ghost" type="button" id="goMap">Volver al camino</button></div></div>`);
-  $('goMap').addEventListener('click',()=>stage.close());
-  if(nx)$('goNext').addEventListener('click',()=>{const u=UNITS.intro.includes(nx)?'intro':'pcivil';if(u!==S.unit){S.unit=u;save();}drawPath();openStage(nx.id);});
-  if(first)toast('+10 luces · etapa completada');
-}
-stage.addEventListener('close',()=>{if(!$('aula').hidden)drawPath();});
-function choice(box,q,onRight){
-  box.insertAdjacentHTML('beforeend',`<p style="font-weight:700">${q.p}</p><div class="opts">${q.o.map((o,i)=>`<button class="opt" type="button" data-i="${i}">${o}</button>`).join('')}</div><p class="fb" aria-live="polite"></p>`);
-  const fb=box.querySelector('.fb:last-of-type');
-  box.querySelectorAll('.opts:last-of-type .opt').forEach(b=>b.addEventListener('click',()=>{
-    const ok=+b.dataset.i===q.a;
-    if(ok){box.querySelectorAll('.opts:last-of-type .opt').forEach(x=>x.disabled=true);b.classList.add('ok');fb.innerHTML=`<span class="hand">¡bien visto!</span> ${q.e}`;onRight();}
-    else{b.classList.add('no');b.disabled=true;fb.innerHTML=`<span class="hand" style="color:var(--tinta-2)">casi…</span> Vuelve a leer con calma e intenta otra opción.`;}
-  }));
-}
-function actLeer(s,box){box.innerHTML=`<div class="reading">${s.text.map(p=>`<p>${p}</p>`).join('')}</div><div class="stack" style="gap:10px;border-top:1px dashed var(--borde);padding-top:14px"><span class="eyebrow">Comprueba</span></div>`;choice(box.lastElementChild,s.q,()=>finish(s));}
-function actCaso(s,box){box.innerHTML='';choice(box,{p:s.p,o:s.o,a:s.a,e:s.e},()=>finish(s));}
-function actVF(s,box){
-  let i=0,ok=0;
-  const render=()=>{const it=s.items[i];
-    box.innerHTML=`<span class="eyebrow">Afirmación ${i+1} de ${s.items.length}</span><p style="font-family:var(--f-title);font-weight:700;font-size:1.15rem">${it[0]}</p><div class="vf"><button class="opt" type="button" data-v="1">Verdadero</button><button class="opt" type="button" data-v="0">Falso</button></div><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="vfN" hidden style="width:fit-content">Siguiente →</button>`;
-    box.querySelectorAll('.vf .opt').forEach(b=>b.addEventListener('click',()=>{
-      const right=(b.dataset.v==='1')===it[1];box.querySelectorAll('.vf .opt').forEach(x=>x.disabled=true);b.classList.add(right?'ok':'no');if(right)ok++;
-      box.querySelector('.fb').innerHTML=(right?'<span class="hand">¡bien visto!</span> ':`<span class="hand" style="color:var(--tinta-2)">casi…</span> Es <b>${it[1]?'verdadero':'falso'}</b>. `)+it[2];
-      const n=$('vfN');n.hidden=false;n.textContent=i<s.items.length-1?'Siguiente →':'Terminar etapa';n.focus();
-    }));
-    $('vfN').addEventListener('click',()=>{if(i<s.items.length-1){i++;render();}else{box.innerHTML=`<p class="small muted">${ok} de ${s.items.length} respuestas correctas. Lo importante es que ahora conoces el fundamento de cada una.</p>`;finish(s);}});
-  };render();
-}
-function actOrdenar(s,box){
-  let cur=shuffle(s.items);if(cur.join()===s.items.join())cur=cur.slice().reverse();
-  const render=(checked)=>{
-    box.innerHTML=`<p class="small muted">Usa las flechas para mover cada elemento. De arriba (mayor) hacia abajo.</p><ol class="order">${cur.map((t,i)=>`<li class="${checked?(t===s.items[i]?'good':'bad'):''}"><span class="n">${i+1}</span>${t}<span class="mv"><button type="button" data-u="${i}" aria-label="Subir ${t}">↑</button><button type="button" data-d="${i}" aria-label="Bajar ${t}">↓</button></span></li>`).join('')}</ol><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="chk" style="width:fit-content">Comprobar</button>`;
-    box.querySelectorAll('[data-u]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.u;if(i>0){[cur[i-1],cur[i]]=[cur[i],cur[i-1]];render();box.querySelector(`[data-u="${i-1}"]`)?.focus();}}));
-    box.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.d;if(i<cur.length-1){[cur[i+1],cur[i]]=[cur[i],cur[i+1]];render();box.querySelector(`[data-d="${i+1}"]`)?.focus();}}));
-    $('chk').addEventListener('click',()=>{const good=cur.every((t,i)=>t===s.items[i]);render(true);
-      if(good){box.querySelectorAll('.mv button').forEach(x=>x.disabled=true);$('chk').hidden=true;box.querySelector('.fb').innerHTML=`<span class="hand">¡bien visto!</span> ${s.e}`;finish(s);}
-      else{const n=cur.filter((t,i)=>t===s.items[i]).length;box.querySelector('.fb').innerHTML=`<span class="hand" style="color:var(--tinta-2)">casi…</span> Tienes ${n} de ${cur.length} en su lugar (marcados en ámbar). Ajusta y vuelve a comprobar.`;}});
-  };render(false);
-}
-function actParejas(s,box){
-  const L=shuffle(s.pairs.map((p,i)=>({t:p[0],i}))),R=shuffle(s.pairs.map((p,i)=>({t:p[1],i})));let sel=null,matched=0;
-  box.innerHTML=`<p class="small muted">Toca un elemento de la izquierda y luego su pareja de la derecha.</p><div class="pairs"><div class="col">${L.map(x=>`<button class="opt" type="button" data-l="${x.i}">${x.t}</button>`).join('')}</div><div class="col">${R.map(x=>`<button class="opt" type="button" data-r="${x.i}">${x.t}</button>`).join('')}</div></div><p class="fb" aria-live="polite"></p>`;
-  const fb=box.querySelector('.fb');
-  box.querySelectorAll('[data-l]').forEach(b=>b.addEventListener('click',()=>{box.querySelectorAll('[data-l]').forEach(x=>x.classList.remove('sel'));sel=b;b.classList.add('sel');fb.textContent='Ahora elige su pareja.';}));
-  box.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
-    if(!sel){fb.textContent='Primero elige un elemento de la izquierda.';return;}
-    if(sel.dataset.l===b.dataset.r){[sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('matched');x.disabled=true;});sel=null;matched++;fb.innerHTML='<span class="hand">¡eso es!</span>';
-      if(matched===s.pairs.length){fb.innerHTML='<span class="hand">¡todas las parejas!</span> Ya relacionas cada regla con su fuente.';finish(s);}}
-    else{b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);fb.innerHTML='<span class="hand" style="color:var(--tinta-2)">casi…</span> Esa no es su pareja. Prueba otra.';}
-  }));
-}
-
 /* Aportes y boletín */
 const dlg=$('dlg');
 function show(t,p,v,img){$('dlgT').textContent=t;$('dlgP').textContent=p;$('dlgV').hidden=!v;$('dlgV').textContent=v||'';
@@ -749,12 +595,16 @@ document.querySelectorAll('[data-pay]').forEach(b=>b.addEventListener('click',()
   show(PAY[k],img?'Escanea el código desde tu app y aporta el monto que quieras. ¡Gracias por sostener Anylum!':'Envía el monto que quieras a este número. ¡Gracias por sostener Anylum!',v,img);
 }));
 $('newsForm').addEventListener('submit',async e=>{
-  e.preventDefault();const mail=$('nlMail').value.trim(),msg=$('newsMsg');
+  e.preventDefault();const nom=$('nlNom').value.trim(),mail=$('nlMail').value.trim(),msg=$('newsMsg');
+  if(nom.length<2){msg.style.color='var(--lacre)';msg.textContent='Escribe tu nombre para suscribirte.';return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){msg.style.color='var(--lacre)';msg.textContent='Revisa tu correo: parece que falta algo.';return;}
-  if(!ANYLUM.boletin){msg.style.color='var(--tinta-2)';msg.textContent='El boletín abre muy pronto. Todavía no estamos guardando correos.';return;}
-  try{const r=await fetch(ANYLUM.boletin,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});
-    if(!r.ok)throw 0;msg.style.color='var(--tinta)';msg.textContent='¡Listo! Revisa tu correo para confirmar la suscripción.';e.target.reset();}
-  catch(_){msg.style.color='var(--lacre)';msg.textContent='No pudimos registrarte. Inténtalo de nuevo en unos minutos.';}
+  if(!$('nlOk').checked){msg.style.color='var(--lacre)';msg.textContent='Marca la casilla de aceptación para suscribirte.';return;}
+  msg.style.color='var(--tinta-2)';msg.textContent='Enviando…';
+  try{const r=await fetch(SB_URL+'/rest/v1/suscriptores',{method:'POST',headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,Prefer:'return=minimal'},body:JSON.stringify({email:mail,nombre:nom,acepta:true,origen:location.pathname})});
+    if(r.ok){msg.style.color='var(--tinta)';msg.textContent='¡Listo! Te escribiremos cada viernes.';e.target.reset();}
+    else if(r.status===409){msg.style.color='var(--tinta)';msg.textContent='Ese correo ya está registrado. ¡Gracias!';}
+    else throw new Error(r.status);}
+  catch(_){msg.style.color='var(--lacre)';msg.textContent='No pudimos registrar tu correo. Inténtalo de nuevo en unos minutos.';}
 });
 })();
 </script>

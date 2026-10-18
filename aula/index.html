@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aula Anylum · Aprende derecho como jugando</title>
+<meta name="description" content="Lecciones de Introducción al Derecho y del Código Procesal Civil peruano en etapas de juego: lectura, verdadero o falso, ordenar, parejas y casos prácticos.">
+<meta name="theme-color" content="#F7F1E3">
+<meta property="og:title" content="Aula Anylum · Aprende derecho como jugando">
+<meta property="og:description" content="Un camino de etapas para aprender el Código Procesal Civil peruano, sección por sección.">
+<meta property="og:image" content="../og-image.png">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Mulish:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Damion&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+/* App Aula: mapa de unidades (secciones del CPC) → camino de etapas → pantalla de juego. */
+:root{
+  --papel:#F7F1E3; --trigo:#F1DEA3; --pergamino:#DDBB82; --avellana:#B07D5A;
+  --lacre:#7B3A2B; --tinta:#261A17; --tinta-2:#4E4A47; --gris:#8A837E; --ambar:#E8A33D;
+  --guinda:#7D1D2E; --turquesa:#3D8582; --turquesa-osc:#2C6866; --blanco:#FFFFFF;
+  --borde:rgba(38,26,23,.13); --renglon:rgba(38,26,23,.07);
+  --f-word:'Damion','Segoe Script',cursive; --f-title:'Sora','Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Mulish','Segoe UI',system-ui,sans-serif; --f-hand:'Caveat','Segoe Print',cursive;
+  color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background-color:var(--papel);color:var(--tinta);background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--renglon) 31px 32px);font:400 16.5px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--papel)}
+a{color:var(--lacre)}
+:focus-visible{outline:2px solid var(--lacre);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-title);color:var(--tinta);margin:0;line-height:1.08;text-wrap:balance}
+h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+h2.dot::after{content:"";display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--ambar);margin-left:.08em}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:800 .74rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.sub{font-family:var(--f-title);font-size:1.06rem;color:var(--tinta-2);max-width:62ch}
+.muted{color:var(--tinta-2)} .small{font-size:.88rem}
+.hand{font-family:var(--f-hand);color:var(--lacre);font-weight:600;font-size:1.4rem;line-height:1.1}
+.stack{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.btn{font:800 .92rem/1 var(--f-body);border-radius:99px;padding:13px 20px;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;white-space:nowrap}
+.btn.lacre{background:var(--lacre);color:var(--papel)} .btn.ambar{background:var(--ambar);color:var(--tinta)}
+.btn.ghost{background:transparent;color:var(--lacre);box-shadow:inset 0 0 0 1.5px var(--lacre)}
+.btn:hover{filter:brightness(1.07)} .btn:disabled{opacity:.45;cursor:default}
+.wm{display:inline-block;transform:skewX(8deg);transform-origin:50% 80%;font-family:var(--f-word);color:var(--lacre);line-height:1;white-space:nowrap;text-decoration:none}
+.sym{display:block;aspect-ratio:120/70;height:auto;overflow:visible}
+.v-aula{--book:#F7F1E3;--ball:#E8A33D;--cone:#62A29F;--gap:none}
+.disc{border-radius:50%;display:grid;place-items:center;flex:none}
+.ic-l{fill:none;stroke:var(--tinta);stroke-width:2;stroke-linecap:round;stroke-linejoin:round} .ic-b{fill:var(--ambar)}
+
+/* barra */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(247,241,227,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--borde)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .disc{width:38px;height:38px} .brand .disc .sym{width:26px}
+.brand .wm{font-size:1.7rem} .brand .tag{font:800 .72rem/1 var(--f-body);letter-spacing:.2em;color:var(--turquesa-osc)}
+.top .sp{flex:1}
+.chip{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:.88rem;background:var(--blanco);border:1px solid var(--borde);border-radius:99px;padding:8px 12px;white-space:nowrap}
+.chip i{width:13px;height:13px;border-radius:50%;background:var(--ambar)}
+.top .btn{padding:10px 14px;font-size:.84rem}
+.back{font-weight:700;font-size:.88rem;color:var(--tinta-2);text-decoration:none;white-space:nowrap}
+
+/* portada del aula */
+.hero{padding-block:44px 24px;display:grid;grid-template-columns:1fr 320px;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--turquesa-osc)}
+.meter{height:10px;border-radius:99px;background:#F1ECE3;overflow:hidden}
+.meter span{display:block;height:100%;width:0;background:var(--ambar);transition:width .5s}
+.lamps{display:flex;gap:8px} .lamps i{width:14px;height:14px;border-radius:50%;background:var(--blanco);border:1.5px solid var(--pergamino)} .lamps i.on{background:var(--ambar);border-color:var(--ambar)}
+
+/* mapa de unidades */
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:14px}
+.unit{all:unset;box-sizing:border-box;cursor:pointer;background:var(--blanco);border:2px solid var(--borde);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s}
+.unit:hover{transform:translateY(-2px)} .unit:focus-visible{outline:2px solid var(--lacre);outline-offset:3px}
+.unit[aria-pressed="true"]{border-color:var(--turquesa)}
+.unit .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.unit .n{width:34px;height:34px;border-radius:50%;background:var(--papel);display:grid;place-items:center;font:800 .9rem var(--f-title)}
+.unit.complete .n{background:var(--ambar)}
+.unit .sec{font:800 .66rem/1.2 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.unit b{font-family:var(--f-title);font-size:1.02rem;line-height:1.25}
+.unit .bar{height:6px;border-radius:99px;background:#F1ECE3;overflow:hidden}
+.unit .bar span{display:block;height:100%;background:var(--ambar)}
+.unit.soon{cursor:default;border-style:dashed;background:rgba(255,255,255,.55)}
+.unit.soon:hover{transform:none}
+
+/* camino */
+.path-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:start}
+.path{position:relative;padding-block:24px 10px}
+.path svg.line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.stop{position:relative;display:flex;align-items:center;gap:18px;min-height:124px}
+.stop:nth-of-type(4n+1){padding-left:0} .stop:nth-of-type(4n+2){padding-left:30%} .stop:nth-of-type(4n+3){padding-left:56%} .stop:nth-of-type(4n+4){padding-left:30%}
+.node{all:unset;cursor:pointer;position:relative;width:82px;height:82px;border-radius:50%;background:var(--blanco);border:3px solid var(--tinta);display:grid;place-items:center;flex:none;transition:transform .2s;z-index:1}
+.node:hover{transform:scale(1.06)} .node:focus-visible{outline:3px solid var(--lacre);outline-offset:4px}
+.node svg{width:36px;height:36px}
+.node.done{background:var(--ambar);border-color:var(--ambar)}
+.node.done::after{content:"✓";position:absolute;right:-4px;top:-4px;width:26px;height:26px;border-radius:50%;background:var(--tinta);color:var(--papel);font:800 .82rem/26px var(--f-body);text-align:center}
+.node.next{border-color:var(--lacre);box-shadow:0 0 0 6px rgba(123,58,43,.12)}
+.stop .lbl{display:flex;flex-direction:column;gap:3px;max-width:240px}
+.stop .lbl b{font-family:var(--f-title);font-size:1rem;line-height:1.2}
+.stop .lbl small{font:800 .66rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)}
+.ball{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--ambar);z-index:2;pointer-events:none;transition:left .7s cubic-bezier(.34,1.4,.64,1),top .7s cubic-bezier(.34,1.4,.64,1)}
+.side{position:sticky;top:90px;display:flex;flex-direction:column;gap:14px}
+.seal{width:84px;height:84px}
+
+/* comentarios */
+.comments{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.cmt{background:var(--blanco);border:1px solid var(--borde);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.cmt .who{display:flex;justify-content:space-between;gap:10px;font-weight:800}
+.stars{color:var(--ambar);letter-spacing:2px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:800;font-size:.86rem}
+.field input,.field textarea{font:600 1rem var(--f-body);padding:12px 14px;border-radius:12px;border:1.5px solid var(--borde);background:var(--blanco);color:var(--tinta)}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid var(--lacre);outline-offset:2px}
+.rate{display:flex;gap:4px}
+.rate button{all:unset;cursor:pointer;font-size:1.6rem;color:#DDD3C3;line-height:1}
+.rate button.on{color:var(--ambar)} .rate button:focus-visible{outline:2px solid var(--lacre)}
+.msg{font-weight:700;font-size:.92rem;min-height:1.3em}
+
+footer{background:var(--tinta);color:var(--papel);padding-block:30px;margin-top:60px}
+footer .wm{color:var(--papel);font-size:2rem}
+footer a{color:#F1DEA3}
+.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;font-size:.88rem}
+
+/* pantalla de etapa */
+dialog{border:0;padding:0;background:var(--blanco);color:var(--tinta);box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(20,20,20,.5)}
+#stage{width:min(96vw,640px);max-height:92vh;border-radius:22px}
+#acc{width:min(92vw,440px);border-radius:20px}
+#accBtn .sm{display:none}
+dialog .in{padding:24px;display:flex;flex-direction:column;gap:16px}
+.st-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.x{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--borde);font-size:1.1rem}
+.x:focus-visible{outline:2px solid var(--lacre)}
+.goal{background:var(--papel);border-radius:12px;padding:12px 14px;font-size:.9rem}
+.reading p{margin-bottom:10px}
+.src{font-size:.8rem;color:var(--tinta-2);border-left:3px solid var(--pergamino);padding-left:10px}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--borde);background:var(--blanco);font-weight:700;line-height:1.35}
+.opt:hover:not([disabled]){border-color:var(--lacre)} .opt:focus-visible{outline:2px solid var(--lacre);outline-offset:2px}
+.opt.ok{background:var(--lacre);border-color:var(--lacre);color:var(--papel)} .opt.no{border-style:dashed;color:var(--tinta-2)} .opt[disabled]{cursor:default}
+.opts{display:flex;flex-direction:column;gap:10px}
+.vf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fb{font-size:.94rem;line-height:1.5;min-height:1.5em}
+.order{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.order li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--borde);background:var(--blanco);font-weight:700}
+.order li .n{width:26px;height:26px;border-radius:50%;background:var(--papel);display:grid;place-items:center;font:800 .8rem var(--f-title);flex:none}
+.order li .mv{margin-left:auto;display:flex;gap:6px}
+.order li .mv button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:8px;border:1px solid var(--borde);display:grid;place-items:center}
+.order li .mv button:focus-visible{outline:2px solid var(--lacre)}
+.order li.good{border-color:var(--ambar);background:#FFF8EA} .order li.bad{border-style:dashed}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px} .pairs .col{display:flex;flex-direction:column;gap:8px}
+.pairs .opt{padding:11px 12px;font-size:.92rem}
+.pairs .opt.sel{border-color:var(--lacre);box-shadow:inset 0 0 0 1px var(--lacre)}
+.pairs .opt.matched{background:var(--ambar);border-color:var(--ambar);color:var(--tinta)}
+.shake{animation:shake .35s} @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.win{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding-block:10px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--tinta);color:var(--papel);border-radius:99px;padding:11px 18px;font-weight:800;font-size:.92rem;display:flex;gap:10px;align-items:center;transition:opacity .25s,transform .25s;z-index:60;pointer-events:none;white-space:nowrap}
+.toast i{width:14px;height:14px;border-radius:50%;background:var(--ambar)} .toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:900px){.hero,.path-wrap,.comments{grid-template-columns:1fr}.side{position:static}.top .back span{display:none}}
+@media (max-width:640px){
+  .stop:nth-of-type(n){padding-left:0} .stop:nth-of-type(2n){padding-left:22%}
+  .node{width:68px;height:68px} .node svg{width:30px;height:30px}
+  #stage{width:100vw;max-width:100vw;height:100%;max-height:100%;border-radius:0}
+  .brand .wm{font-size:1.45rem} .top .chip span.t{display:none} .brand .tag{display:none} .top .wrap{gap:10px} .top .btn{padding:9px 12px}
+  #accBtn .lg{display:none} #accBtn .sm{display:inline}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ball{transition:none}.shake{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="anylum-symbol" viewBox="40 66 120 70">
+      <path d="M93.3,78 L46,114 Q74,108 98.6,121.5 L101.4,121.5 Q126,108 154,114 L106.7,78 Z" fill="var(--cone,#F1DEA3)"/>
+      <path d="M98.6,120 Q74,106 46,114 L48,126 Q74,119 98.6,132 Z" fill="var(--book,#B07D5A)" stroke="var(--gap,none)" stroke-width="5" stroke-linejoin="round" paint-order="stroke"/>
+      <path d="M101.4,120 Q126,106 154,114 L152,126 Q126,119 101.4,132 Z" fill="var(--book,#B07D5A)" stroke="var(--gap,none)" stroke-width="5" stroke-linejoin="round" paint-order="stroke"/>
+      <circle cx="100" cy="78" r="9.5" fill="var(--gap,none)"/>
+      <circle cx="100" cy="78" r="7" fill="var(--ball,#E8A33D)"/>
+    </symbol>
+    <!-- Avatar: misma geometría que el símbolo, encuadrada para recorte circular -->
+    <symbol id="anylum-avatar" viewBox="0 0 200 200">
+      <g transform="translate(0 -2)">
+      <path d="M93.3,78 L46,114 Q74,108 98.6,121.5 L101.4,121.5 Q126,108 154,114 L106.7,78 Z" fill="var(--cone,#F1DEA3)"/>
+      <path d="M98.6,120 Q74,106 46,114 L48,126 Q74,119 98.6,132 Z" fill="var(--book,#B07D5A)"/>
+      <path d="M101.4,120 Q126,106 154,114 L152,126 Q126,119 101.4,132 Z" fill="var(--book,#B07D5A)"/>
+      <circle cx="100" cy="78" r="7" fill="var(--ball,#E8A33D)"/>
+      </g>
+    </symbol>
+    <!-- Favicon: geometría reducida para 16–48 px -->
+    <symbol id="anylum-favicon" viewBox="0 0 32 32">
+      <path d="M12.8,8.5 L3,20.5 Q9.5,19.2 15.5,22.6 L16.5,22.6 Q22.5,19.2 29,20.5 L19.2,8.5 Z" fill="var(--cone,#F1DEA3)"/>
+      <path d="M15.5,22 Q9.5,18.6 3,20.5 L3.4,25 Q9.5,23.2 15.5,26.5 Z M16.5,22 Q22.5,18.6 29,20.5 L28.6,25 Q22.5,23.2 16.5,26.5 Z" fill="var(--book,#B07D5A)"/>
+      <circle cx="16" cy="8.5" r="3.4" fill="var(--ball,#E8A33D)"/>
+    </symbol>
+  </defs>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="../" aria-label="Volver al inicio de Anylum">← <span>Inicio</span></a>
+    <a class="brand" href="#inicio" aria-label="Aula Anylum"><span class="disc" style="background:#3D8582"><svg class="sym v-aula" viewBox="0 0 120 70" aria-hidden="true"><use href="#anylum-symbol"/></svg></span><span class="wm">anylum</span><span class="tag">AULA</span></a>
+    <span class="sp"></span>
+    <span class="chip" title="Luces"><i></i><b id="lucesTop">0</b><span class="t">&nbsp;luces</span></span>
+    <button class="btn ghost" type="button" id="accBtn"><span class="lg">Guardar mi avance</span><span class="sm">Guardar</span></button>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="wrap hero">
+    <div class="stack" style="gap:18px">
+      <span class="eyebrow" style="color:var(--turquesa-osc)">Aula Anylum</span>
+      <h1>Aprende derecho <em>etapa por etapa</em>.</h1>
+      <p class="sub">Empieza por los fundamentos y recorre el Código Procesal Civil sección por sección. Cada etapa es un desafío distinto y siempre te muestra la norma.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn lacre" type="button" id="contBtn">Continuar donde lo dejé →</button><a class="btn ghost" href="#unidades">Ver unidades</a></div>
+    </div>
+    <aside class="card">
+      <span class="eyebrow">Tu avance</span>
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-family:var(--f-title);font-weight:800;font-size:2rem"><span id="pct">0</span>%</span><span class="small muted"><b id="doneN">0</b> de <span id="totalN">0</span> etapas</span></div>
+      <div class="meter" aria-hidden="true"><span id="meter"></span></div>
+      <span class="eyebrow" style="margin-top:6px">Racha</span><div class="lamps" id="lamps"></div>
+      <p class="small muted" id="syncNote">Tu avance se guarda en este navegador. Crea tu cuenta para no perderlo.</p>
+    </aside>
+  </section>
+
+  <section class="wrap" id="unidades" style="padding-block:20px 10px">
+    <div class="stack" style="margin-bottom:18px"><span class="eyebrow">Unidades</span><h2 class="dot">Elige por dónde empezar</h2>
+      <p class="sub">Las unidades siguen la estructura del Código Procesal Civil. Te sugiero empezar por los fundamentos, pero puedes entrar a cualquiera.</p></div>
+    <div class="units" id="units"></div>
+  </section>
+
+  <section class="wrap" id="camino" style="padding-block:40px 10px">
+    <div class="stack" style="margin-bottom:6px"><span class="eyebrow" id="uSec"></span><h2 class="dot" id="uTitle"></h2><p class="sub" id="uDesc"></p></div>
+    <div class="path-wrap">
+      <div class="path" id="path"></div>
+      <aside class="side">
+        <div class="card" style="align-items:center;text-align:center"><div class="seal" id="seal"></div><b style="font-family:var(--f-title)" id="sealT"></b><span class="small muted" id="sealP"></span></div>
+        <div class="card"><span class="eyebrow">Fuente</span><p class="small">Texto Único Ordenado del Código Procesal Civil (Resolución Ministerial 010-93-JUS) y Código Civil. Consulta la norma vigente en <a href="https://diariooficial.elperuano.pe/Normas/visor/tuo-codigo-procesal-civil" target="_blank" rel="noopener">El Peruano</a>.</p></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="wrap" id="comentarios" style="padding-block:60px 10px">
+    <div class="stack" style="margin-bottom:20px"><span class="eyebrow">Comentarios</span><h2 class="dot">Lo que dicen quienes estudian aquí</h2>
+      <p class="sub">Cuéntanos cómo te va con el Aula. Leemos cada comentario y lo publicamos después de revisarlo.</p></div>
+    <div class="comments">
+      <div class="stack" id="cmtList" aria-live="polite"><p class="muted">Cargando comentarios…</p></div>
+      <form class="card" id="cmtForm" novalidate>
+        <div class="field"><label for="cNom">Tu nombre</label><input id="cNom" maxlength="60" autocomplete="name" required></div>
+        <div class="field"><span style="font-weight:800;font-size:.86rem" id="rateL">¿Cómo calificarías el Aula?</span><div class="rate" role="radiogroup" aria-labelledby="rateL" id="rate"></div></div>
+        <div class="field"><label for="cTxt">Tu comentario</label><textarea id="cTxt" maxlength="800" required></textarea></div>
+        <button class="btn lacre" type="submit" style="width:fit-content">Enviar comentario</button>
+        <p class="msg" id="cMsg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="wm">anylum</span>
+    <p><a href="../">Volver a Anylum</a> · El contenido es educativo y no reemplaza la asesoría legal de un profesional.</p>
+  </div>
+</footer>
+
+<dialog id="stage" aria-labelledby="stT"><div class="in" id="stIn"></div></dialog>
+<dialog id="acc" aria-labelledby="accT"><div class="in" id="accIn"></div></dialog>
+<div class="toast" id="toast" role="status"><i></i><span id="toastT"></span></div>
+
+<script>
+const SB_URL='https://vfimysewbdbbxtxlwxbv.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZmaW15c2V3YmRiYnh0eGx3eGJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NzQwMDUsImV4cCI6MjEwNjU1MDAwNX0.rHaSVk6U5fuT6mHcMGgVqfU43dU4m16pgsDb3bJOifA';
+(()=>{
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let tT;function toast(t){$('toastT').textContent=t;$('toast').classList.add('show');clearTimeout(tT);tT=setTimeout(()=>$('toast').classList.remove('show'),1900);}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ===== Contenido ===== */
+const ICON={
+  leer:'<path class="ic-l" d="M6 14q9-4 18 2q9-6 18-2v22q-9-4-18 2q-9-6-18-2z M24 16v22"/><circle class="ic-b" cx="36" cy="10" r="4"/>',
+  vf:'<path class="ic-l" d="M8 24l6 6 10-12 M30 18l10 12 M40 18L30 30"/><circle class="ic-b" cx="24" cy="38" r="4"/>',
+  ordenar:'<path class="ic-l" d="M10 12h20 M10 24h28 M10 36h14 M38 8v12 M34 16l4 4 4-4"/><circle class="ic-b" cx="34" cy="36" r="4"/>',
+  parejas:'<circle class="ic-l" cx="14" cy="16" r="6"/><circle class="ic-l" cx="34" cy="32" r="6"/><path class="ic-l" d="M19 20l10 8"/><circle class="ic-b" cx="34" cy="12" r="4"/>',
+  caso:'<path class="ic-l" d="M8 16h32v22H8z M18 16v-5h12v5 M8 26h32"/><circle class="ic-b" cx="24" cy="26" r="4"/>'
+};
+const TYPE={leer:'Lectura',vf:'Verdadero o falso',ordenar:'Ordena',parejas:'Parejas',caso:'Caso práctico'};
+const UNITS=[
+ {id:'intro',sec:'Fundamentos',title:'Introducción al Derecho',desc:'Qué es el derecho, de dónde nacen las normas y cómo se ordenan.',stages:[
+  {id:'i1',t:'leer',title:'¿Qué es el derecho?',goal:'Distinguir derecho objetivo y derecho subjetivo.',
+   text:['El <b>derecho objetivo</b> es el conjunto de normas que regulan la conducta en sociedad y que el Estado puede hacer cumplir: la Constitución, las leyes, los reglamentos.','El <b>derecho subjetivo</b> es la facultad que esas normas reconocen a una persona: por ejemplo, el derecho del propietario a usar su casa o el del acreedor a cobrar su deuda.','Una forma sencilla de recordarlo: el derecho objetivo es <i>la regla</i>; el subjetivo, <i>lo que la regla te permite exigir</i>.'],
+   q:{p:'“Tengo derecho a cobrar los S/ 500 que me prestaron.” ¿De qué derecho hablamos?',o:['Derecho objetivo','Derecho subjetivo'],a:1,e:'Es una facultad concreta de una persona: un derecho subjetivo, reconocido por normas del derecho objetivo.'}},
+  {id:'i2',t:'vf',title:'Fuentes del derecho',goal:'Reconocer de dónde nacen las normas que aplicamos.',
+   items:[['La costumbre puede ser fuente del derecho.',true,'Sí. Junto con la ley, la jurisprudencia y los principios, la costumbre es una fuente reconocida.'],
+          ['La opinión de un autor (doctrina) obliga al juez igual que la ley.',false,'No. La doctrina orienta e ilustra, pero no es obligatoria como la ley.'],
+          ['Si la ley tiene un vacío, el juez aplica los principios generales del derecho.',true,'Así lo dispone el art. VIII del Título Preliminar del Código Civil.']]},
+  {id:'i3',t:'ordenar',title:'Jerarquía normativa',goal:'Ordenar las normas de mayor a menor rango.',items:['Constitución','Ley','Decreto supremo','Resolución ministerial'],
+   e:'La Constitución prevalece sobre toda norma legal; la ley, sobre las normas de inferior jerarquía, y así sucesivamente (art. 51 de la Constitución).'},
+  {id:'i4',t:'parejas',title:'Principios del Título Preliminar',goal:'Relacionar cada principio con su artículo.',
+   pairs:[['La ley solo se deroga por otra ley','Art. I del T. P. del Código Civil'],['La ley no ampara el abuso del derecho','Art. II del T. P. del Código Civil'],['El juez aplica la norma pertinente aunque no se invoque','Art. VII del T. P. del Código Civil'],['La ley no tiene efectos retroactivos, salvo en materia penal favorable al reo','Art. 103 de la Constitución']]},
+  {id:'i5',t:'caso',title:'¿Se aplica la nueva ley?',goal:'Aplicar la regla de irretroactividad a un caso.',
+   p:'En marzo de 2025, Rosa firma un contrato. En 2026 entra en vigor una ley que cambia los requisitos de ese tipo de contrato. ¿La nueva ley puede anular hacia atrás lo que Rosa hizo válidamente en 2025?',
+   o:['Sí, toda ley nueva se aplica a todos los hechos anteriores','No, la ley no tiene efectos retroactivos salvo en materia penal favorable al reo','Solo si el juez lo considera justo'],a:1,
+   e:'El art. 103 de la Constitución establece que la ley no tiene fuerza ni efectos retroactivos, salvo en materia penal cuando favorece al reo.'}]},
+ {id:'tp',sec:'Código Procesal Civil · Título Preliminar',title:'Los principios del proceso',desc:'Para qué existe el proceso y qué reglas guían al juez y a las partes.',stages:[
+  {id:'tp1',t:'leer',title:'¿Para qué existe el proceso?',goal:'Explicar la finalidad del proceso civil.',
+   text:['Toda persona tiene derecho a la <b>tutela jurisdiccional efectiva</b>: a acudir al juez para defender sus derechos, con un debido proceso (art. I).','El proceso tiene una <b>finalidad concreta</b>: resolver un conflicto de intereses o eliminar una incertidumbre, ambas con relevancia jurídica, haciendo efectivos los derechos. Y una <b>finalidad abstracta</b>: lograr la paz social en justicia (art. III).'],
+   q:{p:'Dos vecinos discuten quién es dueño de un muro y acuden al juez. ¿Qué finalidad concreta cumple el proceso?',o:['Resolver un conflicto de intereses con relevancia jurídica','Castigar al vecino que mintió','Crear una ley nueva para el caso'],a:0,e:'Es un conflicto de intereses con relevancia jurídica: el proceso existe para resolverlo (art. III del T. P. del CPC).'},
+   src:'Arts. I y III del Título Preliminar del CPC.'},
+  {id:'tp2',t:'parejas',title:'Cada principio, su artículo',goal:'Relacionar los principios con su ubicación en el Título Preliminar.',
+   pairs:[['Tutela jurisdiccional efectiva','Art. I'],['Dirección e impulso del proceso','Art. II'],['Juez y derecho','Art. VII'],['Doble instancia','Art. X']]},
+  {id:'tp3',t:'vf',title:'Juez y derecho',goal:'Reconocer los límites del juez frente a lo que piden las partes.',
+   items:[['El juez puede fundar su decisión en hechos que las partes no alegaron.',false,'No. El juez no puede ir más allá del petitorio ni fundar su decisión en hechos diversos de los alegados (art. VII).'],
+          ['El acceso a la justicia es gratuito, sin perjuicio de las costas, costos y multas.',true,'Así lo establece el art. VIII del Título Preliminar.'],
+          ['Las normas procesales son, por regla, de carácter imperativo.',true,'Sí, salvo que la propia norma permita otra cosa (art. IX).']]},
+  {id:'tp4',t:'caso',title:'El artículo equivocado',goal:'Aplicar el principio iura novit curia.',
+   p:'Marta demanda una indemnización. Los hechos y el pedido están claros, pero cita por error un artículo que no corresponde. ¿Qué puede hacer el juez?',
+   o:['Declarar improcedente la demanda por citar mal la norma','Aplicar el derecho que corresponde, sin cambiar los hechos ni el pedido','Exigirle que presente una demanda nueva'],a:1,
+   e:'El juez debe aplicar el derecho que corresponde aunque no haya sido invocado o lo haya sido erróneamente, sin ir más allá del petitorio (art. VII del T. P. del CPC).'}]},
+ {id:'comp',sec:'Código Procesal Civil · Sección Primera',title:'¿Qué juez es competente?',desc:'Los criterios para saber ante quién se presenta una demanda.',stages:[
+  {id:'c1',t:'leer',title:'Los criterios de competencia',goal:'Conocer cómo se reparte el trabajo entre los jueces.',
+   text:['La competencia se determina por <b>materia</b>, <b>cuantía</b>, <b>territorio</b>, <b>función</b> (grado) y <b>turno</b>.','Solo la ley puede establecer la competencia y no se puede renunciar a ella (art. 6). Además, se fija según la situación de hecho existente al presentar la demanda, y no cambia por hechos posteriores (art. 8).'],
+   q:{p:'Después de presentada la demanda, el demandado se muda a otra ciudad. ¿Cambia el juez competente?',o:['Sí, el proceso se traslada a su nueva ciudad','No, la competencia se fijó al presentar la demanda'],a:1,e:'La competencia se determina por la situación existente al interponer la demanda y no se modifica por cambios posteriores (art. 8 del CPC).'},
+   src:'Arts. 6 y 8 del CPC.'},
+  {id:'c2',t:'vf',title:'Reglas de competencia',goal:'Distinguir lo que se puede y no se puede pactar.',
+   items:[['La competencia solo puede ser establecida por la ley.',true,'Es el principio de legalidad e irrenunciabilidad (art. 6).'],
+          ['Las partes pueden acordar cambiar la competencia por materia.',false,'No. Lo que puede prorrogarse por acuerdo es la competencia territorial (art. 25).'],
+          ['Por regla general, es competente el juez del domicilio del demandado.',true,'Es la regla general del art. 14 del CPC.']]},
+  {id:'c3',t:'parejas',title:'Cada regla, su artículo',goal:'Ubicar las reglas de competencia en el Código.',
+   pairs:[['Legalidad e irrenunciabilidad','Art. 6'],['Momento en que se fija la competencia','Art. 8'],['Domicilio del demandado','Art. 14'],['Prórroga tácita de la competencia territorial','Art. 26']]},
+  {id:'c4',t:'caso',title:'Lima o Puno',goal:'Aplicar la regla del domicilio del demandado.',
+   p:'Carlos vive en Lima y quiere demandar a Ana, que vive en Puno, por una deuda. No hay ningún acuerdo sobre el juez. Según la regla general, ¿ante quién demanda?',
+   o:['Ante el juez de Lima, porque ahí vive Carlos','Ante el juez de Puno, porque ahí vive Ana','Ante cualquier juez del país'],a:1,
+   e:'Salvo disposición distinta, es competente el juez del lugar del domicilio del demandado (art. 14 del CPC).'}]},
+ {id:'plazos',sec:'Código Procesal Civil · Sección Tercera',title:'Plazos y notificaciones',desc:'Cómo se cuentan los plazos y cuándo surte efectos una notificación.',stages:[
+  {id:'pl1',t:'leer',title:'Cómo se cuenta un plazo',goal:'Aprender la regla básica del cómputo.',
+   text:['Los plazos del Código son <b>perentorios</b> (art. 146): vencido el plazo, se pierde la oportunidad de realizar el acto.','El plazo se computa <b>desde el día siguiente</b> de notificada la resolución que lo fija; si es común a varias partes, desde la última notificación. <b>No se cuentan los días inhábiles</b> (art. 147).'],
+   q:{p:'Te notifican por cédula física un lunes. ¿Desde qué día empiezas a contar?',o:['Desde el mismo lunes','Desde el martes, el día siguiente'],a:1,e:'El plazo se computa desde el día siguiente de notificada la resolución (art. 147 del CPC).'},
+   src:'Arts. 146 y 147 del CPC.'},
+  {id:'pl2',t:'ordenar',title:'Calcula un vencimiento',goal:'Ordenar los pasos para calcular un plazo.',
+   items:['Identifica la resolución y su fecha de notificación','Empieza a contar desde el día siguiente','Excluye sábados, domingos y feriados','Suma el término de la distancia, si corresponde','Obtén la fecha de vencimiento'],
+   e:'Así lo hace también la calculadora de plazos de Anylum: día siguiente, solo días hábiles y, si corresponde, término de la distancia.'},
+  {id:'pl3',t:'vf',title:'Reglas del cómputo',goal:'Reconocer las reglas de cómputo y notificación.',
+   items:[['Los días inhábiles se cuentan dentro del plazo.',false,'No se consideran para el cómputo los días inhábiles (art. 147 del CPC).'],
+          ['El plazo común se computa desde la última notificación.',true,'Así lo establece el art. 147 del CPC.'],
+          ['La notificación electrónica surte efectos desde el segundo día siguiente a su ingreso en la casilla.',true,'Es la regla del art. 155-C de la Ley Orgánica del Poder Judicial.']]},
+  {id:'pl4',t:'caso',title:'La casilla del lunes',goal:'Aplicar la regla de la notificación electrónica.',
+   p:'Una resolución ingresa a tu casilla electrónica el lunes y te da 3 días hábiles para responder. Si no hay feriados en esa semana, ¿qué día vence el plazo?',
+   o:['El miércoles','El viernes','El lunes siguiente'],a:2,
+   e:'La notificación surte efectos el miércoles (segundo día siguiente al ingreso, art. 155-C de la LOPJ). El plazo corre desde el jueves: jueves, viernes y lunes. Vence el lunes. Es un ejemplo referencial: verifica siempre con el calendario judicial.'}]},
+ {id:'post',sec:'Código Procesal Civil · Sección Cuarta',title:'La demanda',desc:'Qué debe tener una demanda y qué pasa si le falta algo.',stages:[
+  {id:'d1',t:'leer',title:'Requisitos de la demanda',goal:'Conocer qué debe contener una demanda.',
+   text:['La demanda debe tener, entre otros requisitos, los datos de las partes, el <b>petitorio</b> (lo que se pide), los <b>hechos</b>, la <b>fundamentación jurídica</b>, la vía procedimental y los <b>medios probatorios</b> (art. 424). Además, se acompañan anexos como la copia del documento de identidad (art. 425).','Si le falta algo que se puede corregir, es <b>inadmisible</b> y el juez da un plazo para subsanar (art. 426). Si tiene un defecto que no se puede corregir, como la falta evidente de legitimidad o la caducidad, es <b>improcedente</b> (art. 427).'],
+   q:{p:'La demanda no adjunta la copia del documento de identidad del demandante. ¿Qué corresponde?',o:['Declararla inadmisible y dar plazo para subsanar','Declararla improcedente y archivarla'],a:0,e:'Es un defecto subsanable: la demanda es inadmisible y el juez concede un plazo para corregirla (arts. 425 y 426 del CPC).'},
+   src:'Arts. 424 a 427 del CPC.'},
+  {id:'d2',t:'vf',title:'¿Inadmisible o improcedente?',goal:'Distinguir defectos subsanables e insubsanables.',
+   items:[['Si la demanda es inadmisible, el juez concede un plazo para subsanarla.',true,'Así lo dispone el art. 426 del CPC.'],
+          ['Una demanda puede omitir el petitorio si los hechos son claros.',false,'No. El petitorio es un requisito de la demanda (art. 424).'],
+          ['La caducidad evidente del derecho es causal de improcedencia.',true,'Es una de las causales del art. 427 del CPC.']]},
+  {id:'d3',t:'parejas',title:'Cada regla, su artículo',goal:'Ubicar las reglas de la demanda en el Código.',
+   pairs:[['Requisitos de la demanda','Art. 424'],['Anexos de la demanda','Art. 425'],['Inadmisibilidad','Art. 426'],['Improcedencia','Art. 427']]},
+  {id:'d4',t:'ordenar',title:'De la demanda al saneamiento',goal:'Ordenar las etapas iniciales del proceso.',
+   items:['Presentación de la demanda','Calificación por el juez','Admisión y traslado al demandado','Contestación','Saneamiento del proceso'],
+   e:'Antes de discutir el fondo, el juez revisa la demanda, escucha al demandado y sanea el proceso.'}]},
+ {id:'caut',sec:'Código Procesal Civil · Sección Quinta',title:'Medidas cautelares',desc:'Cómo asegurar que la sentencia pueda cumplirse.',stages:[
+  {id:'m1',t:'leer',title:'Para qué sirve una medida cautelar',goal:'Explicar la finalidad y los requisitos de la medida cautelar.',
+   text:['La medida cautelar busca <b>asegurar el cumplimiento</b> de la decisión definitiva. Puede pedirse antes de iniciar el proceso o dentro de él (art. 608).','Para concederla, el juez evalúa la <b>verosimilitud del derecho</b>, el <b>peligro en la demora</b> (o las razones que la hacen necesaria) y la <b>razonabilidad</b> de la medida (art. 611). Quien la pide ofrece <b>contracautela</b> (art. 613).'],
+   q:{p:'¿Se puede pedir una medida cautelar antes de presentar la demanda?',o:['Sí, la ley lo permite','No, solo dentro del proceso'],a:0,e:'El juez puede dictar medida cautelar antes de iniciado un proceso o dentro de este (art. 608 del CPC).'},
+   src:'Arts. 608, 611 y 613 del CPC.'},
+  {id:'m2',t:'vf',title:'Reglas cautelares',goal:'Reconocer las reglas básicas del proceso cautelar.',
+   items:[['El juez evalúa la verosimilitud del derecho invocado.',true,'Es uno de los requisitos del art. 611 del CPC.'],
+          ['La solicitud cautelar se resuelve con audiencia previa de la parte afectada.',false,'No. Se concede o rechaza sin conocimiento de la parte afectada (art. 637).'],
+          ['Quien pide la medida debe ofrecer contracautela.',true,'La contracautela asegura el resarcimiento de posibles daños (art. 613).']]},
+  {id:'m3',t:'parejas',title:'Cada regla, su artículo',goal:'Ubicar las reglas cautelares en el Código.',
+   pairs:[['Medida antes o dentro del proceso','Art. 608'],['Requisitos para conceder la medida','Art. 611'],['Contracautela','Art. 613'],['Trámite sin conocimiento de la parte afectada','Art. 637']]},
+  {id:'m4',t:'caso',title:'¿Procede el embargo?',goal:'Identificar qué requisito falta en un pedido cautelar.',
+   p:'Luis pide un embargo. Presenta pruebas sólidas de la deuda y ofrece contracautela, pero no explica por qué no puede esperar a la sentencia. ¿Qué requisito del art. 611 le falta justificar?',
+   o:['La verosimilitud del derecho','El peligro en la demora','La competencia del juez'],a:1,
+   e:'Probó la deuda (verosimilitud) y ofreció contracautela, pero debe justificar el peligro en la demora o las razones que hacen necesaria la medida (art. 611 del CPC).'}]}
+];
+const SOON=[{sec:'Código Procesal Civil · Sección Segunda',title:'Los sujetos del proceso'},{sec:'Código Procesal Civil · Sección Tercera',title:'Medios impugnatorios'},{sec:'Código Procesal Civil · Sección Quinta',title:'Conocimiento, abreviado y sumarísimo'},{sec:'Código Procesal Civil · Sección Sexta',title:'Procesos no contenciosos'}];
+const ALL=UNITS.flatMap(u=>u.stages.map(s=>Object.assign(s,{unit:u.id})));
+$('totalN').textContent=ALL.length;
+
+/* ===== Estado ===== */
+const KEY='anylum-aula';
+let S={done:[],luces:0,unit:'intro',racha:0,dia:''};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){}
+let sb=null,user=null,pushT=null;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} if(user){clearTimeout(pushT);pushT=setTimeout(pushRemote,800);}}
+
+/* ===== Mapa de unidades ===== */
+const uDone=u=>u.stages.filter(s=>S.done.includes(s.id)).length;
+function drawUnits(){
+  $('units').innerHTML=UNITS.map((u,i)=>{const d=uDone(u),n=u.stages.length;return `<button class="unit${d===n?' complete':''}" type="button" data-u="${u.id}" aria-pressed="${S.unit===u.id}"><span class="row"><span class="n">${d===n?'✓':i+1}</span><span class="small muted">${d}/${n}</span></span><span class="sec">${u.sec}</span><b>${u.title}</b><span class="bar"><span style="width:${d/n*100}%"></span></span></button>`}).join('')+
+    SOON.map(u=>`<div class="unit soon" aria-disabled="true"><span class="row"><span class="n">🔒</span><span class="small muted">Próximamente</span></span><span class="sec">${u.sec}</span><b>${u.title}</b></div>`).join('');
+  document.querySelectorAll('.unit[data-u]').forEach(b=>b.addEventListener('click',()=>{S.unit=b.dataset.u;save();drawAll();$('camino').scrollIntoView({behavior:reduce?'auto':'smooth'});}));
+}
+const unitOf=id=>UNITS.find(u=>u.id===id)||UNITS[0];
+const nextIn=u=>u.stages.find(s=>!S.done.includes(s.id));
+const nextAny=()=>nextIn(unitOf(S.unit))||ALL.find(s=>!S.done.includes(s.id));
+function drawPath(){
+  const u=unitOf(S.unit),nx=nextIn(u),path=$('path');
+  $('uSec').textContent=u.sec;$('uTitle').textContent=u.title;$('uDesc').textContent=u.desc;
+  path.innerHTML='<svg class="line" aria-hidden="true"><path id="pl" fill="none" stroke="#8A837E" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 10"/></svg>'+
+    u.stages.map((s,i)=>`<div class="stop"><button class="node${S.done.includes(s.id)?' done':''}${nx&&nx.id===s.id?' next':''}" type="button" data-st="${s.id}" aria-label="Etapa ${i+1}: ${esc(s.title)}, ${TYPE[s.t]}${S.done.includes(s.id)?', completada':''}"><svg viewBox="0 0 48 48" aria-hidden="true">${ICON[s.t]}</svg></button><span class="lbl"><small>Etapa ${i+1} · ${TYPE[s.t]}</small><b>${esc(s.title)}</b></span></div>`).join('')+'<span class="ball" id="ball" aria-hidden="true"></span>';
+  path.querySelectorAll('.node').forEach(n=>n.addEventListener('click',()=>openStage(n.dataset.st)));
+  const d=uDone(u),full=d===u.stages.length;
+  $('seal').innerHTML=seal(full);$('sealT').textContent=full?'Sello ganado':'Sello de la unidad';
+  $('sealP').textContent=full?`Completaste “${u.title}”.`:`Completa las ${u.stages.length} etapas para ganarlo. Llevas ${d}.`;
+  requestAnimationFrame(layoutLine);
+}
+function layoutLine(){
+  const path=$('path'),R=path.getBoundingClientRect(),nodes=[...path.querySelectorAll('.node')];if(!nodes.length)return;
+  const pts=nodes.map(n=>{const r=n.getBoundingClientRect();return[r.left-R.left+r.width/2,r.top-R.top+r.height/2]});
+  let d='';pts.forEach((p,i)=>{if(!i){d=`M${p[0]},${p[1]}`;return}const q=pts[i-1],my=(q[1]+p[1])/2;d+=` C${q[0]},${my} ${p[0]},${my} ${p[0]},${p[1]}`});
+  $('pl').setAttribute('d',d);
+  const nx=nextIn(unitOf(S.unit)),t=path.querySelector(`.node[data-st="${nx?nx.id:''}"]`)||nodes[nodes.length-1],r=t.getBoundingClientRect();
+  $('ball').style.left=(r.left-R.left+r.width/2-12)+'px';$('ball').style.top=(r.top-R.top-30)+'px';
+}
+addEventListener('resize',layoutLine);
+document.fonts&&document.fonts.ready.then(layoutLine);
+function stats(){
+  const n=S.done.length,p=Math.round(n/ALL.length*100);
+  $('lucesTop').textContent=S.luces;$('doneN').textContent=n;$('pct').textContent=p;$('meter').style.width=p+'%';
+  $('lamps').innerHTML=Array.from({length:7},(_,i)=>`<i class="${i<S.racha?'on':''}"></i>`).join('');
+  const nx=nextAny();$('contBtn').disabled=!nx;$('contBtn').textContent=nx?(n?'Continuar donde lo dejé →':'Empezar la primera etapa →'):'¡Completaste todas las etapas!';
+}
+function drawAll(){drawUnits();drawPath();stats();}
+$('contBtn').addEventListener('click',()=>{const nx=nextAny();if(!nx)return;if(nx.unit!==S.unit){S.unit=nx.unit;save();drawAll();}openStage(nx.id);});
+function seal(on){const n=14,c=50,ri=40,ro=46;let d='';
+  for(let i=0;i<=n;i++){const a=i/n*Math.PI*2,am=(i-.5)/n*Math.PI*2,x=c+ri*Math.cos(a),y=c+ri*Math.sin(a);d+=i?` Q${(c+ro*Math.cos(am)).toFixed(1)},${(c+ro*Math.sin(am)).toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)}`:`M${x.toFixed(1)},${y.toFixed(1)}`}
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="${d}Z" fill="${on?'#7B3A2B':'none'}" stroke="${on?'none':'#DDBB82'}" stroke-width="2" ${on?'':'stroke-dasharray="3 3"'}/><circle cx="50" cy="50" r="31" fill="none" stroke="${on?'#9A5040':'#DDBB82'}" stroke-width="1.6"/><g transform="translate(26 26)" fill="none" stroke="${on?'#F1DEA3':'#B07D5A'}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14q9-4 18 2q9-6 18-2v22q-9-4-18 2q-9-6-18-2z M24 16v22"/></g><circle cx="62" cy="36" r="6.5" fill="${on?'#E8A33D':'#DDBB82'}"/></svg>`;}
+
+/* ===== Etapas ===== */
+const stage=$('stage'),stIn=$('stIn');
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+function openStage(id){
+  const s=ALL.find(x=>x.id===id);if(!s)return;const u=unitOf(s.unit),i=u.stages.indexOf(s)+1;
+  stIn.innerHTML=`<div class="st-top"><span class="eyebrow" style="color:var(--turquesa-osc)">Etapa ${i} · ${TYPE[s.t]}</span><button class="x" type="button" data-close aria-label="Cerrar">✕</button></div><h2 id="stT" style="font-size:1.55rem">${esc(s.title)}</h2><p class="goal"><b>Objetivo:</b> ${esc(s.goal)}</p><div id="act" class="stack"></div>`;
+  stIn.querySelector('[data-close]').addEventListener('click',()=>stage.close());
+  ({leer:actLeer,vf:actVF,ordenar:actOrdenar,parejas:actParejas,caso:actCaso})[s.t](s,$('act'));
+  if(stage.showModal)stage.showModal();else stage.setAttribute('open','');
+}
+stage.addEventListener('close',drawAll);
+function finish(s){
+  const first=!S.done.includes(s.id);
+  if(first){S.done.push(s.id);S.luces+=10;const today=new Date().toDateString();if(S.dia!==today){S.dia=today;S.racha=Math.min(7,S.racha+1);}save();}
+  const u=unitOf(s.unit),nx=nextIn(u)||nextAny(),full=uDone(u)===u.stages.length;
+  $('act').insertAdjacentHTML('beforeend',`<div class="win">${full&&first?`<div class="seal">${seal(true)}</div>`:'<span style="width:60px;height:60px;border-radius:50%;background:var(--ambar);display:grid;place-items:center;font-size:1.6rem">✓</span>'}<b style="font-family:var(--f-title);font-size:1.2rem">${full&&first?'¡Unidad completada! Ganaste su sello':first?'¡Etapa completada!':'¡Repaso completado!'}</b><span class="small muted">${first?'+10 luces. ':''}${nx?'Siguiente sugerida: '+esc(nx.title)+'.':'Completaste todas las etapas disponibles.'}</span><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">${nx?'<button class="btn lacre" type="button" id="goNext">Ir a la siguiente →</button>':''}<button class="btn ghost" type="button" id="goMap">Volver al camino</button></div>${!user&&first&&S.done.length===1?'<p class="small muted">¿Quieres conservar tu avance en cualquier dispositivo? <button class="btn ghost" type="button" id="goAcc" style="padding:6px 12px;margin-top:6px">Crea tu cuenta</button></p>':''}</div>`);
+  $('goMap').addEventListener('click',()=>stage.close());
+  if(nx)$('goNext').addEventListener('click',()=>{if(nx.unit!==S.unit){S.unit=nx.unit;save();}drawAll();openStage(nx.id);});
+  const ga=$('goAcc');if(ga)ga.addEventListener('click',()=>{stage.close();openAcc();});
+  if(first)toast('+10 luces · etapa completada');
+}
+function choice(box,q,onRight){
+  const wrap=document.createElement('div');wrap.className='stack';wrap.style.gap='10px';
+  wrap.innerHTML=`<p style="font-weight:700">${q.p}</p><div class="opts">${q.o.map((o,i)=>`<button class="opt" type="button" data-i="${i}">${o}</button>`).join('')}</div><p class="fb" aria-live="polite"></p>`;
+  box.appendChild(wrap);const fb=wrap.querySelector('.fb');
+  wrap.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+    if(+b.dataset.i===q.a){wrap.querySelectorAll('.opt').forEach(x=>x.disabled=true);b.classList.add('ok');fb.innerHTML=`<span class="hand">¡bien visto!</span> ${q.e}`;onRight();}
+    else{b.classList.add('no');b.disabled=true;fb.innerHTML='<span class="hand" style="color:var(--tinta-2)">casi…</span> Vuelve a leer con calma e intenta otra opción.';}
+  }));
+}
+function actLeer(s,box){box.innerHTML=`<div class="reading">${s.text.map(p=>`<p>${p}</p>`).join('')}</div>${s.src?`<p class="src">Fuente: ${s.src}</p>`:''}<span class="eyebrow" style="border-top:1px dashed var(--borde);padding-top:14px">Comprueba</span>`;choice(box,s.q,()=>finish(s));}
+function actCaso(s,box){box.innerHTML='';choice(box,{p:s.p,o:s.o,a:s.a,e:s.e},()=>finish(s));}
+function actVF(s,box){let i=0,ok=0;
+  const render=()=>{const it=s.items[i];
+    box.innerHTML=`<span class="eyebrow">Afirmación ${i+1} de ${s.items.length}</span><p style="font-family:var(--f-title);font-weight:700;font-size:1.12rem">${it[0]}</p><div class="vf"><button class="opt" type="button" data-v="1">Verdadero</button><button class="opt" type="button" data-v="0">Falso</button></div><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="vfN" hidden style="width:fit-content">Siguiente →</button>`;
+    box.querySelectorAll('.vf .opt').forEach(b=>b.addEventListener('click',()=>{const right=(b.dataset.v==='1')===it[1];box.querySelectorAll('.vf .opt').forEach(x=>x.disabled=true);b.classList.add(right?'ok':'no');if(right)ok++;
+      box.querySelector('.fb').innerHTML=(right?'<span class="hand">¡bien visto!</span> ':`<span class="hand" style="color:var(--tinta-2)">casi…</span> Es <b>${it[1]?'verdadero':'falso'}</b>. `)+it[2];
+      const n=$('vfN');n.hidden=false;n.textContent=i<s.items.length-1?'Siguiente →':'Terminar etapa';n.focus();}));
+    $('vfN').addEventListener('click',()=>{if(i<s.items.length-1){i++;render();}else{box.innerHTML=`<p class="small muted">${ok} de ${s.items.length} respuestas correctas. Lo importante es que ahora conoces el fundamento de cada una.</p>`;finish(s);}});
+  };render();}
+function actOrdenar(s,box){let cur=shuffle(s.items);if(cur.join()===s.items.join())cur=cur.slice().reverse();
+  const render=(checked)=>{
+    box.innerHTML=`<p class="small muted">Usa las flechas para mover cada elemento. Del primero (arriba) al último (abajo).</p><ol class="order">${cur.map((t,i)=>`<li class="${checked?(t===s.items[i]?'good':'bad'):''}"><span class="n">${i+1}</span>${t}<span class="mv"><button type="button" data-u="${i}" aria-label="Subir">↑</button><button type="button" data-d="${i}" aria-label="Bajar">↓</button></span></li>`).join('')}</ol><p class="fb" aria-live="polite"></p><button class="btn lacre" type="button" id="chk" style="width:fit-content">Comprobar</button>`;
+    box.querySelectorAll('[data-u]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.u;if(i>0){[cur[i-1],cur[i]]=[cur[i],cur[i-1]];render();box.querySelector(`[data-u="${i-1}"]`)?.focus();}}));
+    box.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.d;if(i<cur.length-1){[cur[i+1],cur[i]]=[cur[i],cur[i+1]];render();box.querySelector(`[data-d="${i+1}"]`)?.focus();}}));
+    $('chk').addEventListener('click',()=>{const good=cur.every((t,i)=>t===s.items[i]);render(true);
+      if(good){box.querySelectorAll('.mv button').forEach(x=>x.disabled=true);$('chk').hidden=true;box.querySelector('.fb').innerHTML=`<span class="hand">¡bien visto!</span> ${s.e}`;finish(s);}
+      else{const n=cur.filter((t,i)=>t===s.items[i]).length;box.querySelector('.fb').innerHTML=`<span class="hand" style="color:var(--tinta-2)">casi…</span> Tienes ${n} de ${cur.length} en su lugar (en ámbar). Ajusta y vuelve a comprobar.`;}});
+  };render(false);}
+function actParejas(s,box){const L=shuffle(s.pairs.map((p,i)=>({t:p[0],i}))),R=shuffle(s.pairs.map((p,i)=>({t:p[1],i})));let sel=null,m=0;
+  box.innerHTML=`<p class="small muted">Toca un elemento de la izquierda y luego su pareja de la derecha.</p><div class="pairs"><div class="col">${L.map(x=>`<button class="opt" type="button" data-l="${x.i}">${x.t}</button>`).join('')}</div><div class="col">${R.map(x=>`<button class="opt" type="button" data-r="${x.i}">${x.t}</button>`).join('')}</div></div><p class="fb" aria-live="polite"></p>`;
+  const fb=box.querySelector('.fb');
+  box.querySelectorAll('[data-l]').forEach(b=>b.addEventListener('click',()=>{box.querySelectorAll('[data-l]').forEach(x=>x.classList.remove('sel'));sel=b;b.classList.add('sel');fb.textContent='Ahora elige su pareja.';}));
+  box.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{if(!sel){fb.textContent='Primero elige un elemento de la izquierda.';return;}
+    if(sel.dataset.l===b.dataset.r){[sel,b].forEach(x=>{x.classList.remove('sel');x.classList.add('matched');x.disabled=true;});sel=null;m++;fb.innerHTML='<span class="hand">¡eso es!</span>';if(m===s.pairs.length){fb.innerHTML='<span class="hand">¡todas las parejas!</span> Ya relacionas cada regla con su fuente.';finish(s);}}
+    else{b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);fb.innerHTML='<span class="hand" style="color:var(--tinta-2)">casi…</span> Esa no es su pareja. Prueba otra.';}}));}
+
+/* ===== Cuenta (Supabase) ===== */
+try{if(window.supabase&&SB_URL&&SB_KEY&&!SB_KEY.startsWith('__'))sb=window.supabase.createClient(SB_URL,SB_KEY);}catch(e){sb=null}
+const acc=$('acc'),accIn=$('accIn');
+function openAcc(){
+  if(user){accIn.innerHTML=`<div class="st-top"><h3 id="accT">Tu cuenta</h3><button class="x" type="button" data-close aria-label="Cerrar">✕</button></div><p>Conectada como <b>${esc(user.email)}</b>. Tu avance se guarda automáticamente.</p><button class="btn ghost" type="button" id="out" style="width:fit-content">Cerrar sesión</button>`;
+    accIn.querySelector('#out').addEventListener('click',async()=>{await sb.auth.signOut();acc.close();});}
+  else{accIn.innerHTML=`<div class="st-top"><h3 id="accT">Guarda tu avance</h3><button class="x" type="button" data-close aria-label="Cerrar">✕</button></div><p class="muted">Escribe tu correo y te enviaremos un enlace para entrar. Sin contraseñas. Así recuperas tu avance en cualquier dispositivo.</p><form id="accF" class="stack" novalidate><div class="field"><label for="aMail">Tu correo</label><input id="aMail" type="email" autocomplete="email" required></div><button class="btn lacre" type="submit" style="width:fit-content">Enviarme el enlace</button><p class="msg" id="aMsg" aria-live="polite"></p></form>`;
+    accIn.querySelector('#accF').addEventListener('submit',async e=>{e.preventDefault();const m=$('aMail').value.trim(),msg=$('aMsg');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){msg.style.color='var(--lacre)';msg.textContent='Revisa tu correo: parece que falta algo.';return;}
+      if(!sb){msg.style.color='var(--tinta-2)';msg.textContent='Las cuentas abrirán muy pronto. Por ahora tu avance se guarda en este navegador.';return;}
+      msg.style.color='var(--tinta-2)';msg.textContent='Enviando…';
+      const {error}=await sb.auth.signInWithOtp({email:m,options:{emailRedirectTo:location.origin+location.pathname}});
+      if(error){msg.style.color='var(--lacre)';msg.textContent='No pudimos enviar el enlace. Inténtalo de nuevo en unos minutos.';console.warn(error);}
+      else{msg.style.color='var(--tinta)';msg.textContent='¡Listo! Revisa tu correo y abre el enlace desde este dispositivo.';}
+    });}
+  accIn.querySelector('[data-close]').addEventListener('click',()=>acc.close());
+  if(acc.showModal)acc.showModal();else acc.setAttribute('open','');
+}
+$('accBtn').addEventListener('click',openAcc);
+async function pullRemote(){
+  try{const {data,error}=await sb.from('progreso_aula').select('datos').eq('user_id',user.id).maybeSingle();if(error)throw error;
+    if(data&&data.datos){const r=data.datos;S.done=[...new Set([...(r.done||[]),...S.done])];S.luces=Math.max(r.luces||0,S.done.length*10);S.racha=Math.max(r.racha||0,S.racha);S.dia=r.dia||S.dia;}
+    save();await pushRemote();drawAll();$('syncNote').textContent='Tu avance está guardado en tu cuenta.';}
+  catch(e){console.warn('progreso',e);$('syncNote').textContent='No pudimos sincronizar tu cuenta. Tu avance sigue guardado en este navegador.';}
+}
+async function pushRemote(){if(!sb||!user)return;try{const {error}=await sb.from('progreso_aula').upsert({user_id:user.id,datos:{done:S.done,luces:S.luces,racha:S.racha,dia:S.dia},updated_at:new Date().toISOString()});if(error)throw error;}catch(e){console.warn('guardar',e)}}
+if(sb){
+  sb.auth.onAuthStateChange((_ev,session)=>{const was=user;user=session?session.user:null;
+    $('accBtn').innerHTML=user?'<span class="lg">Mi cuenta</span><span class="sm">Cuenta</span>':'<span class="lg">Guardar mi avance</span><span class="sm">Guardar</span>';
+    if(user&&!was){pullRemote();toast('Sesión iniciada');}
+    if(!user){$('syncNote').textContent='Tu avance se guarda en este navegador. Crea tu cuenta para no perderlo.';}
+  });
+}
+
+/* ===== Comentarios (moderados) ===== */
+let stars=5;
+$('rate').innerHTML=[1,2,3,4,5].map(n=>`<button type="button" role="radio" aria-checked="${n===5}" aria-label="${n} de 5" data-n="${n}">★</button>`).join('');
+function paintStars(){document.querySelectorAll('#rate button').forEach(b=>{const n=+b.dataset.n;b.classList.toggle('on',n<=stars);b.setAttribute('aria-checked',n===stars);});}
+document.querySelectorAll('#rate button').forEach(b=>b.addEventListener('click',()=>{stars=+b.dataset.n;paintStars();}));paintStars();
+const H={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY};
+async function loadComments(){
+  const box=$('cmtList');
+  try{const r=await fetch(SB_URL+'/rest/v1/comentarios?select=nombre,texto,estrellas,created_at&pagina=eq.aula&aprobado=eq.true&order=created_at.desc&limit=12',{headers:H});if(!r.ok)throw new Error(r.status);
+    const rows=await r.json();
+    box.innerHTML=rows.length?rows.map(c=>`<article class="cmt"><div class="who"><span>${esc(c.nombre)}</span><span class="stars" aria-label="${c.estrellas||5} de 5">${'★'.repeat(c.estrellas||5)}</span></div><p>${esc(c.texto)}</p><span class="small muted">${new Date(c.created_at).toLocaleDateString('es-PE',{day:'numeric',month:'long',year:'numeric'})}</span></article>`).join(''):'<div class="card"><span class="hand">aún no hay comentarios</span><p class="muted">Sé la primera persona en contar cómo te va con el Aula.</p></div>';}
+  catch(e){box.innerHTML='<div class="card"><span class="hand">aún no hay comentarios</span><p class="muted">Sé la primera persona en contar cómo te va con el Aula.</p></div>';}
+}
+$('cmtForm').addEventListener('submit',async e=>{e.preventDefault();const nom=$('cNom').value.trim(),txt=$('cTxt').value.trim(),msg=$('cMsg');
+  if(nom.length<2){msg.style.color='var(--lacre)';msg.textContent='Escribe tu nombre.';return;}
+  if(txt.length<3){msg.style.color='var(--lacre)';msg.textContent='Escribe tu comentario.';return;}
+  msg.style.color='var(--tinta-2)';msg.textContent='Enviando…';
+  try{const r=await fetch(SB_URL+'/rest/v1/comentarios',{method:'POST',headers:Object.assign({'Content-Type':'application/json',Prefer:'return=minimal'},H),body:JSON.stringify({pagina:'aula',nombre:nom,texto:txt,estrellas:stars})});
+    if(!r.ok)throw new Error(r.status);msg.style.color='var(--tinta)';msg.textContent='¡Gracias! Tu comentario se publicará cuando lo revisemos.';e.target.reset();stars=5;paintStars();}
+  catch(err){msg.style.color='var(--lacre)';msg.textContent='Los comentarios abrirán muy pronto. Gracias por tu paciencia.';console.warn('comentario',err);}
+});
+
+drawAll();loadComments();
+})();
+</script>
+</body>
+</html>
