@@ -275,8 +275,8 @@ dialog .in{padding:24px;display:flex;flex-direction:column;gap:16px}
   <div class="wrap pie">
     <a class="wm" href="../" aria-label="anylum, inicio">anylum<span class="dot"></span></a>
     <p>© <span id="yr">2026</span> Todos los derechos reservados.</p>
-    <p>Diseñada y desarrollada íntegramente por <b>Anylum</b>, con mucho <em>amor</em> ♥</p>
-    <p class="ref">Información referencial. No reemplaza la asesoría de un abogado.</p>
+    <p data-txt="pie_firma">Diseñada y desarrollada íntegramente por <b>Anylum</b>, con mucho <em>amor</em> ♥</p>
+    <p class="ref" data-txt="pie_aviso">Información referencial. No reemplaza la asesoría de un abogado.</p>
   </div>
 </footer>
 
@@ -593,6 +593,12 @@ $('cmtForm').addEventListener('submit',async e=>{e.preventDefault();const nom=$(
 
 try{applyContent(JSON.parse(localStorage.getItem(CKEY)||'null'))}catch(e){}
 $('yr').textContent=new Date().getFullYear();
+/* Pie de página: mismos textos que la calculadora (tabla textos: pie_firma y pie_aviso) */
+fetch(SB_URL+'/rest/v1/textos?select=clave,valor&clave=in.(pie_firma,pie_aviso)',{headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}})
+  .then(r=>r.ok?r.json():[]).then(rows=>rows.forEach(r=>{const el=document.querySelector('[data-txt="'+r.clave+'"]');if(!el||!r.valor)return;
+    el.innerHTML=String(r.valor).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<em>$1</em>');}))
+  .catch(()=>{});
+
 drawAll();loadComments();loadContent();
 })();
 </script>

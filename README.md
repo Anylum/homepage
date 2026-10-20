@@ -23,6 +23,8 @@ Todo se edita en Supabase → **Table Editor**. Los cambios se ven en la web al 
 | `redes_sociales` | Pega la url de cada red; solo se muestran las que tienen url. En WhatsApp basta el número y en Correo, la dirección. |
 | `comentarios` | Comentarios del Aula. Llegan ocultos; marca `aprobado` para publicarlos. |
 
+El pie de página de las tres páginas (inicio, Aula y calculadora) usa las filas `pie_firma` y `pie_aviso` de la tabla `textos`. Usa `**negrita**` y `*cursiva*`.
+
 La calculadora de plazos lee sus propias tablas en el mismo proyecto: `plazos`, `feriados`, `terminos_distancia`, `codigos`, `reglas_notificacion`, `reglas_calculo`, `lecciones`, `textos` y `avisos`.
 
 ### El campo `contenido` de una etapa
