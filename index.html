@@ -191,6 +191,17 @@ p{margin:0}
 .soc a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--tinta);color:var(--papel);text-decoration:none;transition:transform .15s}
 .soc a:hover{transform:translateY(-2px)}
 footer .soc a{background:var(--papel);color:var(--tinta)}
+footer{background:var(--tinta);color:#BDB9AD;padding:34px 0 40px;font-size:.95rem}
+.pie{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.pie p{margin:0}
+.pie b{color:#fff}
+.pie em{color:#E8A33D}
+.pie .pe{display:flex;align-items:center;gap:8px;color:#fff}
+.pie .ref{font-size:.8rem;opacity:.85}
+footer .wm{color:var(--papel);font-size:2.1rem;text-decoration:none;margin-bottom:6px}
+footer .wm .dot{background:var(--ambar)}
+footer .soc{justify-content:center;margin-bottom:10px}
+
 .soc a:focus-visible{outline:2px solid var(--lacre);outline-offset:3px}
 .soc svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .val-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -225,11 +236,6 @@ footer .soc a{background:var(--papel);color:var(--tinta)}
 .news input{flex:1;min-width:210px;font:600 1rem var(--f-body);padding:13px 18px;border-radius:99px;border:1.5px solid var(--borde);background:var(--blanco);color:var(--tinta)}
 .news input:focus{outline:2px solid var(--lacre);outline-offset:2px}
 .msg{font-weight:700;font-size:.92rem;min-height:1.4em}
-footer{background:var(--tinta);color:var(--papel);padding-block:34px}
-footer .wm{color:var(--papel);font-size:2.2rem}
-footer .wm .dot{background:var(--ambar)}
-.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-.legal{font-size:.88rem;color:#F7F1E3;max-width:60ch}
 
 /* Etapa (pantalla de juego) */
 dialog{border:0;padding:0;background:var(--blanco);color:var(--tinta);box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
@@ -557,10 +563,13 @@ dialog::backdrop{background:rgba(20,20,20,.5)}
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <span class="wm">anylum<span class="dot"></span></span>
+  <div class="wrap pie">
+    <a class="wm" href="#inicio" aria-label="anylum, inicio">anylum<span class="dot"></span></a>
     <div class="soc" id="socF" hidden></div>
-    <p class="legal"><b>El contenido es educativo y no reemplaza la asesoría legal de un profesional.</b> © <span id="yr">2026</span> Anylum.</p>
+    <p class="pe"><svg class="flag" viewBox="0 0 30 20" width="19" height="13" aria-hidden="true"><rect width="30" height="20" rx="2" fill="#fff"/><rect width="10" height="20" fill="#D91023"/><rect x="20" width="10" height="20" fill="#D91023"/><rect width="30" height="20" rx="2" fill="none" stroke="#D9D6CE"/></svg> Plazos procesales del Perú</p>
+    <p>© <span id="yr">2026</span> Todos los derechos reservados.</p>
+    <p>Diseñada y desarrollada íntegramente por <b>Anylum</b>, con mucho <em>amor</em> ♥</p>
+    <p class="ref">Información referencial. No reemplaza la asesoría de un abogado.</p>
   </div>
 </footer>
 

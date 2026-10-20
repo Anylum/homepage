@@ -124,10 +124,16 @@ p{margin:0}
 .rate button.on{color:var(--ambar)} .rate button:focus-visible{outline:2px solid var(--lacre)}
 .msg{font-weight:700;font-size:.92rem;min-height:1.3em}
 
-footer{background:var(--tinta);color:var(--papel);padding-block:30px;margin-top:60px}
-footer .wm{color:var(--papel);font-size:2rem}
-footer a{color:#F1DEA3}
-.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;font-size:.88rem}
+footer{background:var(--tinta);color:#BDB9AD;padding:34px 0 40px;margin-top:60px;font-size:.95rem}
+.pie{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.pie p{margin:0}
+.pie b{color:#fff}
+.pie em{color:#E8A33D}
+.pie .pe{display:flex;align-items:center;gap:8px;color:#fff}
+.pie .ref{font-size:.8rem;opacity:.85}
+footer .wm{color:var(--papel);font-size:2.1rem;text-decoration:none;margin-bottom:6px}
+footer .wm .dot{display:inline-block;width:.15em;height:.15em;border-radius:50%;background:var(--ambar);margin-left:.06em}
+footer .soc{justify-content:center;margin-bottom:10px}
 
 /* pantalla de etapa */
 dialog{border:0;padding:0;background:var(--blanco);color:var(--tinta);box-shadow:0 30px 80px -30px rgba(0,0,0,.5)}
@@ -266,9 +272,12 @@ dialog .in{padding:24px;display:flex;flex-direction:column;gap:16px}
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <span class="wm">anylum</span>
-    <p><a href="../">Volver a Anylum</a> · El contenido es educativo y no reemplaza la asesoría legal de un profesional.</p>
+  <div class="wrap pie">
+    <a class="wm" href="../" aria-label="anylum, inicio">anylum<span class="dot"></span></a>
+    <p class="pe"><svg class="flag" viewBox="0 0 30 20" width="19" height="13" aria-hidden="true"><rect width="30" height="20" rx="2" fill="#fff"/><rect width="10" height="20" fill="#D91023"/><rect x="20" width="10" height="20" fill="#D91023"/><rect width="30" height="20" rx="2" fill="none" stroke="#D9D6CE"/></svg> Plazos procesales del Perú</p>
+    <p>© <span id="yr">2026</span> Todos los derechos reservados.</p>
+    <p>Diseñada y desarrollada íntegramente por <b>Anylum</b>, con mucho <em>amor</em> ♥</p>
+    <p class="ref">Información referencial. No reemplaza la asesoría de un abogado.</p>
   </div>
 </footer>
 
@@ -584,6 +593,7 @@ $('cmtForm').addEventListener('submit',async e=>{e.preventDefault();const nom=$(
 });
 
 try{applyContent(JSON.parse(localStorage.getItem(CKEY)||'null'))}catch(e){}
+$('yr').textContent=new Date().getFullYear();
 drawAll();loadComments();loadContent();
 })();
 </script>
